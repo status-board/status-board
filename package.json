@@ -1,0 +1,22 @@
+{
+  "name": "status-board",
+  "version": "0.0.1",
+  "description": "Status Board is a dashboard framework written in nodejs.",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "main": "index.js",
+  "repository": "git@github.com:jameswlane/status-board.git",
+  "author": "James W. Lane <james.w.lane@mac.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.15.5",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5",
+    "stylus": "0.54.5"
+  }
+}

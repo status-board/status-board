@@ -1,6 +1,6 @@
 {
   "name": "status-board",
-  "version": "0.0.1",
+  "version": "0.0.0-development",
   "description": "Status Board is a dashboard framework written in nodejs.",
   "scripts": {
     "start": "node ./bin/www",
@@ -16,8 +16,9 @@
     "verify:nsp": "nsp check --output summary",
     "verify:check": "depcheck --ignores=@types/jest,@types/node",
     "verify:tscheck": "types-checker",
-    "setup": "yarn global add npmvet david nsp depcheck types-checker commitizen",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "setup": "yarn global add npmvet david nsp depcheck types-checker commitizen semantic-release-cli",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "main": "index.js",
   "repository": "git@github.com:jameswlane/status-board.git",
@@ -49,7 +50,8 @@
     "ts-jest": "21.2.1",
     "tslint": "5.8.0",
     "tslint-config-airbnb": "5.3.0",
-    "typescript": "2.6.1"
+    "typescript": "2.6.1",
+    "semantic-release": "8.2.0"
   },
   "config": {
     "commitizen": {

@@ -44,10 +44,16 @@
     "@types/serve-favicon": "2.2.30",
     "@types/stylus": "0.48.28",
     "coveralls": "3.0.0",
+    "cz-conventional-changelog": "2.1.0",
     "jest": "21.2.1",
     "ts-jest": "21.2.1",
     "tslint": "5.8.0",
     "tslint-config-airbnb": "5.3.0",
     "typescript": "2.6.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

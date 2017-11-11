@@ -20,7 +20,7 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
-  "main": "index.js",
+  "main": "app.js",
   "repository": "git@github.com:jameswlane/status-board.git",
   "author": "James W. Lane <james.w.lane@mac.com>",
   "license": "MIT",

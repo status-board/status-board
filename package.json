@@ -41,7 +41,7 @@
     "@types/ejs": "2.3.33",
     "@types/express": "4.0.39",
     "@types/morgan": "1.7.35",
-    "@types/node": "8.0.53",
+    "@types/node": "8.0.54",
     "@types/serve-favicon": "2.2.30",
     "@types/stylus": "0.48.28",
     "coveralls": "3.0.0",

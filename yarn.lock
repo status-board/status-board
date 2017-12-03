@@ -68,6 +68,10 @@
   version "2.3.33"
   resolved "https://registry.yarnpkg.com/@types/ejs/-/ejs-2.3.33.tgz#0a4e0a7aeee09944154b06ce5a2ac6a118f92b00"
 
+"@types/events@*":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@types/events/-/events-1.1.0.tgz#93b1be91f63c184450385272c47b6496fd028e02"
+
 "@types/express-serve-static-core@*":
   version "4.0.56"
   resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.0.56.tgz#4ed556dcff9012cce6b016e214fdc5ef6e99db7d"
@@ -96,9 +100,11 @@
   version "8.0.50"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.50.tgz#dc545448e128c88c4eec7cd64025fcc3b7604541"
 
-"@types/node@8.0.53":
-  version "8.0.53"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
+"@types/node@8.0.54":
+  version "8.0.54"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.54.tgz#3fd9357db4af388b79e03845340259440edffde6"
+  dependencies:
+    "@types/events" "*"
 
 "@types/serve-favicon@2.2.30":
   version "2.2.30"

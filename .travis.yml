@@ -18,7 +18,7 @@ before_script:
 after_script:
 - greenkeeper-lockfile-upload
 script:
-- yarn verify
+- yarn verify:ci
 after_success:
 - yarn ts:build
 - yarn semantic-release

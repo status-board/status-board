@@ -1,6 +1,6 @@
 import configManager from './config-manager';
 import EventQueue from "./event-queue";
-import {fillDependencies} from './job-dependencies/loader';
+import { fillDependencies } from './job-dependencies/loader';
 import jobsManager from './job-manager';
 import loadGlobalAuth from './global-auth';
 import logger from './logger';

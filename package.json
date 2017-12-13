@@ -61,8 +61,8 @@
     "xtend": "4.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^5.2.5",
-    "@commitlint/config-conventional": "^5.2.3",
+    "@commitlint/cli": "5.2.5",
+    "@commitlint/config-conventional": "5.2.3",
     "@types/async": "2.0.45",
     "@types/body-parser": "1.16.8",
     "@types/chalk": "2.2.0",

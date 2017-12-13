@@ -1,3 +1,5 @@
+import * as _ from 'underscore';
+
 export default function () {
-  return require('underscore');
+  return _;
 }

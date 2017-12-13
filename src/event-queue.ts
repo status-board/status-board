@@ -4,7 +4,7 @@
  * @param io
  * @constructor
  */
-function EventQueue(io) {
+export default function eventQueue(io) {
   this.io = io;
   this.latestEvents = {};
   const self = this;
@@ -23,14 +23,12 @@ function EventQueue(io) {
   });
 }
 
-exports = module.exports = EventQueue;
-
 /**
  * Send widget data to clients
  * @param id
  * @param data
  */
-EventQueue.prototype.send = function (id: any, data: any) {
+eventQueue.prototype.send = function (id: any, data: any) {
   this.latestEvents[id] = data;
   this.io.emit(id, data); // emit to widget
   this.io.emit('client', { data, widgetId: id }); // emit to logger

@@ -1,0 +1,52 @@
+body.dashboard-list
+  padding 1em
+  width 100%
+
+  h1
+    color $dashboard-list-header-title-color
+    font-size $dashboard-list-header-title-font-size
+    margin $dashboard-list-header-title-margin
+    text-transform uppercase
+
+  ul
+    list-style none
+    margin 0
+    padding 0
+
+    li
+      background-color $dashboard-list-item-container-background-color
+      background-image $dashboard-list-item-container-background-image
+      border $dashboard-list-item-container-border
+      border-radius ($gutter-size / 8)
+      box-shadow $dashboard-list-item-container-box-shadow
+      float $dashboard-list-item-container-float
+      margin $dashboard-list-item-container-margin
+      padding $dashboard-list-item-container-padding
+      overflow hidden
+      height: $dashboard-list-item-container-height
+      width 30%
+
+      &:hover
+        border: $dashboard-list-item-container-border-hover
+        background-color $dashboard-list-item-container-background-color-hover
+
+      a
+        border: $dashboard-list-item-border
+        color $dashboard-list-item-title-color
+        display: inline-block;
+        font-size $dashboard-list-item-title-font-size
+        padding $dashboard-list-item-padding
+        text-decoration none
+        text-transform uppercase
+        transition-duration: 0.2s;
+        width 100%
+
+        .description
+          font-size $dashboard-list-item-description-font-size
+          color $dashboard-list-item-description-color
+          display block
+          margin-top 0.3em
+
+        &:hover
+          border: $dashboard-list-item-border-hover
+          background-color $dashboard-list-item-background-color-hover

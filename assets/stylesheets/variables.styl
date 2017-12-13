@@ -1,0 +1,83 @@
+// --
+// These are the default stylus variables.
+// The current theme, whatever it is in Atlasboard core or in
+// your wallboard project, will override this variables if they are defined
+// --
+
+$dashboard-width = 1920px
+$dashboard-height = 1080px
+
+$font-family = 'Roboto Condensed'
+$gutter-size = 15px
+
+$body-padding = 0
+
+$gray-base = #181818;
+$gray-darker = lighten($gray-base, 5%);
+$gray-dark = lighten($gray-base, 20%);
+$gray = #707070;
+$gray-light = lighten($gray, 30%);
+$gray-lighter = lighten($gray-base, 70%);
+
+$brand-primary = #205081 // blue navy
+$brand-success = #1C842F // green
+$brand-warning = #f6c342 // yellow
+$brand-danger = #d04437 // red
+
+$error-color = $brand-danger
+$success-color = $brand-success
+$warning-color = $brand-warning
+
+$background-color = $gray-darker
+$background-image = none
+
+$dashboard-title-color = $gray
+$dashboard-title-font-size = 1.7em
+
+// widget
+
+$widget-background-color = $gray-base
+$widget-border = solid 1px $gray-dark
+$widget-box-shadow = 0 0 5px $gray-base
+$widget-container-padding = 0
+$widget-content-padding = 0
+$widget-padding = $gutter-size
+$widget-body-text-color = $gray
+
+$widget-title-color = $gray
+$widget-title-background-color = transparent
+$widget-title-font-size = 20px
+$widget-title-padding = 0
+$widget-title-margin = 0 0 1em 0
+
+// dashboard list
+
+$dashboard-list-header-title-color = $gray
+$dashboard-list-header-title-font-size = 1.3em
+$dashboard-list-header-title-margin = 0
+
+$dashboard-list-item-container-height = 7em
+$dashboard-list-item-container-margin = 0.5em
+$dashboard-list-item-container-float = left
+$dashboard-list-item-container-padding = 0.2em
+$dashboard-list-item-container-background-image = none
+$dashboard-list-item-container-background-color = $gray-base
+$dashboard-list-item-container-background-color-hover = lighten($gray-darker, 5%)
+$dashboard-list-item-container-border = solid 1px $gray-dark
+$dashboard-list-item-container-border-hover = solid 1px $gray
+$dashboard-list-item-container-box-shadow = 0 0 5px #111
+
+$dashboard-list-item-padding = 0.3em
+
+$dashboard-list-item-border =   none
+$dashboard-list-item-border-hover = none
+
+$dashboard-list-item-title-color = #fff
+$dashboard-list-item-title-font-size = 1.7em
+
+$dashboard-list-item-description-color = $gray-lighter
+$dashboard-list-item-description-font-size = 0.5em
+
+// log viewer
+
+$log-viewer-background = #fff

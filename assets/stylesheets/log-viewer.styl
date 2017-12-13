@@ -1,0 +1,65 @@
+@import 'nib'
+@import 'variables'
+
+@font-face
+  font-family $font-family
+  src local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), url('../../fonts/roboto-condensed.woff') format('woff')
+
+body
+  font-family $font-family
+  background $log-viewer-background
+  overflow visible
+
+h1
+  font 100 20px "Helvetica Neue", Helvetica, Arial, sans-serif
+
+#main
+  display table
+  table-layout fixed
+  width 100%
+
+.entry
+  cursor pointer
+  margin-bottom  3px
+  overflow  hidden
+  text-overflow  ellipsis
+  white-space  nowrap
+
+.entry.expanded
+  white-space  normal
+  overflow  visible
+
+.log_text
+  color $gray-dark
+
+  &.logtype_5
+    color $error-color
+
+  &.logtype_4
+    color  orange
+    font-weight bold
+
+span.timestamp
+  color  #ccc
+
+.logcontainer
+  display  table-cell
+  padding 2em
+  width 50%
+
+  &.left
+    border-width  0 5px 0 0
+    border-color #f5f5f5
+    border-style solid
+
+div.filter
+  margin-bottom 10px
+
+  input
+    border-style solid
+    border-width  0 0 1px 0
+    border-color  #f2f2f2
+    min-width 300px
+
+div.toolbar_actions
+  float right

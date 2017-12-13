@@ -1,0 +1,62 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>AtlasBoard <% if (dashboardConfig.title) { %> - <%= dashboardConfig.title %><% } %>
+    </title>
+    <meta name="viewport" content="width=device-width">
+
+    <!--
+    Deprecation message: d3 and rickshaw will eventually be removed from Atlasboard core.
+    If your package needs them, it would need to provide them as dependency
+    -->
+    <link rel="stylesheet" href="bower_components/rickshaw/rickshaw.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="bower_components/gridster/dist/jquery.gridster.min.css" type="text/css" media="screen" />
+
+    <link rel="stylesheet" href="stylesheets/normalize.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="stylesheets/application.css" type="text/css" media="screen" />
+
+    <link rel="icon" type="image/png" href="images/favicon.png"/>
+</head>
+<body class="dashboard">
+<script>
+  var GRID_COLUMNS = <%=(dashboardConfig.layout.gridSize && dashboardConfig.layout.gridSize.columns || 6) %>;
+  var GRID_ROWS = <%=(dashboardConfig.layout.gridSize && dashboardConfig.layout.gridSize.rows || 4) %>;
+</script>
+
+<div id="main-container">
+    <% if (dashboardConfig.title && dashboardConfig.titleVisible) { %>
+    <h1 class="title"><%= dashboardConfig.title %></h1>
+    <% } %>
+
+    <div id="widgets-container" class="gridster">
+        <ul>
+            <% dashboardConfig.layout.widgets.forEach(function (widget) { %>
+            <li data-row="<%= widget.r || widget.row %>"
+                data-col="<%= widget.c || widget.col %>"
+                data-sizex="<%= widget.w || widget.width %>"
+                data-sizey="<%= widget.h || widget.height %>"
+                data-widget-id="<%= widget.widget %>"
+                data-event-id="<%=(dashboardName + '-' + (widget.r || widget.row) + '-' + (widget.c || widget.col)) %>"></li>
+            <% }) %>
+        </ul>
+    </div>
+</div>
+
+<script src="build/vendor.js"></script>
+
+<!--
+Deprecation message: D3 and rickshaw will eventually be removed from Atlasboard core.
+If your package needs them, it would need to provide them as dependency
+-->
+<script src="bower_components/rickshaw/vendor/d3.v2.js"></script>
+<script src="bower_components/rickshaw/rickshaw.min.js"></script>
+
+<script src="socket.io/socket.io.js"></script>
+
+<script src="build/app.js"></script>
+<script src="<%=dashboardName%>/js"></script>
+
+</body>
+</html>

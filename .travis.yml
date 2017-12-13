@@ -18,13 +18,14 @@ before_script:
 after_script:
 - greenkeeper-lockfile-upload
 script:
-- yarn verify
+- yarn verify:ci
 after_success:
-- npm run semantic-release
+- yarn ts:build
+- yarn semantic-release
 - cat ./coverage/lcov.info | coveralls
 branches:
   except:
-  - "/^v\\d+\\.\\d+\\.\\d+$/"
+- "/^v\\d+\\.\\d+\\.\\d+$/"
 env:
   global:
   - secure: qvJi5gw7sLevjWRzjNqXzvNBJjn8tPrPVmrvGao+nDDRqD+zYPrg2Vxqbw1Tsh+hU06XVTSp5dIOOpopYqJr9Rj8MHx7/9w/RSMS2c5F5nKj2HSb1DYhrVfWVONq7bBQE1gyI7gMiUiBieNM62OkyqZpyaTSljUZyp12jwvNm4GdoxG/mVmXckKD1j12nDdEtUSU2JvIKPUbyqrtyTB5UF1vsIbDtuwYE88fwIdzEnMVrLhfesB7rmQFhygXq9AGjGBlFhSvUHzOM3zv7ut4IXlH7qcDa0M61as8kWGZ6YXKVm2IJh9uat2Y0HAO/8I6xT6NJgWoOxtOHGf5zYbZddr8I9qBUCDdtahTdAvLKmypK+0gBh1WXJW9xfBqwlocDuFl9G5Mb7+8jcO3CdOgfT2UIPOIqrUMzMsF0W0I/jS4P8vqMiJUbBv59SKQYWwIt7wp8Ewaujo1s0odDLP84Q9xV7b1eoA8a71d6JQIPWgUEyU6QCJwYbebaZWSpwBpGHGzQmolAENnJ1TtC9f/6ytwerJzGjxH8tG25fT+UoRRZolnmHHw55Ff6wC9soZjrJ7d9w7CSYgKbrchdA3kHjplnthRdwvnCpqlxStVGCC5M7L/pLUw2cHPI26ZwIp3JMWCyJzj/12CdiB4yYJSbXy+1I5duq80IrQgQBKd2Vk=

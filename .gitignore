@@ -16,3 +16,6 @@ node_modules/
 
 # JetBrains settings
 .idea
+
+# macOS
+.DS_Store

@@ -1,0 +1,50 @@
+// nib is a powerful lib for stylus that provides cross-browser css3 mixins.
+// No more vendor prefixes. http//visionmedia.github.com/nib/
+@import 'nib'
+
+// Apply a natural box layout model to all elements.
+// http//paulirish.com/2012/box-sizing-border-box-ftw/
+*
+  box-sizing border-box
+
+@font-face
+  font-family $font-family
+  font-style normal
+  font-weight 400
+  src local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), url('../../fonts/roboto-condensed.woff') format('woff')
+
+body
+  background-image $background-image
+  background-color $background-color
+  padding $body-padding
+  font-family $font-family
+
+body.dashboard
+  overflow hidden
+
+#main-container
+  width $dashboard-width
+  height $dashboard-height
+  padding ($gutter-size/2)
+  transform-origin 0 0
+  margin 0 auto
+
+  h1.title
+    color: $dashboard-title-color
+    text-transform uppercase
+    font-size $dashboard-title-font-size
+    margin 0.2em 0 0 0
+    margin-left $gutter-size
+
+  &.disconnected
+    opacity .3
+
+#widgets-container
+  & > ul
+    list-style none
+
+    > li
+      @import 'widget'
+
+@import 'dashboard-list'
+@import 'common'

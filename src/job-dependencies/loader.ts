@@ -13,8 +13,8 @@ export function fillDependencies(jobWorker: any, deps: any) {
       try {
         const depPath = path.join(folderPath, 'dependency.js');
         jobWorker.dependencies[dependencyFolders[i]] = require(depPath)(jobWorker, deps);
-      } catch (e) {
-        throw 'error resolving dependency ' + dependencyFolders[i] + '. ERROR:' + e;
+      } catch (error) {
+        throw Error(`error resolving dependency ${dependencyFolders[i]}. ERROR:${error}`);
       }
     }
   }

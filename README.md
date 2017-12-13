@@ -52,16 +52,17 @@ Nothing is supposed to break once you upgrade but you may want to update a few t
 
 # Roadmap
 
-## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjameswlane%2Fstatus-board.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjameswlane%2Fstatus-board?ref=badge_large)
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars2.githubusercontent.com/u/794161?v=4" width="100px;"/><br /><sub><b>James W. Lane III</b></sub>](http://fueledbydreams.com)<br />[💻](https://github.com/jameswlane/status-board/commits?author=jameswlane "Code") [🚇](#infra-jameswlane "Infrastructure (Hosting, Build-Tools, etc)") [🔧](#tool-jameswlane "Tools") | [<img src="https://avatars1.githubusercontent.com/u/14790466?v=4" width="100px;"/><br /><sub><b>Greenkeeper</b></sub>](https://greenkeeper.io/)<br />[🚇](#infra-greenkeeperio-bot "Infrastructure (Hosting, Build-Tools, etc)") [🔌](#plugin-greenkeeperio-bot "Plugin/utility libraries") | [<img src="https://avatars0.githubusercontent.com/u/29791463?v=4" width="100px;"/><br /><sub><b>fossabot</b></sub>](http://fossa.io)<br />[📖](https://github.com/jameswlane/status-board/commits?author=fossabot "Documentation") |
+| [<img src="https://avatars2.githubusercontent.com/u/794161?v=4" width="100px;"/><br /><sub><b>James W. Lane III</b></sub>](http://fueledbydreams.com)<br />[💻](https://github.com/jameswlane/status-board/commits?author=jameswlane "Code") [🚇](#infra-jameswlane "Infrastructure (Hosting, Build-Tools, etc)") [🔧](#tool-jameswlane "Tools") | [<img src="https://avatars1.githubusercontent.com/u/14790466?v=4" width="100px;"/><br /><sub><b>Greenkeeper</b></sub>](https://greenkeeper.io/)<br />[🔌](#plugin-greenkeeperio-bot "Plugin/utility libraries") | [<img src="https://avatars0.githubusercontent.com/u/29791463?v=4" width="100px;"/><br /><sub><b>fossabot</b></sub>](http://fossa.io)<br />[📖](https://github.com/jameswlane/status-board/commits?author=fossabot "Documentation") |
 | :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjameswlane%2Fstatus-board.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjameswlane%2Fstatus-board?ref=badge_large)

@@ -19,7 +19,7 @@ storageFS.prototype.get = function (key: any, callback: any) {
     if (err) {
       return callback(err);
     }
-    let data;
+
     try {
       const content = JSON.parse(data);
       data = content[self.storageKey] ? content[self.storageKey][key].data : null;

@@ -1,6 +1,6 @@
 import configManager from './config-manager';
 import EventQueue from "./event-queue";
-import jobDependencyManager from './job-dependencies/loader';
+import {fillDependencies} from './job-dependencies/loader';
 import jobsManager from './job-manager';
 import loadGlobalAuth from './global-auth';
 import logger from './logger';
@@ -35,7 +35,7 @@ export function init(options: any, cb: any) {
 
         if (jobWorker.widget_item.enabled !== false) {
 
-          jobDependencyManager.fillDependencies(jobWorker, options.deps);
+          fillDependencies(jobWorker, options.deps);
 
           if (jobWorker.onInit) {
             jobWorker.onInit.call(jobWorker, jobWorker.config, jobWorker.dependencies);

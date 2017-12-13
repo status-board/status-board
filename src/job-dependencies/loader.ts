@@ -12,7 +12,7 @@ export function fillDependencies(jobWorker: any, deps: any) {
     if (stat.isDirectory()) {
       try {
         const depPath = path.join(folderPath, 'dependency.js');
-        jobWorker.dependencies[dependencyFolders[i]] = require(depPath)(jobWorker, deps);
+        jobWorker.dependencies[dependencyFolders[i]] = require(depPath).default(jobWorker, deps);
       } catch (error) {
         throw Error(`
           Error resolving dependency: ${dependencyFolders[i]}

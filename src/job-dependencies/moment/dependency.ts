@@ -1,3 +1,5 @@
-module.exports = function () {
-  return require('moment');
-};
+import * as moment from 'moment';
+
+export default function () {
+  return moment;
+}

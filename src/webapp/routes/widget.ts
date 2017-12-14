@@ -128,7 +128,7 @@ export function renderHtmlWidget(packagesPath: any, widgetName: any, req: any, r
   function loadStylusIfPresent(res: any, cb: any) {
     getFileContents('.styl', (err: any, stylusContent: any) => {
       if (!err && stylusContent) {
-        stylus.getWidgetCSS(stylusContent, (err: any, css: any) => {
+        stylus().getWidgetCSS(stylusContent, (err: any, css: any) => {
           if (!err) {
             addNamespacesCSSToResponse(css, widgetName, res);
           } else {

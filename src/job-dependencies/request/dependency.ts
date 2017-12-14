@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import * as request from 'request';
 
 const projectPackageJson = fs.readFileSync('../../../package.json');

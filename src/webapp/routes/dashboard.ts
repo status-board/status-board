@@ -79,7 +79,7 @@ export function renderDashboard(packagesPath: any, dashboardName: any, req: any,
       if (err) {
         return res.status(400).send('Invalid dashboard config file');
       }
-      templateManager.resolveTemplateLocation('dashboard.ejs', (err: any, location: any) => {
+      templateManager().resolveTemplateLocation('dashboard.ejs', (err: any, location: any) => {
         res.render(location, {
           dashboardName,
           dashboardConfig: dashboardJSON,

@@ -23,7 +23,7 @@ export default function scheduler(jobWorker: any) {
  * Schedules next job execution based on job's interval
  */
 
-scheduler.prototype.scheduleNext = () => {
+scheduler.prototype.scheduleNext = function () {
   const self = this;
   setTimeout(
     () => {
@@ -37,7 +37,7 @@ scheduler.prototype.scheduleNext = () => {
  * Run job and schedule next
  */
 
-scheduler.prototype.start = () => {
+scheduler.prototype.start = function () {
   const self = this;
   const job = self.jobWorker;
 
@@ -50,7 +50,7 @@ scheduler.prototype.start = () => {
     // -------------------------------------------------------------
     // Decide if we hold error notification according to widget config.
     // if the retryOnErrorTimes property found in config, the error notification
-    // won´t be sent until we reach that number of consecutive errrors.
+    // won´t be sent until we reach that number of consecutive errors.
     // This will prevent showing too many error when connection to flaky, unreliable
     // servers.
     // -------------------------------------------------------------

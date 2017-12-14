@@ -32,12 +32,19 @@ npm start
 ``start.js`` looks like this and it is included in > 1.0:
 
 ```
-var statusBoard = require('status-board');
-statusBoard({port: process.env.ATLASBOARD_PORT || 3000, install: true}, function (err) {
-  if (err) {
-    throw err;
+const statusBoard = require('status-board').default;
+
+statusBoard(
+  {
+    port: process.env.ATLASBOARD_PORT || 3000,
+    install: false
+  },
+  function (err) {
+    if (err) {
+      throw err;
+    }
   }
-});
+);
 ```
 
 You'll need to add the Status Board dependency to your ``package.json``.

@@ -237,9 +237,9 @@
   version "0.6.29"
   resolved "https://registry.yarnpkg.com/@types/traverse/-/traverse-0.6.29.tgz#2e9d1f18bfb009ab26e1cbb130376d1fc2726341"
 
-"@types/underscore@1.8.5":
-  version "1.8.5"
-  resolved "https://registry.yarnpkg.com/@types/underscore/-/underscore-1.8.5.tgz#1275b584bfbd74ae53b69d5301206ba63f7f1a79"
+"@types/underscore@1.8.6":
+  version "1.8.6"
+  resolved "https://registry.yarnpkg.com/@types/underscore/-/underscore-1.8.6.tgz#3f4b9c5915379b420fe7de75bd8cb58a7d9835ed"
 
 "@types/winston@2.3.7":
   version "2.3.7"

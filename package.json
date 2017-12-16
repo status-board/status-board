@@ -83,7 +83,7 @@
     "@types/socket.io": "1.4.31",
     "@types/stylus": "0.48.28",
     "@types/traverse": "0.6.29",
-    "@types/underscore": "1.8.5",
+    "@types/underscore": "1.8.6",
     "@types/winston": "2.3.7",
     "@types/xtend": "4.0.2",
     "all-contributors-cli": "4.10.1",

@@ -1,11 +1,12 @@
 import * as async from 'async';
 import * as fs from 'fs';
 import * as path from 'path';
-import readJson from 'read-package-json';
+import readPackageJson from 'read-package-json';
 import * as semver from 'semver';
 import * as _ from 'underscore';
 
-const atlasboardPackageJsonPath = path.join(__dirname, '../'); // in both test and production env will be located here.
+// in both test and production env will be located here.
+const atlasboardPackageJsonPath = path.join(__dirname, '../');
 
 /**
  * Search for packages in the current folder
@@ -34,7 +35,7 @@ function checkPackagesFolder(packagesPath: any, cb: any) {
  * Install from package folder
  */
 function getValidPackageJSON(pathPackage: any, callback: any) {
-  readJson(pathPackage + '/package.json', callback);
+  readPackageJson(pathPackage + '/package.json', callback);
 }
 
 /**
@@ -46,20 +47,24 @@ function checkValidIfAtlasboardVersionForPackage(pathPackage: any, callback: any
       return callback(err);
     }
 
-    getValidPackageJSON(atlasboardPackageJsonPath, (err: any, atlasboardPackageJson: any) => {
-      if (err) {
+    getValidPackageJSON(atlasboardPackageJsonPath, (error: any, atlasboardPackageJson: any) => {
+      if (error) {
         return callback('package.json not found for atlasboard at ' + atlasboardPackageJsonPath);
       }
 
       if (packageJson.engines && packageJson.engines.atlasboard) {
         const ok = semver.satisfies(atlasboardPackageJson.version, packageJson.engines.atlasboard);
-        const msg = 'Atlasboard version does not satisfy package dependencies at ' +
-          pathPackage + '. Please consider updating your version of atlasboard. Version required: ' +
-          packageJson.engines.atlasboard + '. Atlasboard version: ' + atlasboardPackageJson.version;
+        const msg = `
+          Atlasboard version does not satisfy package dependencies at ${pathPackage}.
+          Please consider updating your version of atlasboard.
+          Version required: ${packageJson.engines.atlasboard}.
+          Atlasboard version: ${atlasboardPackageJson.version}
+        `;
 
         callback(ok ? null : msg);
       } else {
-        callback(null); // not atlasboard reference in engines node
+        // not atlasboard reference in engines node
+        callback(null);
       }
     });
   });
@@ -75,13 +80,16 @@ function install(pathPackageJson: any, callback: any) {
   const isWindows = /^win/.test(process.platform);
   const npmCommand = isWindows ? 'npm.cmd' : 'npm';
 
-  executeCommand(npmCommand, ['install', '--production', pathPackageJson], (err: any, code: any) => {
-    if (err) {
-      callback('Error installing dependencies for ' + pathPackageJson + '. err:' + err);
-    } else {
-      callback(code !== 0 ? 'error installing ' + pathPackageJson : null);
-    }
-  });
+  executeCommand(
+    npmCommand,
+    ['install', '--production', pathPackageJson],
+    (error: any, code: any) => {
+      if (error) {
+        callback('Error installing dependencies for ' + pathPackageJson + '. err:' + error);
+      } else {
+        callback(code !== 0 ? 'error installing ' + pathPackageJson : null);
+      }
+    });
 
   process.chdir(currPath); // restore path
 }
@@ -89,7 +97,6 @@ function install(pathPackageJson: any, callback: any) {
 /**
  * Executes a command in a childProcess
  */
-
 function executeCommand(cmd: any, args: any, callback: any) {
   const childProcess = require('child_process');
   const child = childProcess.spawn(cmd, args, { stdio: 'inherit' });
@@ -103,19 +110,19 @@ function executeCommand(cmd: any, args: any, callback: any) {
 
 export function installDependencies(packagesPath: any, callback: any) {
   // Process all available package containers
-  async.map(packagesPath.filter(fs.existsSync), checkPackagesFolder, (err, results) => {
-    if (err) {
-      return callback(err);
+  async.map(packagesPath.filter(fs.existsSync), checkPackagesFolder, (error, results) => {
+    if (error) {
+      return callback(error);
     }
     const paths = _.flatten(results);
 
-    async.eachSeries(paths, checkValidIfAtlasboardVersionForPackage, (err: any) => {
-      if (err) {
-        return callback(err);
+    async.eachSeries(paths, checkValidIfAtlasboardVersionForPackage, (error: any) => {
+      if (error) {
+        return callback(error);
       }
 
-      async.eachSeries(paths, install, (err: any) => {
-        callback(err);
+      async.eachSeries(paths, install, (error: any) => {
+        callback(error);
       });
     });
   });

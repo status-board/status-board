@@ -12,10 +12,10 @@ import logger from './logger';
 const filters = {
   dashboards(dashboardPath: any) {
     try {
-      const contentJSON = JSON.parse(fs.readFileSync(dashboardPath));
+      const contentJSON = JSON.parse(fs.readFileSync(dashboardPath).toString());
       return (contentJSON.enabled !== false);
     } catch (e) {
-      logger().error('## ERROR ## ' + dashboardPath + ' has an invalid format or file doesn\'t exist\n');
+      logger().error(`## ERROR ## ${dashboardPath} has an invalid format or file doesn't exist\n`);
       return false;
     }
   },
@@ -37,10 +37,10 @@ export function resolveLocation(name: any, itemType: any, extension: any) {
   if (useDirectoryLevel) {
     // jobs/job1/job1.js
     return path.join(itemType, name, name + extension);
-  } else {
-    // dashboards/dashboard.json
-    return path.join(itemType, name + extension);
   }
+
+  // dashboards/dashboard.json
+  return path.join(itemType, name + extension);
 }
 
 /**
@@ -54,10 +54,13 @@ export function resolveLocation(name: any, itemType: any, extension: any) {
 export function resolveCandidates(items: any, name: any, itemType: any, extension: any) {
   let searchCriteria = '';
   if (name.indexOf('#') > -1) {
-    let packageName = name.split('#')[0];
-    let itemParsedName = name.split('#')[1];
+    const packageName = name.split('#')[0];
+    const itemParsedName = name.split('#')[1];
     // package/jobs/job1/job1.js
-    searchCriteria = path.join(packageName, this.resolveLocation(itemParsedName, itemType, extension));
+    searchCriteria = path.join(
+      packageName,
+      this.resolveLocation(itemParsedName, itemType, extension),
+    );
   } else {
     // jobs/job1/job1.js
     searchCriteria = this.resolveLocation(name, itemType, extension);
@@ -74,15 +77,20 @@ export function resolveCandidates(items: any, name: any, itemType: any, extensio
  * Return first candidate found matching name, type and extension
  *
  * @param {[string]} packagesPath : list of directories to find packages in.
- * @param {string} itemName item name to match. It can be namespaced. i.e: atlassian#widget1, widget1
+ * @param {string} itemName item name to match.
+ * It can be namespaced. i.e: atlassian#widget1, widget1
  * @param {string} itemType item type in plural. ('dashboards', 'jobs', 'widgets')
  * @param {string} extension : filter result by extension
  */
-export function getFirst(packagesPath: any, itemName: any, itemType: any, extension: any, callback: any) {
+export function getFirst(packagesPath: any,
+                         itemName: any,
+                         itemType: any,
+                         extension: any,
+                         callback: any) {
   const thiz = this;
-  this.get(packagesPath, itemType, extension, (err: any, items: any) => {
-    if (err) {
-      return callback(err);
+  this.get(packagesPath, itemType, extension, (error: any, items: any) => {
+    if (error) {
+      return callback(error);
     }
 
     const candidates = thiz.resolveCandidates(items, itemName, itemType, extension);
@@ -98,11 +106,11 @@ export function getFirst(packagesPath: any, itemName: any, itemType: any, extens
  * @param {string} extension : filter result by extension
  */
 export function get(packagesPath: any, itemType: any, extension: any, callback: any) {
-  this.getByPackage(packagesPath, itemType, extension, (err: any, results: any) => {
-    if (err) {
-      return callback(err);
+  this.getByPackage(packagesPath, itemType, extension, (error: any, results: any) => {
+    if (error) {
+      return callback(error);
     }
-    let items = [];
+    let items: string[] = [];
     results.forEach((packages: any) => {
       items = items.concat(packages.items);
     });
@@ -140,9 +148,9 @@ export function getByPackage(packagesPath: any, itemType: any, extension: any, c
     // - packages/default/<itemType>/*/*.js
     // - packages/otherpackages/<itemType>/*/*.js
     // for jobs and widgets
-    fs.readdir(itemDir, (err: any, items: any) => {
-      if (err) {
-        return cb(err);
+    fs.readdir(itemDir, (error: any, items: any) => {
+      if (error) {
+        return cb(error);
       }
 
       let selectedItems = [];
@@ -175,9 +183,9 @@ export function getByPackage(packagesPath: any, itemType: any, extension: any, c
   // - packages/otherpackages/*
   // and calls readItemsFromPackageDir for every one of them
   function fillPackages(packagesPath, cb) {
-    fs.readdir(packagesPath, (err: any, allPackagesDir: any) => {
-      if (err) {
-        return cb(err);
+    fs.readdir(packagesPath, (error: any, allPackagesDir: any) => {
+      if (error) {
+        return cb(error);
       }
 
       // convert to absolute path
@@ -191,9 +199,9 @@ export function getByPackage(packagesPath: any, itemType: any, extension: any, c
       });
 
       // read items from every package and flatten results
-      async.map(allPackagesDir, readItemsFromPackageDir, (err: any, results: any) => {
-        if (err) {
-          return cb(err);
+      async.map(allPackagesDir, readItemsFromPackageDir, (error: any, results: any) => {
+        if (error) {
+          return cb(error);
         }
         cb(null, _.flatten(results));
       });
@@ -201,9 +209,9 @@ export function getByPackage(packagesPath: any, itemType: any, extension: any, c
   }
 
   // process all package paths
-  async.map(packagesPath.filter(fs.existsSync), fillPackages, (err: any, results: any) => {
-    if (err) {
-      return callback(err);
+  async.map(packagesPath.filter(fs.existsSync), fillPackages, (error: any, results: any) => {
+    if (error) {
+      return callback(error);
     }
     callback(null, _.flatten(results));
   });

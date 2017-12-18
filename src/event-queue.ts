@@ -4,7 +4,7 @@
  * @param io
  * @constructor
  */
-export default function eventQueue(io) {
+export default function eventQueue(io: any) {
   this.io = io;
   this.latestEvents = {};
   const self = this;

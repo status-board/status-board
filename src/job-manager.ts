@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as extend from 'xtend';
 import { get, resolveCandidates } from './item-manager';
+import logger from './logger';
 
 /**
  * Return a particular dashboard object
@@ -10,14 +11,14 @@ import { get, resolveCandidates } from './item-manager';
  * @return {object} dashboard object
  */
 function readDashboard(dashboardFilePath: any) {
-  const dashboardConfig = JSON.parse(fs.readFileSync(dashboardFilePath));
+  const dashboardConfig = JSON.parse(fs.readFileSync(dashboardFilePath).toString());
 
   if (!dashboardConfig.layout) {
-    throw('No layout field found in ' + dashboardFilePath);
+    logger().error(`No layout field found in ${dashboardFilePath}`);
   }
 
   if (!dashboardConfig.layout.widgets) {
-    throw('No widgets field found in ' + dashboardFilePath);
+    logger().error(`No widgets field found in ${dashboardFilePath}`);
   }
   return dashboardConfig;
 }
@@ -67,11 +68,14 @@ function processDashboard(allJobs: any, dashboardName: any, dashboardConfig: any
 
       const candidateJobs = resolveCandidates(allJobs, jobItem.job, 'jobs', '.js');
       if (!candidateJobs.length) {
-        throw '  ERROR RESOLVING JOB ' +
-        '\n   No job file found for "' + jobItem.job + '" in ' + dashboardName +
-        '\n   Have you pulled all the packages dependencies? (They are git submodules.)' +
-        '\n\n   $ git submodule init' +
-        '\n   $ git submodule update\n';
+        logger().error(`
+        ERROR RESOLVING JOB
+        No job file found for "${jobItem.job}" in ${dashboardName}
+        Have you pulled all the packages dependencies? (They are git submodules.)
+
+        $ git submodule init
+        $ git submodule update
+        `);
       }
 
       const job = {
@@ -119,7 +123,7 @@ export default {
     // ----------------------------------------------
     if (fs.existsSync(configPath)) {
       try {
-        generalDashboardConfig = JSON.parse(fs.readFileSync(configPath)).config;
+        generalDashboardConfig = JSON.parse(fs.readFileSync(configPath).toString()).config;
         if (!generalDashboardConfig) {
           throw 'invalid format. config property not found';
         }
@@ -158,8 +162,8 @@ export default {
           try {
             dashboardConfig = readDashboard(dashboardName);
             dashboardJobs = processDashboard(allJobs, dashboardName, dashboardConfig, filters);
-          } catch (e) {
-            return callback(e);
+          } catch (error) {
+            return callback(error);
           }
 
           // add config to job, extending for the same config key in general config, if any

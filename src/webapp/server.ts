@@ -8,6 +8,7 @@ import * as morgan from 'morgan';
 import * as path from 'path';
 
 import configManager from '../config-manager';
+import logger from '../logger';
 import stylus from '../stylus';
 import routes from './routes';
 
@@ -45,7 +46,7 @@ export default function (app: any, options: any) {
 
   const httpServer = http.createServer(app).listen(app.get('port'));
   if (!app.get('port')) {
-    throw('Error binding http server to port ' + options.port);
+    logger().error(`Error binding http server to port ${options.port}`);
   }
   return httpServer;
 }

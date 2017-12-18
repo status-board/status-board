@@ -1,24 +1,24 @@
 import configManager from './config-manager';
-import EventQueue from './event-queue';
+import eventQueue from './event-queue';
+import globalAuth from './global-auth';
 import { fillDependencies } from './job-dependencies/loader';
-import jobsManager from './job-manager';
-import loadGlobalAuth from './global-auth';
+import jobManager from './job-manager';
 import logger from './logger';
-import Scheduler from './scheduler';
+import scheduler from './scheduler';
 
 export function init(options: any, cb: any) {
 
-  jobsManager.getJobs(options, (err: any, jobWorkers: any) => {
+  jobManager.getJobs(options, (err: any, jobWorkers: any) => {
     if (err) {
       return cb(err);
     }
 
-    const globalAuth = loadGlobalAuth(configManager('auth').authenticationFilePath);
+    const loadGlobalAuth = globalAuth(configManager('auth').authenticationFilePath);
 
     if (!jobWorkers.length) {
       logger().warn('No jobs found matching the current configuration and filters');
     } else {
-      const eventQueue = new EventQueue(options.deps.io);
+      const queue = new eventQueue(options.deps.io);
       jobWorkers.forEach((jobWorker: any, index: any) => {
 
         // unique id for this widget in the wallboard
@@ -27,11 +27,11 @@ export function init(options: any, cb: any) {
           (jobWorker.widget_item.c || jobWorker.widget_item.col);
 
         jobWorker.pushUpdate = (data: any) => {
-          eventQueue.send(jobWorker.id, data);
+          queue.send(jobWorker.id, data);
         };
 
         // add security info
-        jobWorker.config.globalAuth = globalAuth;
+        jobWorker.config.globalAuth = loadGlobalAuth;
 
         if (jobWorker.widget_item.enabled !== false) {
 
@@ -44,8 +44,8 @@ export function init(options: any, cb: any) {
           if (jobWorker.onRun) {
             setTimeout(
               () => {
-                const scheduler = new Scheduler(jobWorker);
-                scheduler.start();
+                const schedulers = new scheduler(jobWorker);
+                schedulers.start();
               },
               index * 1500,
             ); // avoid a concurrency peak on startup

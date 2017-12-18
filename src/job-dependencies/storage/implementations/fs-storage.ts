@@ -4,6 +4,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as util from 'util';
+import logger from '../../../logger';
 
 export default function storageFS(storageKey: any, options: any) {
   this.storageKey = storageKey;
@@ -34,13 +35,13 @@ storageFS.prototype.set = function (key: any, value: any, callback: any) {
   const self = this;
   fs.readFile(self.storagePath, (err: any, data: any) => {
     if (err) {
-      data = "{}";
-    } //new file
+      data = '{}';
+    } // new file
     let content = {};
     try {
       content = JSON.parse(data);
     } catch (e) {
-      console.log('error reading file ' + self.storagePath);
+      logger().log(`Error reading file ${self.storagePath}`);
     }
     content[self.storageKey] = content[self.storageKey] || {};
     content[self.storageKey][key] = { data: value };

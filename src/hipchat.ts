@@ -1,4 +1,5 @@
 import * as qstring from 'querystring';
+import logger from './logger';
 
 const API_URL = 'https://api.hipchat.com/';
 const errors = {
@@ -11,26 +12,29 @@ const errors = {
   503: 'The method you requested is currently unavailable (due to maintenance or high load',
 };
 
+function onResponseBuilder(callback: any) {
+  return (err: any, response: any, body: any) => {
+
+    if (callback) {
+      let errMsg = null;
+
+      if (err || !response || response.statusCode !== 200) {
+        errMsg = err;
+
+        if (response && errors[response.statusCode]) {
+          errMsg += ` ${errors[response.statusCode]}; ${body}`;
+        }
+      }
+      callback(errMsg, response ? response.statusCode : null, body);
+    }
+  };
+}
+
 export function create(options: any) {
   const request = options.request || require('request');
 
   if (!options.api_key) {
-    throw 'api_key required';
-  }
-
-  function onResponseBuilder(callback: any) {
-    return (err: any, response: any, body: any) => {
-      if (callback) {
-        let errMsg = null;
-        if (err || !response || response.statusCode != 200) {
-          errMsg = err;
-          if (response && errors[response.statusCode]) {
-            errMsg += ' ' + errors[response.statusCode] + '; ' + body;
-          }
-        }
-        callback(errMsg, response ? response.statusCode : null, body);
-      }
-    };
+    logger().error('api_key required');
   }
 
   return {

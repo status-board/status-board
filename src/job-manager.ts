@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as extend from 'xtend';
+import { noop } from './helpers';
 import { get, resolveCandidates } from './item-manager';
 import logger from './logger';
 
@@ -57,7 +58,7 @@ function matchJobFilter(jobName: any, filter: any) {
  */
 function processDashboard(allJobs: any, dashboardName: any, dashboardConfig: any, filters: any) {
   const jobs = [];
-  for (let i = 0, l = dashboardConfig.layout.widgets.length; i < l; i++) {
+  for (let i = 0, l = dashboardConfig.layout.widgets.length; i < l; i += 1) {
     const jobItem = dashboardConfig.layout.widgets[i];
     if (jobItem.job) { // widgets can run without a job, displaying just static html.
       if (filters.jobFilter) {
@@ -78,21 +79,19 @@ function processDashboard(allJobs: any, dashboardName: any, dashboardConfig: any
         `);
       }
 
-      const job = {
+      const job: any = {
         configKey: jobItem.config,
         dashboard_name: path.basename(dashboardName, '.json'),
         job_name: jobItem.job,
         widget_item: jobItem,
       };
-
       const jobRequire = require(candidateJobs[0]);
+
       if (typeof jobRequire === 'function') {
         job.onRun = jobRequire;
       } else {
-        job.onRun = jobRequire.onRun || function () {
-        };
-        job.onInit = jobRequire.onInit || function () {
-        };
+        job.onRun = jobRequire.onRun || noop;
+        job.onInit = jobRequire.onInit || noop;
       }
 
       jobs.push(job);
@@ -114,9 +113,9 @@ export default {
     const filters = options.filters || {};
 
     const configPath = path.join(options.configPath, '/dashboard_common.json');
-    let generalDashboardConfig = {};
+    let generalDashboardConfig: any = {};
 
-    let jobs = [];
+    let jobs: any[] = [];
 
     // ----------------------------------------------
     // general config is optional, but if it exists it needs to be a valid file
@@ -125,7 +124,7 @@ export default {
       try {
         generalDashboardConfig = JSON.parse(fs.readFileSync(configPath).toString()).config;
         if (!generalDashboardConfig) {
-          throw 'invalid format. config property not found';
+          logger().error('invalid format. config property not found');
         }
       } catch (e) {
         return callback('ERROR reading general config file...' + configPath);
@@ -143,12 +142,12 @@ export default {
       // ----------------------------------------------
       // get all jobs from those packages
       // ----------------------------------------------
-      get(packagesPath, 'jobs', '.js', (err: any, allJobs: any) => {
-        if (err) {
+      get(packagesPath, 'jobs', '.js', (error: any, allJobs: any) => {
+        if (error) {
           return callback(err);
         }
 
-        for (let d = 0, dl = dashboardConfigFiles.length; d < dl; d++) {
+        for (let d = 0, dl = dashboardConfigFiles.length; d < dl; d += 1) {
           const dashboardName = dashboardConfigFiles[d];
 
           if (filters.dashboardFilter) {
@@ -157,7 +156,7 @@ export default {
             }
           }
 
-          let dashboardConfig;
+          let dashboardConfig: any;
           let dashboardJobs;
           try {
             dashboardConfig = readDashboard(dashboardName);
@@ -172,12 +171,18 @@ export default {
             //  local overrides global
             //  config n+1 overrides config n
             if (Array.isArray(job.configKey)) {
-              const configs = job.configKey.map((key) => {
-                return extend(generalDashboardConfig[key], dashboardConfig.config[key]);
+              const configs = job.configKey.map((key: any) => {
+                return extend(
+                  generalDashboardConfig[key],
+                  dashboardConfig.config[key],
+                );
               });
               job.config = extend.apply(null, configs);
             } else { // single configuration
-              job.config = extend(generalDashboardConfig[job.configKey], dashboardConfig.config[job.configKey]);
+              job.config = extend(
+                generalDashboardConfig[job.configKey],
+                dashboardConfig.config[job.configKey],
+              );
             }
 
             return job;

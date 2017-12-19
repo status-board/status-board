@@ -110,15 +110,15 @@ function executeCommand(cmd: any, args: any, callback: any) {
 
 export function installDependencies(packagesPath: any, callback: any) {
   // Process all available package containers
-  async.map(packagesPath.filter(fs.existsSync), checkPackagesFolder, (error, results) => {
-    if (error) {
-      return callback(error);
+  async.map(packagesPath.filter(fs.existsSync), checkPackagesFolder, (mapError, results) => {
+    if (mapError) {
+      return callback(mapError);
     }
     const paths = _.flatten(results);
 
-    async.eachSeries(paths, checkValidIfAtlasboardVersionForPackage, (error: any) => {
-      if (error) {
-        return callback(error);
+    async.eachSeries(paths, checkValidIfAtlasboardVersionForPackage, (seriesError: any) => {
+      if (seriesError) {
+        return callback(seriesError);
       }
 
       async.eachSeries(paths, install, (error: any) => {

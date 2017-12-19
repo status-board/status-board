@@ -8,7 +8,8 @@ export default function (jobWorker?: any, io?: any) {
 
   // const loggerConfig = config.logger || {};
   //
-  // const prefix = jobWorker ? ('[dashboard: ' + jobWorker.dashboard_name + '] [job: ' + jobWorker.job_name + '] ') : '';
+  // const prefix = jobWorker ?
+  // ('[dashboard: ' + jobWorker.dashboard_name + '] [job: ' + jobWorker.job_name + '] ') : '';
   //
   // loggerConfig.transport = (data: any) => {
   //   const logText = prefix + data.output;

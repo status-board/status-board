@@ -21,13 +21,15 @@ storageFS.prototype.get = function (key: any, callback: any) {
       return callback(err);
     }
 
+    let newData: any;
+
     try {
       const content = JSON.parse(data);
-      data = content[self.storageKey] ? content[self.storageKey][key].data : null;
+      newData = content[self.storageKey] ? content[self.storageKey][key].data : null;
     } catch (e) {
       return callback('Error reading JSON from file');
     }
-    callback(null, data);
+    callback(null, newData);
   });
 };
 
@@ -37,7 +39,7 @@ storageFS.prototype.set = function (key: any, value: any, callback: any) {
     if (err) {
       data = '{}';
     } // new file
-    let content = {};
+    let content: any = {};
     try {
       content = JSON.parse(data);
     } catch (e) {

@@ -13,3 +13,7 @@ export function readJSONFile(dashboardPath: any, cb: any) {
     }
   });
 }
+
+export function noop() {
+  // No operation performed.
+}

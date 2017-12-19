@@ -62,7 +62,7 @@ scheduler.prototype.start = function () {
           job.dependencies.logger.warn('widget with retryOnErrorTimes. attempts: ' +
             job.retryOnErrorCounter);
           sendError = false;
-          job.retryOnErrorCounter++;
+          job.retryOnErrorCounter += 1;
         }
       }
     } else {
@@ -80,11 +80,14 @@ scheduler.prototype.start = function () {
     job.retryOnErrorCounter = 0; // reset error counter on success
     job.dependencies.logger.log('executed OK');
     job.config.interval = self.originalInterval;
-    if (!data) {
-      data = {};
+
+    let newData: any = {};
+    if (data) {
+      newData = data;
     }
-    data.config = { interval: job.config.interval }; // give access to interval to client
-    job.pushUpdate(data);
+
+    newData.config = { interval: job.config.interval }; // give access to interval to client
+    job.pushUpdate(newData);
   }
 
   try {

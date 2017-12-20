@@ -6,7 +6,6 @@ node_js:
   - '6'
 os:
   - linux
-  - osx
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2
   - export PATH="$HOME/.yarn/bin:$PATH"
@@ -54,6 +53,6 @@ branches:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
 env:
   global:
-    - BUILD_LEADER_ID=13
+    - BUILD_LEADER_ID=9
     - secure: qvJi5gw7sLevjWRzjNqXzvNBJjn8tPrPVmrvGao+nDDRqD+zYPrg2Vxqbw1Tsh+hU06XVTSp5dIOOpopYqJr9Rj8MHx7/9w/RSMS2c5F5nKj2HSb1DYhrVfWVONq7bBQE1gyI7gMiUiBieNM62OkyqZpyaTSljUZyp12jwvNm4GdoxG/mVmXckKD1j12nDdEtUSU2JvIKPUbyqrtyTB5UF1vsIbDtuwYE88fwIdzEnMVrLhfesB7rmQFhygXq9AGjGBlFhSvUHzOM3zv7ut4IXlH7qcDa0M61as8kWGZ6YXKVm2IJh9uat2Y0HAO/8I6xT6NJgWoOxtOHGf5zYbZddr8I9qBUCDdtahTdAvLKmypK+0gBh1WXJW9xfBqwlocDuFl9G5Mb7+8jcO3CdOgfT2UIPOIqrUMzMsF0W0I/jS4P8vqMiJUbBv59SKQYWwIt7wp8Ewaujo1s0odDLP84Q9xV7b1eoA8a71d6JQIPWgUEyU6QCJwYbebaZWSpwBpGHGzQmolAENnJ1TtC9f/6ytwerJzGjxH8tG25fT+UoRRZolnmHHw55Ff6wC9soZjrJ7d9w7CSYgKbrchdA3kHjplnthRdwvnCpqlxStVGCC5M7L/pLUw2cHPI26ZwIp3JMWCyJzj/12CdiB4yYJSbXy+1I5duq80IrQgQBKd2Vk=
     - secure: C4Ebx1xGxHMFKsXMnTrBIZPoRVgIaqPLVh0sT+21WXMOlAmTB2Z2ODpXkeB1mPJ00jkNe1Xw586SgAkO+aKhDzmtQ41NXd0VStb885LWiBq4jDsfqXkgulsc4drFGYmgP9mr+W+bZ1Oumy2ECb1hD7TnvsONxVMDldm+FBzhKoTqy9lBkStbN5Px7nWeiyLygNW6M5u57jbgFwwvIEq1ephlbqANyEA3yB9kxpV3gqHxwC/IMrd10XgIUn2+/i2QVVR7eqCV/uSDMzqUHQPW208/SeiEKrqD5NSJU5zBLwr/WlNADDtZvx3ol4y58I9xsT8Uy4qqgMDRUjv5KOAgOHRi0WFSI4Hhw72QB06zY+SmZgU5yrJuyjXGmJ2BWfuSX2Jjen1+pOhwynT5J+knphs/yCffvpDcgqX04u0G0GtTst1k8udVmSg1pw/VmVDhp0+LgSfBWiO+RzLXCGNlb+pAO8jX9GlCMUqz9527wUTBdxzdCBzTLP1M41jQOsvEd4ev9gQn0sDjFqoPZmHimEnyaQC4HJl4z7yBHIgnM3w/gmLZ5yf3+EYnDQnZ2NlJKM4m12HpXaWTGcZ6OAyKudcQQ3AqRTRMHQxS5CkkgxiUB43STqVMXxAW2sOG9yJIFLMAqig2+1nDQbVq5wfPEIdK6MKeM7Avdskw+w84vhI=

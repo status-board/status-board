@@ -1,14 +1,11 @@
 // -----------------------
 // Storage interface
 // -----------------------
+import { noop } from '../../helpers';
 
-function StorageBase() {
+export default function storageBase() {
+  return {
+    get: noop,
+    set: noop,
+  };
 }
-
-StorageBase.prototype.get = function (key: any, callback: any) {
-};
-
-StorageBase.prototype.set = function (key: any, value: any, callback: any) {
-};
-
-module.exports = StorageBase;

@@ -26,6 +26,7 @@ export default function (app: any, packagesPath: any) {
       if (configManager('logging').liveLoggingWebAccess) {
         log(req, res);
       } else {
+        // tslint:disable-next-line max-line-length
         res.status(403).end('Live logging it disabled. It must be enabled in the "logging" configuration file');
       }
     });

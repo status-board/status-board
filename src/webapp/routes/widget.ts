@@ -100,6 +100,7 @@ export function renderJsWidget(packagesPath: any, widgetName: any, req: any, res
 }
 
 function getFileContents(extension: any, widgetName: any, packagesPath: any, callback: any) {
+  // tslint:disable-next-line no-shadowed-variable
   getFirst(packagesPath, widgetName, 'widgets', extension, (error: any, path: any) => {
     if (error || !path) {
       return callback(error ? error : 'File does not exist');

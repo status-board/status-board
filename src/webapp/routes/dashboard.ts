@@ -31,9 +31,9 @@ function readDashboardJSON(dashboardPath: any, cb: any) {
  * @param res
  */
 export function listAllDashboards(packagesPath: any, req: any, res: any) {
-  get(packagesPath, 'dashboards', '.json', (error: any, dashboardConfigFiles: any) => {
-    if (error) {
-      logger().error(error);
+  get(packagesPath, 'dashboards', '.json', (getError: any, dashboardConfigFiles: any) => {
+    if (getError) {
+      logger().error(getError);
       return res.status(400).send('Error loading dashboards');
     }
 
@@ -41,13 +41,13 @@ export function listAllDashboards(packagesPath: any, req: any, res: any) {
       return res.redirect('/' + getSafeItemName(dashboardConfigFiles[0]));
     }
 
-    async.map(dashboardConfigFiles, readDashboardJSON, (err: any, dashboardJSONs: any) => {
-      if (err) {
+    async.map(dashboardConfigFiles, readDashboardJSON, (mapError: any, dashboardJSONs: any) => {
+      if (mapError) {
         return res.status(500).send('Error reading dashboards');
       }
       templateManager().resolveTemplateLocation(
         'dashboard-list.ejs',
-        (error: any, location: any) => {
+        (templateError: any, location: any) => {
           res.render(location, {
             dashboards: dashboardJSONs.sort((a: any, b: any) => {
               if (a.friendlyDashboardName < b.friendlyDashboardName) {
@@ -79,17 +79,21 @@ export function renderDashboard(packagesPath: any, dashboardName: any, req: any,
     safeDashboardName,
     'dashboards',
     '.json',
-    (err: any, dashboardPath: any) => {
-      if (err || !dashboardPath) {
-        const statusCode = err ? 400 : 404;
-        const errorMessage = `Trying to render the dashboard '${safeDashboardName}', but couldn't find a valid dashboard with that name. If the dashboard exists, is it a valid json file? Please check the console for error messages`;
-        return res.status(statusCode).send(err ? err : errorMessage);
+    (error: any, dashboardPath: any) => {
+      if (error || !dashboardPath) {
+        const statusCode = error ? 400 : 404;
+        const errorMessage = `
+          Trying to render the dashboard '${safeDashboardName}', but couldn't find a valid dashboard
+          with that name. If the dashboard exists, is it a valid json file? Please check the console
+          for error messages.
+        `;
+        return res.status(statusCode).send(error ? error : errorMessage);
       }
-      readJSONFile(dashboardPath, (error: any, dashboardConfig: any) => {
-        if (error) {
+      readJSONFile(dashboardPath, (readError: any, dashboardConfig: any) => {
+        if (readError) {
           return res.status(400).send('Invalid dashboard config file');
         }
-        templateManager().resolveTemplateLocation('dashboard.ejs', (error: any, location: any) => {
+        templateManager().resolveTemplateLocation('dashboard.ejs', (tError: any, location: any) => {
           res.render(location, {
             dashboardConfig,
             safeDashboardName,

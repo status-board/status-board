@@ -99,12 +99,13 @@ export function renderJsWidget(packagesPath: any, widgetName: any, req: any, res
   });
 }
 
-function getFileContents(extension: any, widgetName: any, packagesPath: any, cb: any) {
+function getFileContents(extension: any, widgetName: any, packagesPath: any, callback: any) {
   getFirst(packagesPath, widgetName, 'widgets', extension, (error: any, path: any) => {
     if (error || !path) {
-      return cb(error ? error : 'File does not exist');
+      return callback(error ? error : 'File does not exist');
     }
-    fs.readFile(path, 'utf-8', cb);
+
+    fs.readFile(path, 'utf-8', callback);
   });
 }
 
@@ -129,13 +130,13 @@ function loadCSSIfPresent(res: any, widgetName: any, packagesPath: any, cb: any)
 function loadStylusIfPresent(res: any, widgetName: any, packagesPath: any, cb: any) {
   getFileContents('.styl', widgetName, packagesPath, (error: any, stylusContent: any) => {
     if (!error && stylusContent) {
-      stylus().getWidgetCSS(stylusContent, (error: any, css: any) => {
-        if (!error) {
+      stylus().getWidgetCSS(stylusContent, (stylusError: any, css: any) => {
+        if (!stylusError) {
           addNamespacesCSSToResponse(css, widgetName, res);
         } else {
-          logger().error(error);
+          logger().error(stylusError);
         }
-        cb(error);
+        cb(stylusError);
       });
     } else {
       cb(error);

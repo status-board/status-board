@@ -1,33 +1,25 @@
-import * as pg from 'pg';
+import { Client } from 'pg';
+import logger from '../../logger';
 
-function query(connectionString: any, query: any, params: any, callback: any) {
-  // handle case where params are omitted
-  if (arguments.length === 3) {
-    callback = params;
-    params = [];
-  }
+export default function (config: any) {
+  const client = new Client(config);
 
-  pg.connect(connectionString, (err: any, client: any, done: any) => {
-    if (err) {
-      console.error('Error connecting to postgreSQL:' + err);
-      done();
-      return callback(err);
-    }
-    client.query(query, params, (err: any, results: any) => {
-      if (err) {
-        console.error('Error executing postgreSQL query:' + err);
-        done();
-        return callback(err);
-      }
-      done();
-      callback(null, results);
-    });
-  });
-};
-
-export default function () {
   return {
-    pg,
-    query,
+    query: (connectionString: any, query: any, params: any, callback: any) => {
+      client.connect((connectError) => {
+        if (connectError) {
+          logger().error(`Error connecting to postgreSQL: ${connectError.stack}`);
+          callback(connectError);
+        } else {
+          client.query(connectionString, (queryError: any, results: any) => {
+            if (queryError) {
+              throw Error(`Error executing postgreSQL query: ${queryError}`);
+            }
+            client.end();
+            callback(null, results);
+          });
+        }
+      });
+    },
   };
 }

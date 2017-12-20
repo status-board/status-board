@@ -24,10 +24,9 @@ export default function scheduler(jobWorker: any) {
  */
 
 scheduler.prototype.scheduleNext = function () {
-  const self = this;
   setTimeout(
     () => {
-      self.start();
+      this.start();
     },
     this.jobWorker.config.interval,
   );
@@ -38,14 +37,13 @@ scheduler.prototype.scheduleNext = function () {
  */
 
 scheduler.prototype.start = function () {
-  const self = this;
-  const job = self.jobWorker;
+  const job = this.jobWorker;
 
   function handleError(err: any) {
     job.dependencies.logger.error('executed with errors: ' + err);
 
     // in case of error retry in one third of the original interval or 1 min, whatever is lower
-    job.config.interval = Math.min(self.originalInterval / 3, 60000);
+    job.config.interval = Math.min(this.originalInterval / 3, 60000);
 
     // -------------------------------------------------------------
     // Decide if we hold error notification according to widget config.
@@ -57,7 +55,7 @@ scheduler.prototype.start = function () {
     let sendError = true;
     if (job.firstRun === false) {
       if (job.config.retryOnErrorTimes) {
-        job.retryOnErrorCounter = job.retryOnErrorCounter || 0;
+        job.retryOnErrorCounter = (job.retryOnErrorCounter) ? job.retryOnErrorCounter : 0;
         if (job.retryOnErrorCounter <= job.config.retryOnErrorTimes) {
           job.dependencies.logger.warn('widget with retryOnErrorTimes. attempts: ' +
             job.retryOnErrorCounter);
@@ -79,7 +77,7 @@ scheduler.prototype.start = function () {
   function handleSuccess(data: any) {
     job.retryOnErrorCounter = 0; // reset error counter on success
     job.dependencies.logger.log('executed OK');
-    job.config.interval = self.originalInterval;
+    job.config.interval = this.originalInterval;
 
     let newData: any = {};
     if (data) {
@@ -107,7 +105,7 @@ scheduler.prototype.start = function () {
       } else {
         handleSuccess(data);
       }
-      self.scheduleNext();
+      this.scheduleNext();
     }
 
     job.onRun.call(job, job.config, job.dependencies, jobCallback);
@@ -115,6 +113,6 @@ scheduler.prototype.start = function () {
   } catch (e) {
     job.dependencies.logger.error('Uncaught exception executing job: ' + e);
     handleError(e);
-    self.scheduleNext();
+    this.scheduleNext();
   }
 };

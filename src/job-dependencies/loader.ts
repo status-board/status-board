@@ -6,7 +6,7 @@ export function fillDependencies(jobWorker: any, deps: any) {
 
   const dependencyFolders = fs.readdirSync(__dirname);
 
-  for (let i = dependencyFolders.length - 1; i >= 0; i--) {
+  for (let i = dependencyFolders.length - 1; i >= 0; i -= 1) {
     const folderPath = path.join(__dirname, dependencyFolders[i]);
     const stat = fs.statSync(folderPath);
     if (stat.isDirectory()) {

@@ -9,7 +9,9 @@ function queryRequest(options: any, callback: any) {
   request(options, (err: any, response: any, body: any) => {
     let errMsg = null;
     if (err || !response || response.statusCode !== 200) {
-      errMsg = (err || (response ? ('bad statusCode: ' + response.statusCode) : 'bad response')) + ' from ' + options.url;
+      errMsg = (err || (response ?
+          (`bad statusCode: ${response.statusCode}`) : 'bad response')
+      ) + ` from ${options.url}`;
     }
     callback(errMsg, body, response);
   });
@@ -24,14 +26,15 @@ export default function () {
     JSON(options: any, callback: any) {
       queryRequest(options, (err: any, body: any, response: any) => {
         let jsonBody;
+        let errorMessage = err;
         try {
           jsonBody = JSON.parse(body);
         } catch (e) {
           if (!err) {
-            err = 'invalid json response';
+            errorMessage = 'invalid json response';
           }
         }
-        callback(err, jsonBody, response);
+        callback(errorMessage, jsonBody, response);
       });
     },
 

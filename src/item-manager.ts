@@ -133,7 +133,7 @@ export function getByPackage(packagesPath: any, itemType: any, extension: any, c
   }
 
   function readItemsFromPackageDir(dir, cb) {
-    const packages = { dir: dir };
+    const packages = { dir };
 
     const itemDir = path.join(dir, itemType);
     if (!fs.existsSync(itemDir)) {

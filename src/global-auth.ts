@@ -40,7 +40,7 @@ export default function (file: any) {
           modified = true;
         }
 
-        if (modified === true) {
+        if (modified) {
           this.update(val);
         }
       }

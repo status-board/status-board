@@ -59,5 +59,5 @@ export default function storageFS(storageKey: any, options: any) {
         });
       });
     },
-  }
+  };
 }

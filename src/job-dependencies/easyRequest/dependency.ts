@@ -8,11 +8,15 @@ import * as request from 'request';
 function queryRequest(options: any, callback: any) {
   request(options, (err: any, response: any, body: any) => {
     let errMsg = null;
-    if (err || !response || response.statusCode !== 200) {
-      errMsg = (err || (response ?
-          (`bad statusCode: ${response.statusCode}`) : 'bad response')
-      ) + ` from ${options.url}`;
+
+    if (err) {
+      errMsg = err;
+    } else if (!response) {
+      errMsg = `bad response from ${options.url}`;
+    } else if (response.statusCode !== 200) {
+      errMsg = `bad statusCode: ${response.statusCode} from ${options.url}`;
     }
+
     callback(errMsg, body, response);
   });
 }
@@ -23,6 +27,7 @@ export default function () {
      * Provides an abstraction over request to query HTTP endpoints
      * expecting the response in JSON format.
      */
+    // tslint:disable-next-line function-name
     JSON(options: any, callback: any) {
       queryRequest(options, (err: any, body: any, response: any) => {
         let jsonBody;

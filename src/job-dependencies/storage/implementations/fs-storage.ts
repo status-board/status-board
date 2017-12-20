@@ -54,8 +54,8 @@ export default function storageFS(storageKey: any, options: any) {
         }
         content[this.storageKey] = content[this.storageKey] || {};
         content[this.storageKey][key] = { data: value };
-        fs.writeFile(this.storagePath, JSON.stringify(content), (writeError: any, data: any) => {
-          callback && callback(writeError, content);
+        fs.writeFile(this.storagePath, JSON.stringify(content), (writeError: any) => {
+          callback(writeError, content);
         });
       });
     },

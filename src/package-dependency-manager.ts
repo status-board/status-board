@@ -1,9 +1,10 @@
 import * as async from 'async';
 import * as fs from 'fs';
 import * as path from 'path';
-import readPackageJson from 'read-package-json';
+import * as readJson from 'read-package-json';
 import * as semver from 'semver';
 import * as _ from 'underscore';
+
 
 // in both test and production env will be located here.
 const atlasboardPackageJsonPath = path.join(__dirname, '../');
@@ -37,7 +38,7 @@ function checkPackagesFolder(packagesPath: any, cb: any) {
  * Install from package folder
  */
 function getValidPackageJSON(pathPackage: any, callback: any) {
-  readPackageJson(pathPackage + '/package.json', callback);
+  readJson(pathPackage + '/package.json', callback);
 }
 
 /**

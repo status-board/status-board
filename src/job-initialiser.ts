@@ -18,7 +18,7 @@ export function init(options: any, cb: any) {
     if (!jobWorkers.length) {
       logger().warn('No jobs found matching the current configuration and filters');
     } else {
-      const queue = new eventQueue(options.deps.io);
+      const queue = eventQueue(options.deps.io);
       jobWorkers.forEach((jobWorker: any, index: any) => {
 
         // unique id for this widget in the wallboard
@@ -44,7 +44,7 @@ export function init(options: any, cb: any) {
           if (jobWorker.onRun) {
             setTimeout(
               () => {
-                const schedulers = new scheduler(jobWorker);
+                const schedulers = scheduler(jobWorker);
                 schedulers.start();
               },
               index * 1500,

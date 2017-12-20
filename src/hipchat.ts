@@ -2,7 +2,7 @@ import * as qstring from 'querystring';
 import logger from './logger';
 
 const API_URL = 'https://api.hipchat.com/';
-const errors = {
+const errors: any = {
   400: 'Bad request. Please check your data',
   401: 'Unauthorized: API KEY not valid',
   403: 'You have exceeded the rate limit',
@@ -47,7 +47,7 @@ export function create(options: any) {
      * @param callback a callback to be executed when complete
      */
     message(roomId: any, from: any, message: any, notify: any, callback: any) {
-      const url = API_URL + 'v1/rooms/message?format=json&auth_token=' + options.api_key;
+      const postUrl = API_URL + 'v1/rooms/message?format=json&auth_token=' + options.api_key;
       const data = {
         from,
         message,
@@ -59,7 +59,7 @@ export function create(options: any) {
         {
           body: qstring.stringify(data),
           headers: { 'content-type': 'application/x-www-form-urlencoded' },
-          url,
+          url: postUrl,
         },
         onResponseBuilder(callback),
       );
@@ -70,11 +70,11 @@ export function create(options: any) {
      * @param callback a callback to be executed when complete
      */
     roomInfo(roomId: any, callback: any) {
-      const url = API_URL + 'v2/room/' + roomId + '?format=json&auth_token=' + options.api_key;
+      const postUrl = API_URL + 'v2/room/' + roomId + '?format=json&auth_token=' + options.api_key;
       request.get(
         {
           json: true,
-          url,
+          url: postUrl,
         },
         onResponseBuilder(callback),
       );

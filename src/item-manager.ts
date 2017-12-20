@@ -9,7 +9,7 @@ import logger from './logger';
  * item should be included in the list to be returned.
  * You can match extensions, do sanity checks (valid JSON), etc.
  */
-const filters = {
+const filters: any = {
   dashboards(dashboardPath: any) {
     try {
       const contentJSON = JSON.parse(fs.readFileSync(dashboardPath).toString());
@@ -87,6 +87,7 @@ export function getFirst(packagesPath: any,
                          itemType: any,
                          extension: any,
                          callback: any) {
+  // tslint:disable-next-line no-var-self
   const thiz = this;
   this.get(packagesPath, itemType, extension, (error: any, items: any) => {
     if (error) {
@@ -127,13 +128,16 @@ export function get(packagesPath: any, itemType: any, extension: any, callback: 
  * @param {string} extension : filter result by extension
  */
 export function getByPackage(packagesPath: any, itemType: any, extension: any, callback: any) {
+  let processedPackagePath;
 
   if (!Array.isArray(packagesPath)) {
-    packagesPath = [packagesPath];
+    processedPackagePath = [packagesPath];
+  } else {
+    processedPackagePath = packagesPath;
   }
 
-  function readItemsFromPackageDir(dir, cb) {
-    const packages = { dir };
+  function readItemsFromPackageDir(dir: any, cb: any) {
+    const packages: any = { dir };
 
     const itemDir = path.join(dir, itemType);
     if (!fs.existsSync(itemDir)) {
@@ -153,13 +157,13 @@ export function getByPackage(packagesPath: any, itemType: any, extension: any, c
         return cb(error);
       }
 
-      let selectedItems = [];
-      items.forEach((item_name: any) => {
-        let item = path.join(itemDir, item_name);
+      let selectedItems: any[] = [];
+      items.forEach((itemName: any) => {
+        let item = path.join(itemDir, itemName);
         const stat = fs.statSync(item);
         if (stat.isDirectory()) {
           // /job/job1/job1.js
-          item = path.join(item, item_name + extension);
+          item = path.join(item, itemName + extension);
         }
 
         if (path.extname(item) === extension) {
@@ -182,26 +186,29 @@ export function getByPackage(packagesPath: any, itemType: any, extension: any, c
   // - packages/default/*
   // - packages/otherpackages/*
   // and calls readItemsFromPackageDir for every one of them
-  function fillPackages(packagesPath, cb) {
+  // tslint:disable-next-line no-shadowed-variable
+  function fillPackages(packagesPath: any, cb: any) {
     fs.readdir(packagesPath, (error: any, allPackagesDir: any) => {
       if (error) {
         return cb(error);
       }
 
+      let processAllPackagesDir;
+
       // convert to absolute path
-      allPackagesDir = allPackagesDir.map((partialDir: any) => {
+      processAllPackagesDir = allPackagesDir.map((partialDir: any) => {
         return path.join(packagesPath, partialDir);
       });
 
       // get only valid directories
-      allPackagesDir = allPackagesDir.filter((dir: any) => {
+      processAllPackagesDir = processAllPackagesDir.filter((dir: any) => {
         return fs.statSync(dir).isDirectory();
       });
 
       // read items from every package and flatten results
-      async.map(allPackagesDir, readItemsFromPackageDir, (error: any, results: any) => {
-        if (error) {
-          return cb(error);
+      async.map(processAllPackagesDir, readItemsFromPackageDir, (mapError: any, results: any) => {
+        if (mapError) {
+          return cb(mapError);
         }
         cb(null, _.flatten(results));
       });
@@ -209,10 +216,13 @@ export function getByPackage(packagesPath: any, itemType: any, extension: any, c
   }
 
   // process all package paths
-  async.map(packagesPath.filter(fs.existsSync), fillPackages, (error: any, results: any) => {
-    if (error) {
-      return callback(error);
-    }
-    callback(null, _.flatten(results));
-  });
+  async.map(
+    processedPackagePath.filter(fs.existsSync),
+    fillPackages,
+    (error: any, results: any) => {
+      if (error) {
+        return callback(error);
+      }
+      callback(null, _.flatten(results));
+    });
 }

@@ -17,17 +17,19 @@ function checkPackagesFolder(packagesPath: any, cb: any) {
       return cb(err);
     }
 
+    let processAllPackagesDir;
+
     // convert to absolute path
-    allPackagesDir = allPackagesDir.map((partialDir) => {
+    processAllPackagesDir = allPackagesDir.map((partialDir) => {
       return path.join(packagesPath, partialDir);
     });
 
     // make sure we have package.json file
-    allPackagesDir = allPackagesDir.filter((dir) => {
+    processAllPackagesDir = processAllPackagesDir.filter((dir) => {
       return fs.statSync(dir).isDirectory() && fs.existsSync(dir + '/package.json');
     });
 
-    cb(null, allPackagesDir);
+    cb(null, processAllPackagesDir);
   });
 }
 

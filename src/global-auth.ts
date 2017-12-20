@@ -25,22 +25,31 @@ export default function (file: any) {
   try {
     traverse(globalAuth).forEach(function (val) {
       if ('string' === typeof val) {
-        let match;
+        const match = ENV_VAR_REGEX.exec(val);
         let modified;
-        while ((match = ENV_VAR_REGEX.exec(val)) !== null) {
+        let newVal;
+        while (match !== null) {
           const envName = match[1];
           let envVal = process.env[envName];
 
           if (envVal === undefined) {
-            logger().warn(`Authentication file referenced var \${${envName}}, which was not present in environment`);
+            // tslint:disable-next-line max-line-length
+            logger().warn(`Authentication file referenced var \${${envName}}, which was not present in environment.`);
             envVal = '';
           }
 
-          val = val.substring(0, match.index) + envVal + val.substring(match.index + match[0].length);
+          newVal = val.substring(
+            0,
+            match.index,
+          ) + envVal + val.substring(
+            match.index + match[0].length,
+          );
           modified = true;
         }
 
         if (modified) {
+          this.update(newVal);
+        } else {
           this.update(val);
         }
       }

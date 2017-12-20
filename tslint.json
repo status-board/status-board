@@ -5,6 +5,13 @@
     "tslint-config-airbnb"
   ],
   "jsRules": {},
-  "rules": {},
+  "rules": {
+    "strict-boolean-expressions": [
+      true,
+      "allow-null-union",
+      "allow-undefined-union",
+      "allow-string"
+    ]
+  },
   "rulesDirectory": []
 }

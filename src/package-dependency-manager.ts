@@ -5,7 +5,6 @@ import * as readJson from 'read-package-json';
 import * as semver from 'semver';
 import * as _ from 'underscore';
 
-
 // in both test and production env will be located here.
 const atlasboardPackageJsonPath = path.join(__dirname, '../');
 

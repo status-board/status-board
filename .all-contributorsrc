@@ -35,6 +35,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "SwamiKalagiri",
+      "name": "Swami Kalagiri",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6710107?v=4",
+      "profile": "https://www.linkedin.com/in/swami-kalagiri",
+      "contributions": [
+        "code"
+      ]
     }
   ]
 }

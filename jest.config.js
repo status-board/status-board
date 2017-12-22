@@ -8,7 +8,7 @@ module.exports = {
     "^.+\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
   },
   "testMatch": [
-    "**/tests/**/*.test.(ts|tsx|js)"
+    "**/test/**/*.test.(ts|tsx|js)"
   ],
   "moduleFileExtensions": [
     "ts",

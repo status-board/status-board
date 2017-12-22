@@ -4,7 +4,6 @@ import { checkIfFileExists } from '../../src/utilities';
 jest.mock('../../src/utilities/check-if-file-exists.ts', () => {
   return {
     checkIfFileExists: jest.fn((fileName, callback) => {
-      console.log(fileName);
       if (fileName.includes('DEFAULT')) {
         callback(null, false);
       } else if (fileName.includes('LOCAL')) {

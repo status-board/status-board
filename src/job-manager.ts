@@ -11,7 +11,7 @@ import logger from './logger';
  * @param  {string} dashboardFilePath dashboard path
  * @return {object} dashboard object
  */
-function readDashboard(dashboardFilePath: any) {
+function readDashboard(dashboardFilePath: string) {
   const dashboardConfig = JSON.parse(fs.readFileSync(dashboardFilePath).toString());
 
   if (!dashboardConfig.layout) {
@@ -31,7 +31,7 @@ function readDashboard(dashboardFilePath: any) {
  * @param  {string} filter regex
  * @return {boolean}
  */
-function matchDashboardFilter(dashboardFullPath: any, filter: any) {
+function matchDashboardFilter(dashboardFullPath: string, filter: string) {
   const dashboardName = path.basename(dashboardFullPath);
   return dashboardName.match(filter);
 }
@@ -43,7 +43,7 @@ function matchDashboardFilter(dashboardFullPath: any, filter: any) {
  * @param  {string} filter regex
  * @return {boolean}
  */
-function matchJobFilter(jobName: any, filter: any) {
+function matchJobFilter(jobName: string, filter: string) {
   return jobName.match(filter);
 }
 
@@ -56,7 +56,7 @@ function matchJobFilter(jobName: any, filter: any) {
  * @param  {object} filters filters, if any
  * @return {array} related jobs
  */
-function processDashboard(allJobs: any, dashboardName: any, dashboardConfig: any, filters: any) {
+function processDashboard(allJobs: any, dashboardName: string, dashboardConfig: any, filters: any) {
   const jobs = [];
   for (let i = 0, l = dashboardConfig.layout.widgets.length; i < l; i += 1) {
     const jobItem = dashboardConfig.layout.widgets[i];

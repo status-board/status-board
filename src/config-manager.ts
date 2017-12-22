@@ -20,7 +20,7 @@ function readConfigIfExists(fileName: any) {
   return {};
 }
 
-function readEnv(configFileName: any) {
+function readEnv(configFileName: string) {
   const key = 'ATLASBOARD_CONFIG_' + configFileName;
 
   debug('ENV key', key);

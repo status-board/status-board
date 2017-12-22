@@ -1,4 +1,5 @@
 import * as async from 'async';
+import { Request, Response } from 'express';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -57,6 +58,6 @@ export function renderJsDashboard(packagesPath: any,
     });
 }
 
-export function log(req: any, res: any) {
-  res.render(path.join(__dirname, '../..', 'templates', 'dashboard-log.ejs'));
+export function log(request: Request, response: Response) {
+  response.render(path.join(__dirname, '../..', 'templates', 'dashboard-log.ejs'));
 }

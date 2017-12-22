@@ -46,7 +46,7 @@ export function create(options: any) {
      * @param notify should trigger a room notification? values: 1,0
      * @param callback a callback to be executed when complete
      */
-    message(roomId: any, from: any, message: any, notify: any, callback: any) {
+    message(roomId: number, from: string, message: string, notify: any, callback: any) {
       const postUrl = API_URL + 'v1/rooms/message?format=json&auth_token=' + options.api_key;
       const data = {
         from,
@@ -69,7 +69,7 @@ export function create(options: any) {
      * @param roomId id of the room (number)
      * @param callback a callback to be executed when complete
      */
-    roomInfo(roomId: any, callback: any) {
+    roomInfo(roomId: number, callback: any) {
       const postUrl = API_URL + 'v2/room/' + roomId + '?format=json&auth_token=' + options.api_key;
       request.get(
         {

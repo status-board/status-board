@@ -12,7 +12,7 @@ import logger from '../logger';
 import stylus from '../stylus';
 import routes from './routes';
 
-export default function (app: any, options: any) {
+export default function (app: express.Application, options: any) {
   http.globalAgent.maxSockets = 100;
 
   const atlasboardAssetsFolder = path.join(__dirname, '../../assets');

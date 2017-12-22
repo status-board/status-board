@@ -32,7 +32,7 @@ const filters: any = {
  *
  * @return {string} relative path to item: jobs/job1/job1.js
  */
-export function resolveLocation(name: any, itemType: any, extension: any) {
+export function resolveLocation(name: string, itemType: string, extension: string): string {
   const useDirectoryLevel = ((itemType === 'widgets') || (itemType === 'jobs'));
   if (useDirectoryLevel) {
     // jobs/job1/job1.js
@@ -51,7 +51,10 @@ export function resolveLocation(name: any, itemType: any, extension: any) {
  * @param {string} itemType item type in plural. ('dashboards', 'jobs', 'widgets')
  * @param {string} extension : filter result by extension
  */
-export function resolveCandidates(items: any, name: any, itemType: any, extension: any) {
+export function resolveCandidates(items: string[],
+                                  name: string,
+                                  itemType: string,
+                                  extension: string) {
   let searchCriteria = '';
   if (name.indexOf('#') > -1) {
     const packageName = name.split('#')[0];
@@ -82,10 +85,10 @@ export function resolveCandidates(items: any, name: any, itemType: any, extensio
  * @param {string} itemType item type in plural. ('dashboards', 'jobs', 'widgets')
  * @param {string} extension : filter result by extension
  */
-export function getFirst(packagesPath: any,
-                         itemName: any,
-                         itemType: any,
-                         extension: any,
+export function getFirst(packagesPath: string[],
+                         itemName: string,
+                         itemType: string,
+                         extension: string,
                          callback: any) {
   // tslint:disable-next-line no-var-self
   const thiz = this;
@@ -106,7 +109,7 @@ export function getFirst(packagesPath: any,
  * @param {string} itemType item type in plural. ('dashboards', 'jobs', 'widgets')
  * @param {string} extension : filter result by extension
  */
-export function get(packagesPath: any, itemType: any, extension: any, callback: any) {
+export function get(packagesPath: string[], itemType: string, extension: string, callback: any) {
   this.getByPackage(packagesPath, itemType, extension, (error: any, results: any) => {
     if (error) {
       return callback(error);
@@ -127,7 +130,10 @@ export function get(packagesPath: any, itemType: any, extension: any, callback: 
  * @param {string} itemType item type in plural. ('dashboards', 'jobs', 'widgets')
  * @param {string} extension : filter result by extension
  */
-export function getByPackage(packagesPath: any, itemType: any, extension: any, callback: any) {
+export function getByPackage(packagesPath: string[],
+                             itemType: string,
+                             extension: string,
+                             callback: any) {
   let processedPackagePath;
 
   if (!Array.isArray(packagesPath)) {

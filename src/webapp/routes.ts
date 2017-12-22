@@ -1,3 +1,4 @@
+import { Application, Request, Response } from 'express';
 import * as path from 'path';
 
 import configManager from '../config-manager';
@@ -15,19 +16,19 @@ import {
   renderWidgetResource,
 } from './routes/widget';
 
-export default function (app: any, packagesPath: any) {
+export default function (app: Application, packagesPath: any) {
   const wallboardAssetsFolder = path.join(process.cwd(), 'assets');
 
   // -----------------------------------------
   //  Log
   // -----------------------------------------
   app.route('/log')
-    .get((req: any, res: any) => {
+    .get((request: Request, response: Response) => {
       if (configManager('logging').liveLoggingWebAccess) {
-        log(req, res);
+        log(request, response);
       } else {
         // tslint:disable-next-line max-line-length
-        res.status(403).end('Live logging it disabled. It must be enabled in the "logging" configuration file');
+        response.status(403).end('Live logging it disabled. It must be enabled in the "logging" configuration file');
       }
     });
 
@@ -35,47 +36,58 @@ export default function (app: any, packagesPath: any) {
   //  Resources for specific widget
   // -----------------------------------------
   app.route('/widgets/resources')
-    .get((req: any, res: any) => {
-      renderWidgetResource(path.join(process.cwd(), 'packages'), req.query.resource, req, res);
+    .get((request: Request, response: Response) => {
+      renderWidgetResource(
+        path.join(process.cwd(), 'packages'),
+        request.query.resource,
+        request,
+        response,
+      );
     });
 
   // -----------------------------------------
   //  JS for a specific widget
   // -----------------------------------------
   app.route('/widgets/:widget/js')
-    .get((req: any, res: any) => {
-      renderJsWidget(packagesPath, req.params.widget, req, res);
+    .get((request: Request, response: Response) => {
+      renderJsWidget(packagesPath, request.params.widget, request, response);
     });
 
   // -----------------------------------------
   //  HTML and CSS for a specific widget
   // -----------------------------------------
   app.route('/widgets/:widget')
-    .get((req: any, res: any) => {
-      renderHtmlWidget(packagesPath, req.params.widget, req, res);
+    .get((request: Request, response: Response) => {
+      renderHtmlWidget(packagesPath, request.params.widget, request, response);
     });
 
   // -----------------------------------------
   //  Dashboard
   // -----------------------------------------
   app.route('/:dashboard')
-    .get((req: any, res: any) => {
-      renderDashboard(packagesPath, req.params.dashboard, req, res);
+    .get((request: Request, response: Response) => {
+      renderDashboard(packagesPath, request.params.dashboard, request, response);
     });
 
   // -----------------------------------------
   //  Dashboard JS
   // -----------------------------------------
   app.route('/:dashboard/js')
-    .get((req: any, res: any) => {
-      renderJsDashboard(packagesPath, wallboardAssetsFolder, req.params.dashboard, req, res);
+    .get((request: Request, response: Response) => {
+      renderJsDashboard(
+        packagesPath,
+        wallboardAssetsFolder,
+        request.params.dashboard,
+        request,
+        response,
+      );
     });
 
   // -----------------------------------------
   // List all available dashboards
   // -----------------------------------------
   app.route('/')
-    .get((req: any, res: any) => {
-      listAllDashboards(packagesPath, req, res);
+    .get((request: Request, response: Response) => {
+      listAllDashboards(packagesPath, request, response);
     });
 }

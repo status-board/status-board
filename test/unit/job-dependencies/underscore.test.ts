@@ -1,7 +1,8 @@
-import {} from '../../../src/job-dependencies/underscore/dependency';
+import * as _ from 'underscore';
+import dependency from '../../../src/job-dependencies/underscore/dependency';
 
-describe('Test', () => {
-  test('Test', () => {
-    expect('foo').toMatch('foo');
+describe('Job Dependencies: Underscore', () => {
+  test('Underscore should be returned by dependency', () => {
+    expect(dependency()).toEqual(_);
   });
 });

@@ -3,6 +3,23 @@ import configManager from './config-manager';
 
 const config = configManager('logging');
 
+export function formatConsoleDate(date: Date) {
+  const hour = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  const milliseconds = date.getMilliseconds();
+
+  return '[' +
+    ((hour < 10) ? '0' + hour : hour) +
+    ':' +
+    ((minutes < 10) ? '0' + minutes : minutes) +
+    ':' +
+    ((seconds < 10) ? '0' + seconds : seconds) +
+    '.' +
+    ('00' + milliseconds).slice(-3) +
+    ']: ';
+}
+
 export default function (jobWorker?: any, io?: any) {
   // jobWorker and socket.io instance are optional
 

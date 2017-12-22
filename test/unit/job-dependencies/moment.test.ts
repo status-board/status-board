@@ -1,7 +1,8 @@
-import {} from '../../../src/job-dependencies/moment/dependency';
+import * as moment from 'moment';
+import dependency from '../../../src/job-dependencies/moment/dependency';
 
-describe('Test', () => {
-  test('Test', () => {
-    expect('foo').toMatch('foo');
+describe('Job Dependencies: Moment', () => {
+  test('Moment should be returned by dependency', () => {
+    expect(dependency()).toEqual(moment);
   });
 });

@@ -1,16 +1,17 @@
 import * as async from 'async';
+import { Request, Response } from 'express';
 import * as path from 'path';
 
 import { readJSONFile } from '../../helpers';
 import { get, getFirst } from '../../item-manager';
 import logger from '../../logger';
-import templateManager from '../../template-manager';
+import { resolveTemplateLocation } from '../../template-manager';
 
-function getSafeItemName(itemName: any) {
+export function getSafeItemName(itemName: any) {
   return path.basename(itemName).split('.')[0];
 }
 
-function readDashboardJSON(dashboardPath: any, cb: any) {
+export function readDashboardJSON(dashboardPath: any, cb: any) {
   readJSONFile(dashboardPath, (error: any, dashboard: any) => {
     if (error) {
       logger().error(`Error reading dashboard: ${dashboardPath}`);
@@ -27,28 +28,28 @@ function readDashboardJSON(dashboardPath: any, cb: any) {
 /**
  * Render dashboard list
  * @param packagesPath
- * @param req
- * @param res
+ * @param request
+ * @param response
  */
-export function listAllDashboards(packagesPath: any, req: any, res: any) {
+export function listAllDashboards(packagesPath: any, request: Request, response: Response) {
   get(packagesPath, 'dashboards', '.json', (getError: any, dashboardConfigFiles: any) => {
     if (getError) {
       logger().error(getError);
-      return res.status(400).send('Error loading dashboards');
+      return response.status(400).send('Error loading dashboards');
     }
 
     if (dashboardConfigFiles.length === 1) {
-      return res.redirect('/' + getSafeItemName(dashboardConfigFiles[0]));
+      return response.redirect('/' + getSafeItemName(dashboardConfigFiles[0]));
     }
 
     async.map(dashboardConfigFiles, readDashboardJSON, (mapError: any, dashboardJSONs: any) => {
       if (mapError) {
-        return res.status(500).send('Error reading dashboards');
+        return response.status(500).send('Error reading dashboards');
       }
-      templateManager().resolveTemplateLocation(
+      resolveTemplateLocation(
         'dashboard-list.ejs',
         (templateError: any, location: any) => {
-          res.render(location, {
+          response.render(location, {
             dashboards: dashboardJSONs.sort((a: any, b: any) => {
               if (a.friendlyDashboardName < b.friendlyDashboardName) {
                 return -1;
@@ -68,10 +69,13 @@ export function listAllDashboards(packagesPath: any, req: any, res: any) {
  * Render a specific dashboard
  * @param packagesPath
  * @param dashboardName
- * @param req
- * @param res
+ * @param request
+ * @param response
  */
-export function renderDashboard(packagesPath: any, dashboardName: any, req: any, res: any) {
+export function renderDashboard(packagesPath: any,
+                                dashboardName: any,
+                                request: Request,
+                                response: Response) {
   const safeDashboardName = getSafeItemName(dashboardName);
 
   getFirst(
@@ -87,18 +91,19 @@ export function renderDashboard(packagesPath: any, dashboardName: any, req: any,
           with that name. If the dashboard exists, is it a valid json file? Please check the console
           for error messages.
         `;
-        return res.status(statusCode).send(error ? error : errorMessage);
+        return response.status(statusCode).send(error ? error : errorMessage);
       }
       readJSONFile(dashboardPath, (readError: any, dashboardConfig: any) => {
         if (readError) {
-          return res.status(400).send('Invalid dashboard config file');
+          return response.status(400).send('Invalid dashboard config file');
         }
-        templateManager().resolveTemplateLocation('dashboard.ejs', (tError: any, location: any) => {
-          res.render(location, {
+        resolveTemplateLocation('dashboard.ejs', (tError: any, location: any) => {
+          response.render(location, {
             dashboardConfig,
             safeDashboardName,
           });
         });
       });
-    });
+    },
+  );
 }

@@ -83,7 +83,7 @@
     "@types/semver": "5.4.0",
     "@types/serve-favicon": "2.2.30",
     "@types/socket.io": "1.4.31",
-    "@types/stylus": "0.48.28",
+    "@types/stylus": "0.48.29",
     "@types/traverse": "0.6.29",
     "@types/underscore": "1.8.6",
     "@types/winston": "2.3.7",

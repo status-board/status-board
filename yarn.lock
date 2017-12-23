@@ -121,9 +121,9 @@
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.6.0.tgz#383f456b26bc96c7889f0332079f4358b16c58dc"
 
-"@types/async@2.0.45":
-  version "2.0.45"
-  resolved "https://registry.yarnpkg.com/@types/async/-/async-2.0.45.tgz#0cfe971d7ed5542695740338e0455c91078a0e83"
+"@types/async@2.0.46":
+  version "2.0.46"
+  resolved "https://registry.yarnpkg.com/@types/async/-/async-2.0.46.tgz#f13a6c336a6582b95d0c0269e796b709488fd54d"
 
 "@types/body-parser@*", "@types/body-parser@1.16.8":
   version "1.16.8"

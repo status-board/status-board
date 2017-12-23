@@ -268,9 +268,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/stylus@0.48.28":
-  version "0.48.28"
-  resolved "https://registry.yarnpkg.com/@types/stylus/-/stylus-0.48.28.tgz#69a6109d34211edf8c453077503e3f60580d1779"
+"@types/stylus@0.48.29":
+  version "0.48.29"
+  resolved "https://registry.yarnpkg.com/@types/stylus/-/stylus-0.48.29.tgz#679b38a88998b75faa5e9dfc9617258b2dddd0a5"
   dependencies:
     "@types/node" "*"
 

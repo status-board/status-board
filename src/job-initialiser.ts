@@ -4,7 +4,7 @@ import globalAuth from './global-auth';
 import { fillDependencies } from './job-dependencies/loader';
 import jobManager from './job-manager';
 import logger from './logger';
-import scheduler from './scheduler';
+import Scheduler from './Scheduler';
 
 export function init(options: any, cb: any) {
 
@@ -44,7 +44,7 @@ export function init(options: any, cb: any) {
           if (jobWorker.onRun) {
             setTimeout(
               () => {
-                const schedulers = scheduler(jobWorker);
+                const schedulers = new Scheduler(jobWorker);
                 schedulers.start();
               },
               index * 1500,

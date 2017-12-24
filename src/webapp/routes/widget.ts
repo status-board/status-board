@@ -39,7 +39,7 @@ function namespaceRulesAST(rules: any, widgetNamespace: any) {
 function addNamespace(css: any, response: Response, widgetNamespace: any) {
   if (css) {
     try {
-      const cssAST = cssModule.parse(css.toString());
+      const cssAST: cssModule.Stylesheet = cssModule.parse(css.toString());
       namespaceRulesAST(cssAST.stylesheet.rules, widgetNamespace);
       response.write(cssModule.stringify(cssAST));
     } catch (e) {
@@ -57,14 +57,8 @@ export function renderWidgetResource(localPackagesPath: any,
                                      resource: any,
                                      request: Request,
                                      response: Response) {
-  if (!resource) {
-    return response.status(400).send('resource id not specified');
-  }
   // Sanitization
   const input = resource.split('/');
-  if (input.length !== 3) {
-    return response.status(400).send('bad input');
-  }
   const packageName = input[0];
   const widgetName = input[1];
   const resourceName = input[2];
@@ -77,10 +71,15 @@ export function renderWidgetResource(localPackagesPath: any,
     widgetName,
     resourceName,
   );
-  if (fs.existsSync(resourcePath)) {
+
+  if (!resource) {
+    response.status(400).send('resource id not specified');
+  } else if (input.length !== 3) {
+    response.status(400).send('bad input');
+  } else if (fs.existsSync(resourcePath)) {
     response.sendFile(resourcePath);
   } else {
-    return response.status(404).send('resource not found');
+    response.status(404).send('resource not found');
   }
 }
 

@@ -7,9 +7,7 @@
     "target": "es2015",
     "declaration": true,
     "declarationDir": "types",
-    "lib": [
-      "es2015"
-    ],
+    "lib": ["dom", "es6"],
     "moduleResolution": "node",
     "pretty": true,
     "removeComments": true,

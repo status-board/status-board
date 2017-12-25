@@ -4,21 +4,20 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import logger from '../../../logger';
-import StorageBase from '../StorageBase';
+import IStorageBase from '../IStorageBase';
 
-export default class StorageFS extends StorageBase {
+export default class StorageFS implements IStorageBase {
   private storageKey: string;
   private options: string;
   private storagePath: string;
 
   constructor(storageKey: any, options: any) {
-    super();
     this.storageKey = storageKey;
     this.options = options || {};
     this.storagePath = options.storagePath || path.join(process.cwd(), '/job-data-storage.json');
   }
 
-  public get(key: any, callback: any) {
+  public get(key: any, callback: any): void {
     fs.readFile(this.storagePath, (error: any, data: any) => {
       if (error) {
         return callback(error);
@@ -36,7 +35,7 @@ export default class StorageFS extends StorageBase {
     });
   }
 
-  public set(key: any, value: any, callback: any) {
+  public set(key: any, value: any, callback: any): void {
     fs.readFile(this.storagePath, (readError: any, data: any) => {
       let readData: any;
       if (readError) {

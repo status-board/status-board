@@ -3,13 +3,12 @@
 // TODO
 // -------------------------------
 import logger from '../../../logger';
-import StorageBase from '../StorageBase';
+import IStorageBase from '../IStorageBase';
 
-class StorageRedis extends StorageBase {
+class StorageRedis implements IStorageBase {
   private options: string;
 
   constructor(options: any) {
-    super();
     this.options = options || {};
   }
 

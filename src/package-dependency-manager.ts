@@ -116,16 +116,18 @@ export function installDependencies(packagesPath: any, callback: any) {
     if (mapError) {
       return callback(mapError);
     }
-    const paths = _.flatten(results);
+    if (results) {
+      const paths = _.flatten(results);
 
-    async.eachSeries(paths, checkValidIfAtlasboardVersionForPackage, (seriesError: any) => {
-      if (seriesError) {
-        return callback(seriesError);
-      }
+      async.eachSeries(paths, checkValidIfAtlasboardVersionForPackage, (seriesError: any) => {
+        if (seriesError) {
+          return callback(seriesError);
+        }
 
-      async.eachSeries(paths, install, (error: any) => {
-        callback(error);
+        async.eachSeries(paths, install, (error: any) => {
+          callback(error);
+        });
       });
-    });
+    }
   });
 }

@@ -1,5 +1,5 @@
-import fsStorage from './implementations/fs-storage';
+import StorageFS from './implementations/StorageFS';
 
 export default function (jobWorker: any) {
-  return fsStorage(jobWorker.id, {});
+  return new StorageFS(jobWorker.id, {});
 }

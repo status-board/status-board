@@ -1,5 +1,5 @@
 import configManager from './config-manager';
-import eventQueue from './event-queue';
+import EventQueue from './EventQueue';
 import globalAuth from './global-auth';
 import { fillDependencies } from './job-dependencies/loader';
 import jobManager from './job-manager';
@@ -18,7 +18,7 @@ export function init(options: any, cb: any) {
     if (!jobWorkers.length) {
       logger().warn('No jobs found matching the current configuration and filters');
     } else {
-      const queue = eventQueue(options.deps.io);
+      const queue = new EventQueue(options.deps.io);
       jobWorkers.forEach((jobWorker: any, index: any) => {
 
         // unique id for this widget in the wallboard

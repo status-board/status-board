@@ -62,11 +62,11 @@ export function resolveCandidates(items: string[],
     // package/jobs/job1/job1.js
     searchCriteria = path.join(
       packageName,
-      this.resolveLocation(itemParsedName, itemType, extension),
+      resolveLocation(itemParsedName, itemType, extension),
     );
   } else {
     // jobs/job1/job1.js
-    searchCriteria = this.resolveLocation(name, itemType, extension);
+    searchCriteria = resolveLocation(name, itemType, extension);
   }
 
   searchCriteria = path.sep + searchCriteria;
@@ -90,14 +90,12 @@ export function getFirst(packagesPath: string[],
                          itemType: string,
                          extension: string,
                          callback: any) {
-  // tslint:disable-next-line no-var-self
-  const thiz = this;
-  this.get(packagesPath, itemType, extension, (error: any, items: any) => {
+  get(packagesPath, itemType, extension, (error: any, items: any) => {
     if (error) {
       return callback(error);
     }
 
-    const candidates = thiz.resolveCandidates(items, itemName, itemType, extension);
+    const candidates = resolveCandidates(items, itemName, itemType, extension);
     callback(null, candidates.length ? candidates[0] : null);
   });
 }
@@ -110,7 +108,7 @@ export function getFirst(packagesPath: string[],
  * @param {string} extension : filter result by extension
  */
 export function get(packagesPath: string[], itemType: string, extension: string, callback: any) {
-  this.getByPackage(packagesPath, itemType, extension, (error: any, results: any) => {
+  getByPackage(packagesPath, itemType, extension, (error: any, results: any) => {
     if (error) {
       return callback(error);
     }

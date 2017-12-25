@@ -83,7 +83,7 @@ export default class Scheduler {
 
       let cbCalled = false; // job_callback is meant to be executed only once per job run
 
-      function jobCallback(err: any, data: any) {
+      function jobCallback(this: any, err: any, data: any) {
         if (cbCalled) {
           job.dependencies.logger
             .warn('WARNING!!!!: job_callback executed more than once for job ' +

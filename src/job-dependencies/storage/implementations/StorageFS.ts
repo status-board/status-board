@@ -41,8 +41,7 @@ export default class StorageFS extends StorageBase {
       let readData: any;
       if (readError) {
         readData = '{}';
-      }
-      else {
+      } else {
         readData = data;
       }
 
@@ -62,5 +61,5 @@ export default class StorageFS extends StorageBase {
       });
     })
     ;
-  };
+  }
 }

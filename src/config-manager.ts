@@ -6,8 +6,8 @@ import logger from './logger';
 
 const debug = bug('config-manager');
 
-function readConfigIfExists(fileName: any) {
-  let configFileName = fileName;
+function readConfigIfExists(fileName: string) {
+  let configFileName = fileName ;
 
   if (!path.extname(configFileName)) {
     configFileName = configFileName + '.js';
@@ -25,24 +25,26 @@ function readEnv(configFileName: string) {
 
   debug('ENV key', key);
 
-  if (process.env[key]) {
+  const environmentKey = process.env[key];
+
+  if (environmentKey) {
 
     debug('ENV configuration found for', key);
 
     try {
-      const configValue = JSON.parse(process.env[key]);
+      const configValue = JSON.parse(environmentKey);
 
       if (typeof configValue === 'object') {
-        return JSON.parse(process.env[key]);
+        return JSON.parse(environmentKey);
       }
 
       logger().error(`
-        ENV configuration key ${key} could not be serialized into an object: ${process.env[key]}
+        ENV configuration key ${key} could not be serialized into an object: ${environmentKey}
       `);
 
     } catch (error) {
       throw Error(`
-        ENV configuration key ${key} contains invalid JSON: ${process.env[key]}
+        ENV configuration key ${key} contains invalid JSON: ${environmentKey}
         Error: ${error}
       `);
     }

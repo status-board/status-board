@@ -39,9 +39,11 @@ function namespaceRulesAST(rules: any, widgetNamespace: any) {
 function addNamespace(css: any, response: Response, widgetNamespace: any) {
   if (css) {
     try {
-      const cssAST: cssModule.Stylesheet = cssModule.parse(css.toString());
-      namespaceRulesAST(cssAST.stylesheet.rules, widgetNamespace);
-      response.write(cssModule.stringify(cssAST));
+      const cssAST = cssModule.parse(css.toString());
+      if (cssAST.stylesheet) {
+        namespaceRulesAST(cssAST.stylesheet.rules, widgetNamespace);
+        response.write(cssModule.stringify(cssAST));
+      }
     } catch (e) {
       logger().error(e);
     }

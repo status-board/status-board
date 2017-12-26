@@ -117,7 +117,7 @@ export default class Scheduler {
     } catch (e) {
       job.dependencies.logger.error('Uncaught exception executing job: ' + e);
       handleError(e);
-      this.scheduleNext();
+      scheduleNext();
     }
   }
 }

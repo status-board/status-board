@@ -19,6 +19,15 @@
       ]
     },
     {
+      "login": "SwamiKalagiri",
+      "name": "Swami Kalagiri",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6710107?v=4",
+      "profile": "https://www.linkedin.com/in/swami-kalagiri",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
       "login": "greenkeeperio-bot",
       "name": "Greenkeeper",
       "avatar_url": "https://avatars1.githubusercontent.com/u/14790466?v=4",
@@ -34,15 +43,6 @@
       "profile": "http://fossa.io",
       "contributions": [
         "doc"
-      ]
-    },
-    {
-      "login": "SwamiKalagiri",
-      "name": "Swami Kalagiri",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/6710107?v=4",
-      "profile": "https://www.linkedin.com/in/swami-kalagiri",
-      "contributions": [
-        "code"
       ]
     }
   ]

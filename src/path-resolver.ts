@@ -1,14 +1,17 @@
 import * as path from 'path';
 
-function getFromRootPath(root: any, ...args: any[]) {
-  Array.prototype.splice.call(args, 0, 0, root);
-  return path.join.apply(null, args);
+function getFromRootPath(paths: string[]) {
+  return path.join(...paths);
 }
 
 export function fromAtlasboard(...args: any[]) {
-  return getFromRootPath(__dirname, args);
+  const paths = [__dirname];
+  paths.push(...args);
+  return getFromRootPath(paths);
 }
 
 export function fromLocalWallboard(...args: any[]) {
-  return getFromRootPath(process.cwd(), args);
+  const paths = [process.cwd()];
+  paths.push(...args);
+  return getFromRootPath(paths);
 }

@@ -12,7 +12,7 @@
     "contributors:generate": "all-contributors generate",
     "coverage:report": "coveralls",
     "precommit": "lint-staged && opt --in pre-commit --exec \"yarn verify\"",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release",
     "setup": "npm i -g npmvet david nsp depcheck types-checker commitizen semantic-release-cli all-contributors-cli",
     "test": "jest --coverage",
     "test:ci": "jest --maxWorkers=4",

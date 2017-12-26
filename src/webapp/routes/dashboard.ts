@@ -100,7 +100,7 @@ export function renderDashboard(packagesPath: any,
         resolveTemplateLocation('dashboard.ejs', (tError: any, location: any) => {
           response.render(location, {
             dashboardConfig,
-            safeDashboardName,
+            dashboardName: safeDashboardName,
           });
         });
       });

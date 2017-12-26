@@ -1,7 +1,7 @@
 import { Console } from 'console';
-import configManager from './config-manager';
-
-const config = configManager('logging');
+// import configManager from './config-manager';
+//
+// const config = configManager('logging');
 
 export function formatConsoleDate(date: Date) {
   const hour = date.getHours();

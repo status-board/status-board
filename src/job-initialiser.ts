@@ -2,13 +2,12 @@ import configManager from './config-manager';
 import EventQueue from './EventQueue';
 import globalAuth from './global-auth';
 import { fillDependencies } from './job-dependencies/loader';
-import jobManager from './job-manager';
+import { getJobs } from './job-manager';
 import logger from './logger';
 import Scheduler from './Scheduler';
 
 export function init(options: any, cb: any) {
-
-  jobManager.getJobs(options, (err: any, jobWorkers: any) => {
+  getJobs(options, (err: any, jobWorkers: any) => {
     if (err) {
       return cb(err);
     }
@@ -48,9 +47,11 @@ export function init(options: any, cb: any) {
                 schedulers.start();
               },
               index * 1500,
-            ); // avoid a concurrency peak on startup
+            );
+            // avoid a concurrency peak on startup
           }
-        } else { // job is disabled
+        } else {
+          // job is disabled
           jobWorker.pushUpdate({ error: 'disabled' });
         }
 

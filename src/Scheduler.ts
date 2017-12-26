@@ -30,6 +30,18 @@ export default class Scheduler {
     const job = this.jobWorker;
     const interval: number = this.originalInterval;
 
+    /**
+     * Schedules next job execution based on job's interval
+     */
+    function scheduleNext(this: any) {
+      setTimeout(
+        () => {
+          this.start();
+        },
+        job.config.interval,
+      );
+    }
+
     function handleError(err: any) {
       job.dependencies.logger.error('executed with errors: ' + err);
 
@@ -39,7 +51,7 @@ export default class Scheduler {
       // -------------------------------------------------------------
       // Decide if we hold error notification according to widget config.
       // if the retryOnErrorTimes property found in config, the error notification
-      // won´t be sent until we reach that number of consecutive errors.
+      // won't be sent until we reach that number of consecutive errors.
       // This will prevent showing too many error when connection to flaky, unreliable
       // servers.
       // -------------------------------------------------------------
@@ -97,7 +109,7 @@ export default class Scheduler {
         } else {
           handleSuccess(data);
         }
-        this.scheduleNext();
+        scheduleNext();
       }
 
       job.onRun.call(job, job.config, job.dependencies, jobCallback);
@@ -107,17 +119,5 @@ export default class Scheduler {
       handleError(e);
       this.scheduleNext();
     }
-  }
-
-  /**
-   * Schedules next job execution based on job's interval
-   */
-  private scheduleNext() {
-    setTimeout(
-      () => {
-        this.start();
-      },
-      this.jobWorker.config.interval,
-    );
   }
 }

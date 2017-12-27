@@ -261,6 +261,10 @@
   dependencies:
     "@types/node" "*"
 
+"@types/jest@^21.1.9":
+  version "21.1.9"
+  resolved "https://repository.deere.com/artifactory/api/npm/deere-ui-mjd/@types/jest/-/jest-21.1.9.tgz#a913d6224e9d8a1f24908af536f65b5bf4d489bc"
+
 "@types/method-override@0.0.31":
   version "0.0.31"
   resolved "https://registry.yarnpkg.com/@types/method-override/-/method-override-0.0.31.tgz#ec12b738c1b2a74a5d3d8af73c7d4952ad9c14d2"

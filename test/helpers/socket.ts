@@ -1,6 +1,4 @@
-import * as express from 'express';
-import * as http from 'http';
-import { listen } from 'socket.io';
+import * as io from 'socket.io';
 import * as socketClient from 'socket.io-client';
 
 export interface IServer {
@@ -10,16 +8,13 @@ export interface IServer {
 }
 
 export class Server implements IServer {
-  private app: express.Application;
-  private httpServer: http.Server;
   private ioServer: SocketIO.Server;
   private ioClient: SocketIOClient.Socket;
 
   constructor() {
-    this.app = express();
-    this.httpServer = http.createServer(this.app).listen(3000);
-    this.ioServer = listen(this.httpServer);
-    this.ioClient = socketClient('http://0.0.0.0:3000', { reconnection: false });
+    this.ioServer = io();
+    this.ioServer.listen(3000);
+    this.ioClient = socketClient('http://localhost:3000', { reconnection: false });
   }
 
   public getIoServer() {
@@ -31,7 +26,7 @@ export class Server implements IServer {
   }
 
   public stopServer() {
-    this.httpServer.close();
+    this.ioServer.close();
     this.ioClient.disconnect();
   }
 }

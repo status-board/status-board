@@ -25,7 +25,7 @@ export class EventQueue implements IEventQueue {
 
       // broadcast logs
       socket.on('log', (data: any) => {
-        socket.broadcast.emit('client', data);
+        socket.emit('client', data);
       });
     });
   }

@@ -1,5 +1,5 @@
 import configManager from './config-manager';
-import EventQueue from './EventQueue';
+import { EventQueue } from './EventQueue';
 import globalAuth from './global-auth';
 import { fillDependencies } from './job-dependencies/loader';
 import { getJobs } from './job-manager';

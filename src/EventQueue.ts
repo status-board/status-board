@@ -1,18 +1,22 @@
+export interface IEventQueue {
+  send: (id: string, data: any) => void;
+}
+
 /**
  * Event Queue
  *
  * @param io
  * @constructor
  */
-export default class EventQueue {
-  private io: any;
+export class EventQueue implements IEventQueue {
+  private io: SocketIO.Server;
   private latestEvents: any;
 
   constructor(io: any) {
     this.io = io;
     this.latestEvents = {};
 
-    io.on('connection', (socket: any) => {
+    io.on('connection', (socket: SocketIO.Socket) => {
       socket.on('resend', (data: any) => {
         if (this.latestEvents[data]) {
           socket.emit(data, this.latestEvents[data]);
@@ -31,9 +35,11 @@ export default class EventQueue {
    * @param id
    * @param data
    */
-  public send(id: any, data: any) {
+  public send(id: string, data: any) {
     this.latestEvents[id] = data;
-    this.io.emit(id, data); // emit to widget
-    this.io.emit('client', { data, widgetId: id }); // emit to logger
+    // emit to widget
+    this.io.emit(id, data);
+    // emit to logger
+    this.io.emit('client', { data, widgetId: id });
   }
 }

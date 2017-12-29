@@ -15,5 +15,6 @@ module.exports = {
     "tsx",
     "js"
   ],
-  "clearMocks": true
+  "clearMocks": true,
+  "mapCoverage": true,
 };

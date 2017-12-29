@@ -18,7 +18,7 @@ export default function (jobWorker: any) {
         qs: {
           expand: 'body.view',
         },
-        url: baseUrl + '/rest/api/content/' + pageId,
+        url: `${baseUrl}/rest/api/content/${pageId}`,
       };
       addAuthConfig(auth, opts);
 
@@ -33,6 +33,7 @@ export default function (jobWorker: any) {
         });
       });
     },
+
     // Retrieves page data for the first result that matches given CQL query.
     getPageByCQL(baseUrl: any, auth: any, query: any, cb: any) {
       const opts = {
@@ -41,7 +42,7 @@ export default function (jobWorker: any) {
           expand: 'body.view',
           limit: 1,
         },
-        url: baseUrl + '/rest/experimental/content',
+        url: baseUrl + '/rest/api/content',
       };
       addAuthConfig(auth, opts);
 
@@ -51,7 +52,7 @@ export default function (jobWorker: any) {
         }
 
         if (body.results.length === 0) {
-          return cb(null, new Error('No page matching query ' + query));
+          return cb(null, new Error(`No page matching query ${query}`));
         }
 
         const result = body.results[0];

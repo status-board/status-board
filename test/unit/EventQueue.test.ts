@@ -41,7 +41,7 @@ describe('Event Queue', () => {
     expect(spyEmit).toHaveBeenCalledWith('client', { data: expectedData, widgetId: expectedId });
   });
 
-  test('Should broadcast the correct events to the client', (done: any) => {
+  test('Server should broadcast the correct events to the client', (done: any) => {
     ioClient.on('connect', () => {
       ioClient.on('client', (data: any) => {
         expect(data).toEqual({ data: expectedData, widgetId: expectedId });
@@ -55,28 +55,24 @@ describe('Event Queue', () => {
     });
   });
 
-  test.skip('Server should call emit with the client event when the client emits a log', (done: any) => {
-    ioClient.on('connect', () => {
-      ioClient.on('client', (data: any) => {
-        expect(data).toEqual({ data: expectedData, widgetId: expectedId });
-        done();
-      });
-      ioClient.emit('log', { widgetId: expectedId, data: expectedData });
+  test('Server should call emit with the client event when the client emits a log', (done: any) => {
+    ioClient.on('client', (data: any) => {
+      expect(data).toEqual({ data: expectedData, widgetId: expectedId });
+      done();
     });
+    ioClient.emit('log', { widgetId: expectedId, data: expectedData });
   });
 
-  test.skip('Server should call emit with the id event when the client emits a resend', (done: any) => {
+  test('Server should call emit with the id event when the client emits a resend', (done: any) => {
     let calledOnce: boolean;
-    ioClient.on('connect', () => {
-      ioClient.on(expectedId, (data: any) => {
-        if (calledOnce) {
-          expect(data).toEqual(expectedData);
-          done();
-        }
-        calledOnce = true;
-      });
-      instance.send(expectedId, expectedData);
-      ioClient.emit('resend', expectedId);
+    ioClient.on(expectedId, (data: any) => {
+      if (calledOnce) {
+        expect(data).toEqual(expectedData);
+        done();
+      }
+      calledOnce = true;
     });
+    instance.send(expectedId, expectedData);
+    ioClient.emit('resend', expectedId);
   });
 });

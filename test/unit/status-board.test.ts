@@ -92,6 +92,17 @@ describe('Status Board', () => {
       expect(pdm.installDependencies).not.toHaveBeenCalled();
       expect(init).toHaveBeenCalled();
     });
+
+    test('Should assign empty options when no options provided', () => {
+      const pdm = require.requireActual('../../src/package-dependency-manager');
+      pdm.installDependencies = jest.fn();
+
+      // tslint:disable-next-line:no-empty
+      statusBoard(undefined, () => { });
+
+      expect(pdm.installDependencies).not.toHaveBeenCalled();
+      expect(init).toHaveBeenCalled();
+    });
   });
 
   describe('Initiate Jobs', () => {

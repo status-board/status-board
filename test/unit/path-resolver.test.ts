@@ -1,5 +1,5 @@
 import * as path from 'path';
-import {fromAtlasboard, fromLocalWallboard} from '../../src/path-resolver';
+import { fromAtlasboard, fromLocalWallboard } from '../../src/path-resolver';
 
 const path1: string = '/path1';
 const path2: string = '/path2';
@@ -15,6 +15,6 @@ describe('Path Resolver', () => {
 
   test('Should resolve the paths from atlas board', () => {
     expect(fromAtlasboard(path1, path2))
-      .toMatch('\\src\\path1\\path2');
+      .toEqual(expect.stringContaining(path.join(path1, path2)));
   });
 });

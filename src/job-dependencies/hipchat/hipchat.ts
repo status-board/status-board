@@ -1,5 +1,5 @@
 import * as qstring from 'querystring';
-import logger from './logger';
+import { logger } from '../../logger';
 
 const API_URL = 'https://api.hipchat.com/';
 const errors: any = {
@@ -26,6 +26,8 @@ function onResponseBuilder(callback: any) {
         }
       }
       callback(errMsg, response ? response.statusCode : null, body);
+    } else {
+      logger.log('No callback');
     }
   };
 }
@@ -34,7 +36,7 @@ export function create(options: any) {
   const request = options.request || require('request');
 
   if (!options.api_key) {
-    logger().error('api_key required');
+    logger.error('api_key required');
   }
 
   return {
@@ -46,8 +48,8 @@ export function create(options: any) {
      * @param notify should trigger a room notification? values: 1,0
      * @param callback a callback to be executed when complete
      */
-    message(roomId: number, from: string, message: string, notify: any, callback: any) {
-      const postUrl = API_URL + 'v1/rooms/message?format=json&auth_token=' + options.api_key;
+    message(roomId: number, from: string, message: string, notify: 1 | 0, callback?: any) {
+      const postUrl = `${API_URL}v1/rooms/message?format=json&auth_token=${options.api_key}`;
       const data = {
         from,
         message,
@@ -69,8 +71,8 @@ export function create(options: any) {
      * @param roomId id of the room (number)
      * @param callback a callback to be executed when complete
      */
-    roomInfo(roomId: number, callback: any) {
-      const postUrl = API_URL + 'v2/room/' + roomId + '?format=json&auth_token=' + options.api_key;
+    roomInfo(roomId: number, callback?: any) {
+      const postUrl = `${API_URL}v2/room/${roomId}?format=json&auth_token=${options.api_key}`;
       request.get(
         {
           json: true,

@@ -4,7 +4,7 @@ import * as path from 'path';
 import { listen } from 'socket.io';
 
 import { init } from './job-initialiser';
-import logger from './logger';
+import { logger } from './logger';
 import { installDependencies } from './package-dependency-manager';
 import server from './webapp/server';
 
@@ -23,11 +23,11 @@ function runner(options: any, callback: any) {
     port: options.port,
   });
 
-  logger().log('\n');
-  logger().log(chalk.yellow('-------------------------------------------'));
-  logger().log(chalk.gray(`Atlasboard listening at port ${options.port}`));
-  logger().log(chalk.yellow('-------------------------------------------'));
-  logger().log('\n');
+  logger.log('\n');
+  logger.log(chalk.yellow('-------------------------------------------'));
+  logger.log(chalk.gray(`Atlasboard listening at port ${options.port}`));
+  logger.log(chalk.yellow('-------------------------------------------'));
+  logger.log('\n');
 
   // -----------------------------------
   // Init socket.io server
@@ -63,12 +63,12 @@ function installDependencie(options: any, callback: any) {
   const packagesLocalFolder = path.join(process.cwd(), '/packages');
 
   if (options.install) {
-    logger().log(chalk.gray('Installing dependencies...'));
+    logger.log(chalk.gray('Installing dependencies...'));
     installDependencies([packagesLocalFolder], (error: any) => {
       if (error) {
         return callback(error);
       }
-      logger().log(chalk.green('done!'));
+      logger.log(chalk.green('done!'));
     });
   }
 }

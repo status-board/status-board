@@ -6,6 +6,11 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/jameswlane/status-board.svg)](https://greenkeeper.io/)
 [![Coverage Status](https://coveralls.io/repos/github/jameswlane/status-board/badge.svg?branch=master)](https://coveralls.io/github/jameswlane/status-board?branch=master)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjameswlane%2Fstatus-board.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjameswlane%2Fstatus-board?ref=badge_shield)
+[![Maintainability](https://api.codeclimate.com/v1/badges/361a35856d52f3e4bf72/maintainability)](https://codeclimate.com/github/jameswlane/status-board/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/361a35856d52f3e4bf72/test_coverage)](https://codeclimate.com/github/jameswlane/status-board/test_coverage)
+[![codecov](https://codecov.io/gh/jameswlane/status-board/branch/master/graph/badge.svg)](https://codecov.io/gh/jameswlane/status-board)
+
+
 
 Status Board is a fork of [Atlasboard](https://atlasboard.bitbucket.io) dashboard framework written in nodejs.
 

@@ -352,7 +352,7 @@
       }
     },
     "@types/node": {
-      "version": "8.5.5",
+      "version": "8.5.6",
       "dev": true
     },
     "@types/pg": {
@@ -6386,7 +6386,7 @@
       "version": "2.1.0"
     },
     "pg": {
-      "version": "7.4.0",
+      "version": "7.4.1",
       "requires": {
         "buffer-writer": "1.0.1",
         "js-string-escape": "1.0.1",

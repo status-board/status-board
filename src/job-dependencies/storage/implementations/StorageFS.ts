@@ -13,7 +13,9 @@ export default class StorageFS implements IStorageBase {
   constructor(storageKey: any, options?: any) {
     this.storageKey = storageKey;
     this.options = options || {};
-    this.storagePath = options ? options.storagePath : path.join(process.cwd(), '/job-data-storage.json');
+    this.storagePath = options
+      ? options.storagePath
+      : path.join(process.cwd(), '/job-data-storage.json');
   }
 
   public get(key: any, callback: any): void {

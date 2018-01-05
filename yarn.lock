@@ -205,9 +205,9 @@
   dependencies:
     chalk "*"
 
-"@types/chance@0.7.35":
-  version "0.7.35"
-  resolved "https://registry.yarnpkg.com/@types/chance/-/chance-0.7.35.tgz#e76f3441b7763476c58eb7dc32f62da3d8ea547e"
+"@types/chance@0.7.36":
+  version "0.7.36"
+  resolved "https://repository.deere.com/artifactory/api/npm/deere-ui-mjd/@types/chance/-/chance-0.7.36.tgz#1c3e14b9b11463d454182393ebcd8e977f1daff5"
 
 "@types/compression@0.0.35":
   version "0.0.35"
@@ -265,9 +265,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/jest@22.0.0":
-  version "22.0.0"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.0.0.tgz#23009941178aad7979a9591e026f7a96054d7bc0"
+"@types/jest@22.0.1":
+  version "22.0.1"
+  resolved "https://repository.deere.com/artifactory/api/npm/deere-ui-mjd/@types/jest/-/jest-22.0.1.tgz#6370a6d60cce3845e4cd5d00bf65f654264685bc"
 
 "@types/method-override@0.0.31":
   version "0.0.31"
@@ -295,9 +295,9 @@
   version "8.0.57"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.57.tgz#e5d8b4dc112763e35cfc51988f4f38da3c486d99"
 
-"@types/node@8.5.2":
-  version "8.5.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.5.2.tgz#83b8103fa9a2c2e83d78f701a9aa7c9539739aa5"
+"@types/node@8.5.5":
+  version "8.5.5"
+  resolved "https://repository.deere.com/artifactory/api/npm/deere-ui-mjd/@types/node/-/node-8.5.5.tgz#6f9e8164ae1a55a9beb1d2571cfb7acf9d720c61"
 
 "@types/pg-types@*":
   version "1.11.4"

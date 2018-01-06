@@ -15,6 +15,7 @@ module.exports = {
     "tsx",
     "js"
   ],
+  coveragePathIgnorePatterns: ["<rootDir>/test/helpers/", "<rootDir>/node_modules/"],
   "clearMocks": true,
-  "mapCoverage": true,
+  "mapCoverage": true
 };

@@ -27,26 +27,17 @@ export default class Scheduler {
    * Run job and schedule next
    */
   public start() {
-    const job = this.jobWorker;
-    const interval: number = this.originalInterval;
+    // tslint:disable-next-line no-var-self
+    const self = this;
+    const job = self.jobWorker;
 
-    /**
-     * Schedules next job execution based on job's interval
-     */
-    function scheduleNext(this: any) {
-      setTimeout(
-        () => {
-          this.start();
-        },
-        job.config.interval,
-      );
-    }
+    // const interval: number = this.originalInterval;
 
     function handleError(err: any) {
       job.dependencies.logger.error('executed with errors: ' + err);
 
       // in case of error retry in one third of the original interval or 1 min, whatever is lower
-      job.config.interval = Math.min(interval / 3, 60000);
+      job.config.interval = Math.min(self.originalInterval / 3, 60000);
 
       // -------------------------------------------------------------
       // Decide if we hold error notification according to widget config.
@@ -80,7 +71,7 @@ export default class Scheduler {
     function handleSuccess(data: any) {
       job.retryOnErrorCounter = 0; // reset error counter on success
       job.dependencies.logger.log('executed OK');
-      job.config.interval = interval;
+      job.config.interval = self.originalInterval;
 
       let newData: any = {};
       if (data) {
@@ -109,7 +100,7 @@ export default class Scheduler {
         } else {
           handleSuccess(data);
         }
-        scheduleNext();
+        self.scheduleNext();
       }
 
       job.onRun.call(job, job.config, job.dependencies, jobCallback);
@@ -117,7 +108,22 @@ export default class Scheduler {
     } catch (e) {
       job.dependencies.logger.error('Uncaught exception executing job: ' + e);
       handleError(e);
-      scheduleNext();
+      self.scheduleNext();
     }
   }
+
+  /**
+   * Schedules next job execution based on job's interval
+   */
+  private scheduleNext(this: any) {
+    // tslint:disable-next-line no-var-self
+    const self = this;
+    setTimeout(
+      () => {
+        self.start();
+      },
+      this.jobWorker.config.interval,
+    );
+  }
+
 }

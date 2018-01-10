@@ -5,15 +5,18 @@ module.exports = {
     }
   },
   "transform": {
-    "^.+\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
+    "^.+\\.tsx?$": "ts-jest"
   },
-  "testMatch": [
-    "**/test/**/*.test.(ts|tsx|js)"
-  ],
   "moduleFileExtensions": [
     "ts",
     "tsx",
-    "js"
+    "js",
+    "jsx",
+    "json",
+    "node"
+  ],
+  "testMatch": [
+    "<rootDir>/test/**/*.(test|spec).(ts|tsx|js)"
   ],
   coveragePathIgnorePatterns: ["<rootDir>/test/helpers/", "<rootDir>/node_modules/"],
   "clearMocks": true,

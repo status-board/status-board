@@ -105,7 +105,7 @@
     "semantic-release": "11.0.2",
     "socket.io-client": "2.0.4",
     "ts-jest": "22.0.1",
-    "tslint": "5.8.0",
+    "tslint": "5.9.0",
     "tslint-config-airbnb": "5.4.2",
     "typescript": "2.6.2",
     "validate-commit-msg": "2.14.0"

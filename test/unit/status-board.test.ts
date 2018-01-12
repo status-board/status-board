@@ -36,7 +36,7 @@ describe('Status Board', () => {
       jest.unmock('../../src/package-dependency-manager');
     });
 
-    test.skip('Should return error', () => {
+    test('Should return error', () => {
       const pdm = require.requireActual('../../src/package-dependency-manager');
       pdm.installDependencies = jest.fn((path, cb) => {
         return cb(Error('ERROR'));
@@ -51,11 +51,11 @@ describe('Status Board', () => {
 
       expect(pdm.installDependencies).toHaveBeenCalled();
       expect(pdm.installDependencies).toHaveBeenCalledWith(
-        expect.stringMatching('packages'), expect.anything());
+        [expect.stringMatching('packages')], expect.anything());
       expect(init).toHaveBeenCalled();
     });
 
-    test.skip('Should print message', () => {
+    test('Should print message', () => {
       const pdm = require.requireActual('../../src/package-dependency-manager');
       pdm.installDependencies = jest.fn((path, cb) => {
         cb(null);
@@ -71,7 +71,7 @@ describe('Status Board', () => {
 
       expect(pdm.installDependencies).toHaveBeenCalled();
       expect(pdm.installDependencies).toHaveBeenCalledWith(
-        expect.stringMatching('packages'), expect.anything());
+        [expect.stringMatching('packages')], expect.anything());
       expect(init).toHaveBeenCalled();
     });
 

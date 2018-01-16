@@ -2833,7 +2833,7 @@ jest-changed-files@^22.1.0:
   dependencies:
     throat "^4.0.0"
 
-jest-cli@^22.1.0:
+jest-cli@^22.1.1:
   version "22.1.1"
   resolved "https://registry.yarnpkg.com/jest-cli/-/jest-cli-22.1.1.tgz#fa101866fbce926d875dfe5b3565785dc7922b1d"
   dependencies:
@@ -3207,11 +3207,11 @@ jest-worker@^22.1.0:
   dependencies:
     merge-stream "^1.0.1"
 
-jest@22.1.0:
-  version "22.1.0"
-  resolved "https://registry.yarnpkg.com/jest/-/jest-22.1.0.tgz#8060ecaf891ec04822ebfc7a794a8da80841aaf9"
+jest@22.1.1:
+  version "22.1.1"
+  resolved "https://registry.yarnpkg.com/jest/-/jest-22.1.1.tgz#96bf8cc65059e2fdc84c5b4de4e4a736d799a342"
   dependencies:
-    jest-cli "^22.1.0"
+    jest-cli "^22.1.1"
 
 js-string-escape@1.0.1:
   version "1.0.1"

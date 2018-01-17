@@ -82,7 +82,7 @@
     "@types/morgan": "1.7.35",
     "@types/node": "9.3.0",
     "@types/pg": "7.4.1",
-    "@types/request": "2.0.11",
+    "@types/request": "2.0.12",
     "@types/semver": "5.4.0",
     "@types/serve-favicon": "2.2.30",
     "@types/socket.io": "1.4.31",

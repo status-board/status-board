@@ -7,7 +7,7 @@ yarn-error.log*
 
 # Coverage directory used by tools like istanbul
 coverage
-test-report.xml
+junit.xml
 
 # Compiled source
 lib

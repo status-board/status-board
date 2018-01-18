@@ -34,10 +34,10 @@ jobs:
           name: Build
           command: yarn ts:build
       - store_artifacts:
-          path: test-results.xml
+          path: test-report.xml
           prefix: tests
       - store_artifacts:
           path: coverage
           prefix: coverage
       - store_test_results:
-          path: test-results.xml
+          path: test-report.xml

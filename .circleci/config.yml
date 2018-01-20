@@ -20,10 +20,9 @@ install_steps: &install_steps
           - node-modules-{{ .Branch }}-
           - node-modules-
     - run:
-        name: Install Global Packages
+        name: Install Greenkeeper Packages
         command: |
           sudo npm install -g greenkeeper-lockfile@1
-          yarn global add npmvet nsp
     - run:
         name: Install Dependencies
         command: yarn install --frozen-lockfile
@@ -68,7 +67,9 @@ jobs:
       - *attach_workspace
       - run:
           name: NPM Vet
-          command: yarn verify:npmvet
+          command: |
+            yarn global add npmvet
+            yarn verify:npmvet
 
   nsp:
     <<: *docker_defaults
@@ -76,7 +77,9 @@ jobs:
       - *attach_workspace
       - run:
           name: Node Security
-          command: yarn verify:nsp
+          command: |
+            yarn global add nsp
+            yarn verify:nsp
 
   tslint:
     <<: *docker_defaults

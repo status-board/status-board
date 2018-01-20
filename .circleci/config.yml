@@ -10,10 +10,15 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install Global Packages
-          command: yarn global add npmvet nsp
+          command: yarn global add npmvet nsp greenkeeper-lockfile@1
       - run:
           name: Install Local Packages
           command: yarn install
+      - run:
+          name: Updating Lockfiles
+          command: |
+            greenkeeper-lockfile-update
+            greenkeeper-lockfile-upload
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:

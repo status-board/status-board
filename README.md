@@ -1,6 +1,6 @@
 # status-board
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
-[![Build Status](https://travis-ci.org/jameswlane/status-board.svg?branch=master)](https://travis-ci.org/jameswlane/status-board)
+[![CircleCI](https://circleci.com/gh/jameswlane/status-board.svg?style=svg)](https://circleci.com/gh/jameswlane/status-board)
 [![dependencies Status](https://david-dm.org/jameswlane/status-board/status.svg)](https://david-dm.org/jameswlane/status-board)
 [![devDependencies Status](https://david-dm.org/jameswlane/status-board/dev-status.svg)](https://david-dm.org/jameswlane/status-board?type=dev)
 [![Greenkeeper badge](https://badges.greenkeeper.io/jameswlane/status-board.svg)](https://greenkeeper.io/)

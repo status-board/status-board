@@ -19,6 +19,9 @@ jobs:
           paths:
             - ./node_modules
       - run:
+          name: Create reports directory
+          command: mkdir reports &&  mkdir reports/junit
+      - run:
           name: NPM Vet
           command: yarn verify:npmvet
       - run:
@@ -28,16 +31,19 @@ jobs:
           name: TSLint
           command: yarn tslint
       - run:
-          name: Test with Code Coverage
+          name: Test Suite
+          environment:
+            JEST_JUNIT_OUTPUT: reports/junit/js-test-results.xml
+          command: yarn test:ci
+      - run:
+          name: Coverage
           command: yarn test:coverage:ci
       - run:
-          name: Build
+          name: Build JavaScript
           command: yarn ts:build
       - store_artifacts:
-          path: junit.xml
-          prefix: tests
-      - store_artifacts:
           path: coverage
-          prefix: coverage
+      - store_artifacts:
+          path: reports/junit
       - store_test_results:
-          path: junit.xml
+          path: reports/junit

@@ -15,13 +15,14 @@
     "semantic-release": "semantic-release",
     "setup": "npm i -g npmvet david nsp depcheck types-checker commitizen semantic-release-cli all-contributors-cli",
     "test": "jest --coverage",
-    "test:ci": "jest --maxWorkers=4",
-    "test:coverage:ci": "jest --coverage --maxWorkers=4",
+    "test:ci": "jest --ci --testResultsProcessor=\"jest-junit\"",
+    "test:coverage:ci": "jest --ci --coverage --maxWorkers=4",
     "test:coverage:codecov": "codecov",
     "test:watch": "jest --watch",
     "ts:build": "tsc",
     "ts:watch": "tsc -w",
     "tslint": "tslint --config tslint.json \"src/**/*.ts\"",
+    "tslint:ci": "tslint --config tslint.json --format junit --out reports/junit/ts-lint-results.xml \"src/**/*.ts\"",
     "tslint:fix": "tslint --config tslint.json --fix \"src/**/*.ts\"",
     "verify": "yarn verify:npmvet && yarn verify:david && yarn verify:nsp && yarn verify:tscheck && yarn tslint && yarn test",
     "verify:offline": "yarn verify:npmvet && yarn tslint && yarn test",
@@ -115,5 +116,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "jest-junit": {
+    "output": "./ts-test-results.xml"
   }
 }

@@ -18,7 +18,6 @@ module.exports = {
   "testMatch": [
     "<rootDir>/test/**/*.(test|spec).(ts|tsx|js)"
   ],
-  "testResultsProcessor": "jest-junit",
   coveragePathIgnorePatterns: ["<rootDir>/test/helpers/", "<rootDir>/node_modules/"],
   "clearMocks": true,
   "mapCoverage": true

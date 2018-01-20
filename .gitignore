@@ -23,3 +23,7 @@ node_modules/
 
 # Types
 types
+
+reports/junit/
+ts-lint-results.xml
+ts-test-results.xml

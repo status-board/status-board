@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
       - run:
           name: Install Global Packages
           command: |
@@ -24,9 +24,10 @@ jobs:
             greenkeeper-shrinkwrap-update
             greenkeeper-shrinkwrap-upload
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
           paths:
             - ./node_modules
+            - ~/.cache/yarn
       - run:
           name: NPM Vet
           command: yarn verify:npmvet
@@ -47,6 +48,8 @@ jobs:
       - image: circleci/node:6
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
       - run:
           name: Install Local Packages
           command: yarn install --ignore-engines --frozen-lockfile
@@ -59,6 +62,8 @@ jobs:
       - image: circleci/node:7
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
       - run:
           name: Install Local Packages
           command: yarn install --ignore-engines --frozen-lockfile
@@ -71,6 +76,8 @@ jobs:
       - image: circleci/node:8
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
       - run:
           name: Install Local Packages
           command: yarn install --frozen-lockfile
@@ -83,6 +90,8 @@ jobs:
       - image: circleci/node:9
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
       - run:
           name: Install Local Packages
           command: yarn install --ignore-engines --frozen-lockfile
@@ -96,14 +105,15 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
       - run:
           name: Install Local Packages
           command: yarn install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
           paths:
             - ./node_modules
+            - ~/.cache/yarn
       - run:
           name: Setup Code Climate test-reporter
           command: |

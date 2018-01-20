@@ -19,6 +19,8 @@ jobs:
           command: |
             greenkeeper-lockfile-update
             greenkeeper-lockfile-upload
+            greenkeeper-shrinkwrap-update
+            greenkeeper-shrinkwrap-upload
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:

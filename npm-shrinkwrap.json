@@ -1687,6 +1687,15 @@
         "js-yaml": "3.10.0",
         "parse-json": "3.0.0",
         "require-from-string": "2.0.1"
+      },
+      "dependencies": {
+        "parse-json": {
+          "version": "3.0.0",
+          "dev": true,
+          "requires": {
+            "error-ex": "1.3.1"
+          }
+        }
       }
     },
     "coveralls": {
@@ -4782,13 +4791,13 @@
       }
     },
     "lint-staged": {
-      "version": "6.0.0",
+      "version": "6.0.1",
       "dev": true,
       "requires": {
         "app-root-path": "2.0.1",
         "chalk": "2.3.0",
         "commander": "2.12.2",
-        "cosmiconfig": "3.1.0",
+        "cosmiconfig": "4.0.0",
         "debug": "3.1.0",
         "dedent": "0.7.0",
         "execa": "0.8.0",
@@ -4807,6 +4816,16 @@
         "stringify-object": "3.2.1"
       },
       "dependencies": {
+        "cosmiconfig": {
+          "version": "4.0.0",
+          "dev": true,
+          "requires": {
+            "is-directory": "0.3.1",
+            "js-yaml": "3.10.0",
+            "parse-json": "4.0.0",
+            "require-from-string": "2.0.1"
+          }
+        },
         "dedent": {
           "version": "0.7.0",
           "dev": true
@@ -4981,14 +5000,6 @@
         "strip-bom": "3.0.0"
       },
       "dependencies": {
-        "parse-json": {
-          "version": "4.0.0",
-          "dev": true,
-          "requires": {
-            "error-ex": "1.3.1",
-            "json-parse-better-errors": "1.0.1"
-          }
-        },
         "strip-bom": {
           "version": "3.0.0",
           "dev": true
@@ -5841,10 +5852,11 @@
       }
     },
     "parse-json": {
-      "version": "3.0.0",
+      "version": "4.0.0",
       "dev": true,
       "requires": {
-        "error-ex": "1.3.1"
+        "error-ex": "1.3.1",
+        "json-parse-better-errors": "1.0.1"
       }
     },
     "parse-passwd": {

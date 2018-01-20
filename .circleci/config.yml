@@ -46,4 +46,4 @@ jobs:
       - store_artifacts:
           path: reports/junit
       - store_test_results:
-          path: reports/junit
+          path: reports

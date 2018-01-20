@@ -4204,21 +4204,21 @@
       "dev": true
     },
     "jest": {
-      "version": "22.1.1",
+      "version": "22.1.4",
       "dev": true,
       "requires": {
-        "jest-cli": "22.1.1"
+        "jest-cli": "22.1.4"
       }
     },
     "jest-changed-files": {
-      "version": "22.1.0",
+      "version": "22.1.4",
       "dev": true,
       "requires": {
         "throat": "4.1.0"
       }
     },
     "jest-cli": {
-      "version": "22.1.1",
+      "version": "22.1.4",
       "dev": true,
       "requires": {
         "ansi-escapes": "3.0.0",
@@ -4232,18 +4232,18 @@
         "istanbul-lib-coverage": "1.1.1",
         "istanbul-lib-instrument": "1.9.1",
         "istanbul-lib-source-maps": "1.2.2",
-        "jest-changed-files": "22.1.0",
-        "jest-config": "22.1.1",
-        "jest-environment-jsdom": "22.1.0",
+        "jest-changed-files": "22.1.4",
+        "jest-config": "22.1.4",
+        "jest-environment-jsdom": "22.1.4",
         "jest-get-type": "22.1.0",
         "jest-haste-map": "22.1.0",
         "jest-message-util": "22.1.0",
         "jest-regex-util": "22.1.0",
         "jest-resolve-dependencies": "22.1.0",
-        "jest-runner": "22.1.1",
-        "jest-runtime": "22.1.1",
-        "jest-snapshot": "22.1.0",
-        "jest-util": "22.1.0",
+        "jest-runner": "22.1.4",
+        "jest-runtime": "22.1.4",
+        "jest-snapshot": "22.1.2",
+        "jest-util": "22.1.4",
         "jest-worker": "22.1.0",
         "micromatch": "2.3.11",
         "node-notifier": "5.1.2",
@@ -4270,24 +4270,24 @@
       }
     },
     "jest-config": {
-      "version": "22.1.1",
+      "version": "22.1.4",
       "dev": true,
       "requires": {
         "chalk": "2.3.0",
         "glob": "7.1.2",
-        "jest-environment-jsdom": "22.1.0",
-        "jest-environment-node": "22.1.0",
+        "jest-environment-jsdom": "22.1.4",
+        "jest-environment-node": "22.1.4",
         "jest-get-type": "22.1.0",
-        "jest-jasmine2": "22.1.1",
+        "jest-jasmine2": "22.1.4",
         "jest-regex-util": "22.1.0",
-        "jest-resolve": "22.1.0",
-        "jest-util": "22.1.0",
-        "jest-validate": "22.1.0",
+        "jest-resolve": "22.1.4",
+        "jest-util": "22.1.4",
+        "jest-validate": "22.1.2",
         "pretty-format": "22.1.0"
       },
       "dependencies": {
         "jest-validate": {
-          "version": "22.1.0",
+          "version": "22.1.2",
           "dev": true,
           "requires": {
             "chalk": "2.3.0",
@@ -4330,11 +4330,11 @@
       }
     },
     "jest-environment-jsdom": {
-      "version": "22.1.0",
+      "version": "22.1.4",
       "dev": true,
       "requires": {
         "jest-mock": "22.1.0",
-        "jest-util": "22.1.0",
+        "jest-util": "22.1.4",
         "jsdom": "11.5.1"
       },
       "dependencies": {
@@ -4345,11 +4345,11 @@
       }
     },
     "jest-environment-node": {
-      "version": "22.1.0",
+      "version": "22.1.4",
       "dev": true,
       "requires": {
         "jest-mock": "22.1.0",
-        "jest-util": "22.1.0"
+        "jest-util": "22.1.4"
       },
       "dependencies": {
         "jest-mock": {
@@ -4375,7 +4375,7 @@
       }
     },
     "jest-jasmine2": {
-      "version": "22.1.1",
+      "version": "22.1.4",
       "dev": true,
       "requires": {
         "callsites": "2.0.0",
@@ -4387,7 +4387,7 @@
         "jest-diff": "22.1.0",
         "jest-matcher-utils": "22.1.0",
         "jest-message-util": "22.1.0",
-        "jest-snapshot": "22.1.0",
+        "jest-snapshot": "22.1.2",
         "source-map-support": "0.5.0"
       },
       "dependencies": {
@@ -4480,7 +4480,7 @@
       "dev": true
     },
     "jest-resolve": {
-      "version": "22.1.0",
+      "version": "22.1.4",
       "dev": true,
       "requires": {
         "browser-resolve": "1.11.2",
@@ -4495,24 +4495,24 @@
       }
     },
     "jest-runner": {
-      "version": "22.1.1",
+      "version": "22.1.4",
       "dev": true,
       "requires": {
         "exit": "0.1.2",
-        "jest-config": "22.1.1",
+        "jest-config": "22.1.4",
         "jest-docblock": "22.1.0",
         "jest-haste-map": "22.1.0",
-        "jest-jasmine2": "22.1.1",
+        "jest-jasmine2": "22.1.4",
         "jest-leak-detector": "22.1.0",
         "jest-message-util": "22.1.0",
-        "jest-runtime": "22.1.1",
-        "jest-util": "22.1.0",
+        "jest-runtime": "22.1.4",
+        "jest-util": "22.1.4",
         "jest-worker": "22.1.0",
         "throat": "4.1.0"
       }
     },
     "jest-runtime": {
-      "version": "22.1.1",
+      "version": "22.1.4",
       "dev": true,
       "requires": {
         "babel-core": "6.26.0",
@@ -4522,11 +4522,11 @@
         "convert-source-map": "1.5.1",
         "exit": "0.1.2",
         "graceful-fs": "4.1.11",
-        "jest-config": "22.1.1",
+        "jest-config": "22.1.4",
         "jest-haste-map": "22.1.0",
         "jest-regex-util": "22.1.0",
-        "jest-resolve": "22.1.0",
-        "jest-util": "22.1.0",
+        "jest-resolve": "22.1.4",
+        "jest-util": "22.1.4",
         "json-stable-stringify": "1.0.1",
         "micromatch": "2.3.11",
         "realpath-native": "1.0.0",
@@ -4543,7 +4543,7 @@
       }
     },
     "jest-snapshot": {
-      "version": "22.1.0",
+      "version": "22.1.2",
       "dev": true,
       "requires": {
         "chalk": "2.3.0",
@@ -4576,7 +4576,7 @@
       }
     },
     "jest-util": {
-      "version": "22.1.0",
+      "version": "22.1.4",
       "dev": true,
       "requires": {
         "callsites": "2.0.0",
@@ -4584,12 +4584,12 @@
         "graceful-fs": "4.1.11",
         "is-ci": "1.1.0",
         "jest-message-util": "22.1.0",
-        "jest-validate": "22.1.0",
+        "jest-validate": "22.1.2",
         "mkdirp": "0.5.1"
       },
       "dependencies": {
         "jest-validate": {
-          "version": "22.1.0",
+          "version": "22.1.2",
           "dev": true,
           "requires": {
             "chalk": "2.3.0",

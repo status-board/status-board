@@ -22,7 +22,7 @@
     "ts:build": "tsc",
     "ts:watch": "tsc -w",
     "tslint": "tslint --config tslint.json \"src/**/*.ts\"",
-    "tslint:ci": "tslint --config tslint.json --format junit --out reports/junit/ts-lint-results.xml \"src/**/*.ts\"",
+    "tslint:ci": "tslint --config tslint.json --format junit --out reports/tslint/tslint-results.xml \"src/**/*.ts\"",
     "tslint:fix": "tslint --config tslint.json --fix \"src/**/*.ts\"",
     "verify": "yarn verify:npmvet && yarn verify:david && yarn verify:nsp && yarn verify:tscheck && yarn tslint && yarn test",
     "verify:offline": "yarn verify:npmvet && yarn tslint && yarn test",

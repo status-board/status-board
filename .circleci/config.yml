@@ -20,7 +20,7 @@ jobs:
             - ./node_modules
       - run:
           name: Create reports directory
-          command: mkdir reports &&  mkdir reports/junit
+          command: mkdir reports &&  mkdir reports/tslint
       - run:
           name: NPM Vet
           command: yarn verify:npmvet
@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Test Suite
           environment:
-            JEST_JUNIT_OUTPUT: reports/junit/js-test-results.xml
+            JEST_JUNIT_OUTPUT: reports/jest/jest-test-results.xml
           command: yarn test:ci
       - run:
           name: Coverage

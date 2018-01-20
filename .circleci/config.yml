@@ -162,45 +162,45 @@ jobs:
 
 workflows:
   version: 2
-  build:
+  pipeline:
     jobs:
       - checkout
-      - install-dependencies
-        requires:
-          - checkout
-      - npmvet
-        requires:
-          - install-dependencies
-      - node-security
-        requires:
-          - npmvet
-      - tslint
-        requires:
-          - node-security
-      - test-node-6
-        requires:
-          - tslint
-      - test-node-7
-        requires:
-          - tslint
-      - test-node-8
-        requires:
-          - tslint
-      - test-node-9
-        requires:
-          - tslint
-      - coverage
-        requires:
-          - test-node-6
-          - test-node-7
-          - test-node-8
-          - test-node-9
-      - compile-typescript
-        requires:
-          - coverage
-      - semantic-release
-        requires:
-          - compile-typescript
-      - store-test-results
-        requires:
-          - semantic-release
+      - install-dependencies:
+          requires:
+            - checkout
+      - npmvet:
+          requires:
+            - install-dependencies
+      - node-security:
+          requires:
+            - npmvet
+      - tslint:
+          requires:
+            - node-security
+      - test-node-6:
+          requires:
+            - tslint
+      - test-node-7:
+          requires:
+            - tslint
+      - test-node-8:
+          requires:
+            - tslint
+      - test-node-9:
+          requires:
+            - tslint
+      - coverage:
+          requires:
+            - test-node-6
+            - test-node-7
+            - test-node-8
+            - test-node-9
+      - compile-typescript:
+          requires:
+            - coverage
+      - semantic-release:
+          requires:
+            - compile-typescript
+      - store-test-results:
+          requires:
+            - semantic-release

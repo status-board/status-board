@@ -370,7 +370,7 @@
       }
     },
     "@types/request": {
-      "version": "2.0.11",
+      "version": "2.0.12",
       "dev": true,
       "requires": {
         "@types/form-data": "2.2.1",

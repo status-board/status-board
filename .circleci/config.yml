@@ -1,70 +1,206 @@
 version: 2
 jobs:
-  build:
+  checkout:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+  install-dependencies:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:8
+    steps:
+      - restore_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+        name: Install Global Packages
+        command: |
+          sudo npm install -g greenkeeper-lockfile@1
+          yarn global add npmvet nsp greenkeeper-lockfile@1
+      - run:
+        name: Install Local Packages
+        command: yarn install
+      - run:
+        name: Updating Lockfiles
+        command: |
+          greenkeeper-lockfile-update
+          greenkeeper-lockfile-upload
+          greenkeeper-shrinkwrap-update
+          greenkeeper-shrinkwrap-upload
+      - save_cache:
+        key: dependency-cache-{{ checksum "package.json" }}
+        paths:
+          - ./node_modules
+  npmvet:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:8
+    steps:
+      - run:
+        name: NPM Vet
+        command: yarn verify:npmvet
+  node-security:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:8
+    steps:
+      - run:
+        name: Node Security
+        command: yarn verify:nsp
+  tslint:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:8
+    steps:
+      - run:
+        name: Create TSLint report directory
+        command: mkdir reports &&  mkdir reports/tslint
+      - run:
+        name: TSLint
+        command: yarn tslint
+  test-node-6:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:6
+    steps:
+      - checkout
+      - run:
+        name: Install Local Packages
+        command: yarn install --ignore-engines --frozen-lockfile
+      - run:
+        name: Test Suite
+        environment:
+          JEST_JUNIT_OUTPUT: reports/jest/jest-test-results.xml
+        command: yarn test:ci
+  test-node-7:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:7
+    steps:
+      - checkout
+      - run:
+        name: Install Local Packages
+        command: yarn install --ignore-engines --frozen-lockfile
+      - run:
+        name: Test Suite
+        environment:
+          JEST_JUNIT_OUTPUT: reports/jest/jest-test-results.xml
+        command: yarn test:ci
+  test-node-8:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - run:
+        name: Install Local Packages
+        command: yarn install --frozen-lockfile
+      - run:
+        name: Test Suite
+        environment:
+          JEST_JUNIT_OUTPUT: reports/jest/jest-test-results.xml
+        command: yarn test:ci
+  test-node-9:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:9
+    steps:
+      - checkout
+      - run:
+        name: Install Local Packages
+        command: yarn install --ignore-engines --frozen-lockfile
+      - run:
+        name: Test Suite
+        environment:
+          JEST_JUNIT_OUTPUT: reports/jest/jest-test-results.xml
+        command: yarn test:ci
+  coverage:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:8
+    steps:
+      - run:
+        name: Setup Code Climate test-reporter
+        command: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+      - run:
+        name: Coverage
+        command: |
+          ./cc-test-reporter before-build
+          yarn test:coverage:ci
+          ./cc-test-reporter after-build --exit-code $?
+          yarn test:coverage:codecov
+      - store_artifacts:
+        path: coverage
+  compile-typescript:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:8
+    steps:
+      - run:
+        name: Build JavaScript
+        command: yarn ts:build
+  semantic-release:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:8
+    steps:
+      - run:
+        name: Semantic Release
+        command: yarn semantic-release
+  store-test-results:
     working_directory: ~/status-board
     docker:
       - image: circleci/node:8.9.4
     steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Install Global Packages
-          command: |
-            sudo npm install -g greenkeeper-lockfile@1
-            yarn global add npmvet nsp greenkeeper-lockfile@1
-      - run:
-          name: Install Local Packages
-          command: yarn install
-      - run:
-          name: Updating Lockfiles
-          command: |
-            greenkeeper-lockfile-update
-            greenkeeper-lockfile-upload
-            greenkeeper-shrinkwrap-update
-            greenkeeper-shrinkwrap-upload
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          name: Create reports directory
-          command: mkdir reports &&  mkdir reports/tslint
-      - run:
-          name: NPM Vet
-          command: yarn verify:npmvet
-      - run:
-          name: Node Security
-          command: yarn verify:nsp
-      - run:
-          name: TSLint
-          command: yarn tslint
-      - run:
-          name: Test Suite
-          environment:
-            JEST_JUNIT_OUTPUT: reports/jest/jest-test-results.xml
-          command: yarn test:ci
-      - run:
-          name: Setup Code Climate test-reporter
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-      - run:
-          name: Coverage
-          command: |
-            ./cc-test-reporter before-build
-            yarn test:coverage:ci
-            ./cc-test-reporter after-build --exit-code $?
-            yarn test:coverage:codecov
-      - run:
-          name: Build JavaScript
-          command: yarn ts:build
-      - run:
-          name: Semantic Release
-          command: yarn semantic-release
       - store_artifacts:
-          path: coverage
-      - store_artifacts:
-          path: reports/junit
+        path: reports/junit
       - store_test_results:
-          path: reports
+        path: reports
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - checkout
+      - install-dependencies
+        requires:
+          - checkout
+      - npmvet
+        requires:
+          - install-dependencies
+      - node-security
+        requires:
+          - npmvet
+      - tslint
+        requires:
+          - node-security
+      - test-node-6
+        requires:
+          - tslint
+      - test-node-7
+        requires:
+          - tslint
+      - test-node-8
+        requires:
+          - tslint
+      - test-node-9
+        requires:
+          - tslint
+      - coverage
+        requires:
+          - test-node-6
+          - test-node-7
+          - test-node-8
+          - test-node-9
+      - compile-typescript
+        requires:
+          - coverage
+      - semantic-release
+        requires:
+          - compile-typescript
+      - store-test-results
+        requires:
+          - semantic-release

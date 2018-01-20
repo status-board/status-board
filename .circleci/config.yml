@@ -1,39 +1,87 @@
 version: 2
+
+docker_defaults: &docker_defaults
+  docker:
+    - image: circleci/node:8
+  working_directory: ~/project/status-board
+
+attach_workspace: &attach_workspace
+  attach_workspace:
+      at: ~/project
+
+install_steps: &install_steps
+  steps:
+    - checkout
+    - *attach_workspace
+    - restore_cache:
+        name: Restore node_modules cache
+        keys:
+          - node-modules-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          - node-modules-{{ .Branch }}-
+          - node-modules-
+    - run:
+        name: Install Global Packages
+        command: |
+          sudo npm install -g greenkeeper-lockfile@1
+          yarn global add npmvet nsp
+    - run:
+        name: Install Dependencies
+        command: yarn install --frozen-lockfile
+    - run:
+        name: Updating Lockfiles
+        command: |
+          greenkeeper-lockfile-update
+          greenkeeper-lockfile-upload
+          greenkeeper-shrinkwrap-update
+          greenkeeper-shrinkwrap-upload
+    - save_cache:
+        name: Save node_modules cache
+        key: node-modules-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        paths:
+          - node_modules/
+          - ~/.cache/yarn
+    - persist_to_workspace:
+        root: ~/project
+        paths:
+          - status-board
+
+test_steps: &test_steps
+  steps:
+    - checkout
+    - restore_cache:
+        key: node-modules-{{ .Branch }}-{{ checksum "yarn.lock" }}
+    - run:
+        name: Install Local Packages
+        command: yarn install --ignore-engines --frozen-lockfile
+    - run:
+        name: Test Suite
+        command: yarn test:ci
+
 jobs:
-  verify:
-    working_directory: ~/status-board
-    docker:
-      - image: circleci/node:8
+  install:
+    <<: *docker_defaults
+    <<: *install_steps
+
+  npmvet:
+    <<: *docker_defaults
     steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
-      - run:
-          name: Install Global Packages
-          command: |
-            sudo npm install -g greenkeeper-lockfile@1
-            yarn global add npmvet nsp
-      - run:
-          name: Install Local Packages
-          command: yarn install
-      - run:
-          name: Updating Lockfiles
-          command: |
-            greenkeeper-lockfile-update
-            greenkeeper-lockfile-upload
-            greenkeeper-shrinkwrap-update
-            greenkeeper-shrinkwrap-upload
-      - save_cache:
-          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
-          paths:
-            - ./node_modules
-            - ~/.cache/yarn
+      - *attach_workspace
       - run:
           name: NPM Vet
           command: yarn verify:npmvet
+
+  nsp:
+    <<: *docker_defaults
+    steps:
+      - *attach_workspace
       - run:
           name: Node Security
           command: yarn verify:nsp
+
+  tslint:
+    <<: *docker_defaults
+    steps:
+      - *attach_workspace
       - run:
           name: Create TSLint report directory
           command: mkdir reports &&  mkdir reports/tslint
@@ -42,78 +90,33 @@ jobs:
           command: yarn tslint
       - store_artifacts:
           path: reports/tslint
+
   test-node-6:
     working_directory: ~/status-board
     docker:
       - image: circleci/node:6
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
-      - run:
-          name: Install Local Packages
-          command: yarn install --ignore-engines --frozen-lockfile
-      - run:
-          name: Test Suite
-          command: yarn test:ci
+    <<: *test_steps
+
   test-node-7:
     working_directory: ~/status-board
     docker:
       - image: circleci/node:7
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
-      - run:
-          name: Install Local Packages
-          command: yarn install --ignore-engines --frozen-lockfile
-      - run:
-          name: Test Suite
-          command: yarn test:ci
+    <<: *test_steps
+
   test-node-8:
-    working_directory: ~/status-board
-    docker:
-      - image: circleci/node:8
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
-      - run:
-          name: Install Local Packages
-          command: yarn install --frozen-lockfile
-      - run:
-          name: Test Suite
-          command: yarn test:ci
+    <<: *docker_defaults
+    <<: *test_steps
+
   test-node-9:
     working_directory: ~/status-board
     docker:
       - image: circleci/node:9
+    <<: *test_steps
+
+  coverage:
+    <<: *docker_defaults
     steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
-      - run:
-          name: Install Local Packages
-          command: yarn install --ignore-engines --frozen-lockfile
-      - run:
-          name: Test Suite
-          command: yarn test:ci
-  coverage-build-deploy:
-    working_directory: ~/status-board
-    docker:
-      - image: circleci/node:8
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
-      - run:
-          name: Install Local Packages
-          command: yarn install
-      - save_cache:
-          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{checksum ".circleci/config.yml"}}-{{ .Branch }}-{{checksum "yarn.lock"}}
-          paths:
-            - ./node_modules
-            - ~/.cache/yarn
+      - *attach_workspace
       - run:
           name: Setup Code Climate test-reporter
           command: |
@@ -130,37 +133,62 @@ jobs:
             yarn test:coverage:codecov
       - store_artifacts:
           path: coverage
-      - run:
-          name: Build JavaScript
-          command: yarn ts:build
-      - run:
-          name: Semantic Release
-          command: yarn semantic-release
       - store_artifacts:
           path: reports/jest
       - store_test_results:
           path: reports
 
+  build-typescript:
+    <<: *docker_defaults
+    steps:
+      - *attach_workspace
+      - run:
+          name: Build JavaScript
+          command: yarn ts:build
+
+  semantic-release:
+    <<: *docker_defaults
+    steps:
+      - *attach_workspace
+      - run:
+          name: Semantic Release
+          command: yarn semantic-release
+
 workflows:
   version: 2
-  pipeline:
+  install-test-build-and-publish:
     jobs:
-      - verify
+      - install
+      - npmvet:
+          requires:
+            - install
+      - nsp:
+          requires:
+            - npmvet
+      - tslint:
+          requires:
+            - nsp
       - test-node-6:
           requires:
-            - verify
+            - tslint
       - test-node-7:
           requires:
-            - verify
+            - tslint
       - test-node-8:
           requires:
-            - verify
+            - tslint
       - test-node-9:
           requires:
-            - verify
-      - coverage-build-deploy:
+            - tslint
+      - coverage:
           requires:
             - test-node-6
             - test-node-7
             - test-node-8
             - test-node-9
+      - build-typescript:
+          requires:
+            - coverage
+      - semantic-release:
+          requires:
+            - build-typescript

@@ -338,9 +338,9 @@
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-2.3.2.tgz#e0d481d8bb282ad8a8c9e100ceb72c995fb5e709"
 
-"@types/traverse@0.6.29":
-  version "0.6.29"
-  resolved "https://registry.yarnpkg.com/@types/traverse/-/traverse-0.6.29.tgz#2e9d1f18bfb009ab26e1cbb130376d1fc2726341"
+"@types/traverse@0.6.30":
+  version "0.6.30"
+  resolved "https://registry.yarnpkg.com/@types/traverse/-/traverse-0.6.30.tgz#a53936506dac267c236fb0d47fc4835acb21b522"
 
 "@types/underscore@1.8.7":
   version "1.8.7"

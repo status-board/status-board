@@ -438,7 +438,7 @@
       "dev": true
     },
     "@types/traverse": {
-      "version": "0.6.29",
+      "version": "0.6.30",
       "dev": true
     },
     "@types/underscore": {

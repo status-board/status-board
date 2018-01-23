@@ -25,7 +25,7 @@ install_steps: &install_steps
           sudo npm install -g greenkeeper-lockfile@1
     - run:
         name: Install Dependencies
-        command: yarn install --frozen-lockfile
+        command: yarn install
     - run:
         name: Updating Lockfiles
         command: |
@@ -51,7 +51,7 @@ test_steps: &test_steps
         key: node-modules-{{ .Branch }}-{{ checksum "yarn.lock" }}
     - run:
         name: Install Local Packages
-        command: yarn install --ignore-engines --frozen-lockfile
+        command: yarn install --ignore-engines
     - run:
         name: Test Suite
         command: yarn test:ci

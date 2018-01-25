@@ -27,7 +27,7 @@ export default class Scheduler {
    * Run job and schedule next
    */
   public start() {
-    // tslint:disable-next-line no-var-self
+    // tslint:disable-next-line no-this-assignment
     const self = this;
     const job = self.jobWorker;
 
@@ -116,7 +116,7 @@ export default class Scheduler {
    * Schedules next job execution based on job's interval
    */
   private scheduleNext(this: any) {
-    // tslint:disable-next-line no-var-self
+    // tslint:disable-next-line no-this-assignment
     const self = this;
     setTimeout(
       () => {

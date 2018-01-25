@@ -1,4 +1,4 @@
-export class MockedResponse {
+export class Response {
   public mockedRender: any;
   public mockedStatus: any;
   public mockedType: any;

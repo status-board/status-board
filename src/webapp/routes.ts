@@ -1,7 +1,7 @@
 import { Application, Request, Response } from 'express';
 import * as path from 'path';
 
-import configManager from '../config-manager';
+// import configManager from '../config-manager';
 import {
   log,
   renderJsDashboard,
@@ -22,15 +22,15 @@ export default function (app: Application, packagesPath: any) {
   // -----------------------------------------
   //  Log
   // -----------------------------------------
-  app.route('/log')
-    .get((request: Request, response: Response) => {
-      if (configManager('logging').liveLoggingWebAccess) {
-        log(request, response);
-      } else {
-        // tslint:disable-next-line max-line-length
-        response.status(403).end('Live logging it disabled. It must be enabled in the "logging" configuration file');
-      }
-    });
+  // app.route('/log')
+  //   .get((request: Request, response: Response) => {
+  //     if (configManager('logging').liveLoggingWebAccess) {
+  //       log(request, response);
+  //     } else {
+  //       // tslint:disable-next-line max-line-length
+  //       response.status(403).end('Live logging it disabled. It must be enabled in the "logging" configuration file');
+  //     }
+  //   });
 
   // -----------------------------------------
   //  Resources for specific widget

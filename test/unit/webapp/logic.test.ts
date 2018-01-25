@@ -8,7 +8,7 @@ import {
   log,
   renderJsDashboard,
 } from '../../../src/webapp/logic';
-import { MockedResponse } from '../../helpers/express/response';
+import { Response } from '../../helpers/express';
 
 describe('Test', () => {
   const spyOn: any = {};
@@ -16,9 +16,9 @@ describe('Test', () => {
   let request: any;
 
   beforeEach(() => {
-    response = new MockedResponse();
+    response = new Response();
     request = jest.fn();
-    spyOn.error = jest.spyOn(logger, 'error').mockImplementation();
+    spyOn.error = jest.spyOn(logger, 'error');
     spyOn.getFirst = jest.spyOn(itemManager, 'getFirst')
     // tslint:disable-next-line max-line-length
       .mockImplementation((packagesPath: string, safeDashboardName: string, dashboards: string, json: string, callback: any) => {

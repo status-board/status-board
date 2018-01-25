@@ -28,7 +28,8 @@ export default function (app: Application, packagesPath: any) {
   //       log(request, response);
   //     } else {
   //       // tslint:disable-next-line max-line-length
-  //       response.status(403).end('Live logging it disabled. It must be enabled in the "logging" configuration file');
+  //       response.status(403).end('Live logging it disabled.
+  //       It must be enabled in the "logging" configuration file');
   //     }
   //   });
 

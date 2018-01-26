@@ -10,7 +10,7 @@ import {
 } from '../../../src/webapp/logic';
 import { Response } from '../../helpers/express';
 
-describe('Test', () => {
+describe('Webapp: Logic', () => {
   const spyOn: any = {};
   let response: any;
   let request: any;

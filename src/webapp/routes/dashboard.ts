@@ -4,7 +4,7 @@ import * as path from 'path';
 
 import { readJSONFile } from '../../helpers';
 import { get, getFirst } from '../../item-manager';
-import logger from '../../logger';
+import { logger } from '../../logger';
 import { resolveTemplateLocation } from '../../template-manager';
 
 export function getSafeItemName(itemName: any) {
@@ -14,7 +14,7 @@ export function getSafeItemName(itemName: any) {
 export function readDashboardJSON(dashboardPath: any, cb: any) {
   readJSONFile(dashboardPath, (error: any, dashboard: any) => {
     if (error) {
-      logger().error(`Error reading dashboard: ${dashboardPath}`);
+      logger.error(`Error reading dashboard: ${dashboardPath}`);
       return cb(error);
     }
 
@@ -34,7 +34,7 @@ export function readDashboardJSON(dashboardPath: any, cb: any) {
 export function listAllDashboards(packagesPath: any, request: Request, response: Response) {
   get(packagesPath, 'dashboards', '.json', (getError: any, dashboardConfigFiles: any) => {
     if (getError) {
-      logger().error(getError);
+      logger.error(getError);
       return response.status(400).send('Error loading dashboards');
     }
 

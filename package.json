@@ -104,7 +104,7 @@
     "faker": "4.1.0",
     "jest": "22.1.4",
     "jest-junit": "3.4.1",
-    "lint-staged": "6.0.1",
+    "lint-staged": "6.1.0",
     "opt-cli": "1.6.0",
     "rimraf": "2.6.2",
     "semantic-release": "12.2.5",

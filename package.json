@@ -70,7 +70,6 @@
     "@commitlint/config-conventional": "6.0.2",
     "@types/async": "2.0.47",
     "@types/body-parser": "1.16.8",
-    "@types/chalk": "2.2.0",
     "@types/chance": "0.7.36",
     "@types/compression": "0.0.35",
     "@types/css": "0.0.31",
@@ -81,7 +80,6 @@
     "@types/faker": "4.1.2",
     "@types/jest": "22.1.1",
     "@types/method-override": "0.0.31",
-    "@types/moment": "2.13.0",
     "@types/morgan": "1.7.35",
     "@types/node": "9.4.0",
     "@types/pg": "7.4.1",
@@ -112,8 +110,7 @@
     "ts-jest": "22.0.2",
     "tslint": "5.9.1",
     "tslint-config-airbnb": "5.5.0",
-    "typescript": "2.6.2",
-    "validate-commit-msg": "2.14.0"
+    "typescript": "2.6.2"
   },
   "config": {
     "commitizen": {

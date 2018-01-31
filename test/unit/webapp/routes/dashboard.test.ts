@@ -1,8 +1,11 @@
 import * as Chance from 'chance';
 import { random, system } from 'faker';
+import { noop } from '../../../../src/helpers';
+import { logger } from '../../../../src/logger';
 
 import {
   getSafeItemName,
+  listAllDashboards,
   readDashboardJSON,
 } from '../../../../src/webapp/routes/dashboard';
 
@@ -37,7 +40,7 @@ describe('Webapp: Dashboard', () => {
     });
     spyOn.get = jest.spyOn(itemManager, 'get').mockImplementation();
     spyOn.getFirst = jest.spyOn(itemManager, 'getFirst').mockImplementation();
-    // spyOn.error = jest.spyOn(logger, 'error').mockImplementation();
+    spyOn.error = jest.spyOn(logger, 'error').mockImplementation(noop);
     spyOn.resolveTemplateLocation = jest.spyOn(templateManager, 'resolveTemplateLocation').mockImplementation();
   });
 
@@ -47,7 +50,7 @@ describe('Webapp: Dashboard', () => {
 
     spyOn.readJSONFile.mockRestore();
     spyOn.get.mockRestore();
-    // spyOn.error.mockRestore();
+    spyOn.error.mockRestore();
     spyOn.getFirst.mockRestore();
     spyOn.resolveTemplateLocation.mockRestore();
   });
@@ -114,7 +117,22 @@ describe('Webapp: Dashboard', () => {
 
     readDashboardJSON(dashboardPath, (error: any, dashboard: any) => {
       expect(error).toMatch('ERROR');
+      expect(logger.error).toHaveBeenCalledWith(`Error reading dashboard: ${dashboardPath}`);
       expect(dashboard).toBeUndefined();
     });
+  });
+
+  test('listAllDashboards', () => {
+    const item1 = 'error';
+    const item2 = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
+    const item3 = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
+    const item4 = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
+    const item5 = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
+    const packagesPath = `/${item1}/${item2}/${item3}/${item4}/${item5}`;
+
+    listAllDashboards(packagesPath, request, response);
+
+    expect(itemManager.get).toHaveBeenCalled();
+    expect(itemManager.get).toHaveBeenCalledWith(packagesPath, 'dashboards', '.json', expect.anything());
   });
 });

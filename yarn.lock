@@ -10,11 +10,11 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@commitlint/cli@6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-6.0.4.tgz#70b2d070ddc015ffd21598c272e7c42998c87a0e"
+"@commitlint/cli@6.0.5":
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-6.0.5.tgz#c159c41434d24167c2f52c29e81cffc1959a6d0f"
   dependencies:
-    "@commitlint/core" "^6.0.4"
+    "@commitlint/core" "^6.0.5"
     babel-polyfill "6.26.0"
     chalk "2.3.0"
     get-stdin "5.0.1"
@@ -22,11 +22,11 @@
     lodash.pick "4.4.0"
     meow "3.7.0"
 
-"@commitlint/config-conventional@6.0.2":
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-6.0.2.tgz#8ef87a6facb75b3377b2760b0e91097f8ec64db4"
+"@commitlint/config-conventional@6.0.4":
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-6.0.4.tgz#f5332c3aaf5423f2fa62287849859a9b769484f3"
 
-"@commitlint/core@^6.0.4":
+"@commitlint/core@^6.0.5":
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/@commitlint/core/-/core-6.0.5.tgz#a0f174f08a377eb9e5571bf31c2c9f60964a6ed9"
   dependencies:

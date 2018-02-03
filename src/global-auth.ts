@@ -28,7 +28,7 @@ export default function (file: any) {
         const match = ENV_VAR_REGEX.exec(val);
         let modified;
         let newVal;
-        while (match !== null) {
+        if (match !== null) {
           const envName = match[1];
           let envVal = process.env[envName];
           if (envVal === undefined) {

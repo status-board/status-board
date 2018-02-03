@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { getFirst } from '../../item-manager';
-import logger from '../../logger';
+import { logger } from '../../logger';
 import stylus from '../../stylus';
 
 function getSafeItemName(itemName: any) {
@@ -45,7 +45,7 @@ function addNamespace(css: any, response: Response, widgetNamespace: any) {
         response.write(cssModule.stringify(cssAST));
       }
     } catch (e) {
-      logger().error(e);
+      logger.error(e);
     }
   }
 }
@@ -99,7 +99,7 @@ export function renderJsWidget(packagesPath: any,
   getFirst(packagesPath, safeWidgetName, 'widgets', '.js', (error: any, jsFile: any) => {
     if (error || !jsFile) {
       const msg = error ? error : `JS file not found for widget ${widgetName}`;
-      logger().error(msg);
+      logger.error(msg);
       response.status(400).send(`Error rendering widget: ${msg}`);
     } else {
       response.sendFile(jsFile);
@@ -143,7 +143,7 @@ function loadStylusIfPresent(response: Response, widgetName: any, packagesPath: 
         if (!stylusError) {
           addNamespacesCSSToResponse(css, widgetName, response);
         } else {
-          logger().error(stylusError);
+          logger.error(stylusError);
         }
         cb(stylusError);
       });

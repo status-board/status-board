@@ -2,7 +2,7 @@ import * as async from 'async';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as _ from 'underscore';
-import logger from './logger';
+import { logger } from './logger';
 
 /**
  * Filters will be applied to a certain type to decide if that
@@ -15,7 +15,7 @@ const filters: any = {
       const contentJSON = JSON.parse(fs.readFileSync(dashboardPath).toString());
       return (contentJSON.enabled !== false);
     } catch (e) {
-      logger().error(`## ERROR ## ${dashboardPath} has an invalid format or file doesn't exist\n`);
+      logger.error(`## ERROR ## ${dashboardPath} has an invalid format or file doesn't exist\n`);
       return false;
     }
   },

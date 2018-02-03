@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as traverse from 'traverse';
 
-import logger from './logger';
+import { logger } from './logger';
 
 const ENV_VAR_REGEX = /\$\{([^}]+)\}/;
 
@@ -12,12 +12,12 @@ export default function (file: any) {
     globalAuth = JSON.parse(fs.readFileSync(file).toString());
   } catch (e) {
     if (e.code === 'ENOENT') {
-      logger().warn(`Authentication file not found in ${file}.`);
-      logger().warn('You may want to create your own.');
-      logger().warn('You can also define the place where the credential file will be located by ' +
+      logger.warn(`Authentication file not found in ${file}.`);
+      logger.warn('You may want to create your own.');
+      logger.warn('You can also define the place where the credential file will be located by ' +
         'editing the auth file configuration property \'authenticationFilePath\'');
     } else {
-      logger().error('Error reading ' + file + '. It may contain invalid json format');
+      logger.error('Error reading ' + file + '. It may contain invalid json format');
     }
     return globalAuth;
   }
@@ -31,10 +31,9 @@ export default function (file: any) {
         while (match !== null) {
           const envName = match[1];
           let envVal = process.env[envName];
-
           if (envVal === undefined) {
             // tslint:disable-next-line max-line-length
-            logger().warn(`Authentication file referenced var \${${envName}}, which was not present in environment.`);
+            logger.warn(`Authentication file referenced var \${${envName}}, which was not present in environment.`);
             envVal = '';
           }
 

@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as extend from 'xtend';
 import { noop } from './helpers';
 import { get, resolveCandidates } from './item-manager';
-import logger from './logger';
+import { logger } from './logger';
 
 /**
  * Return a particular dashboard object
@@ -15,11 +15,11 @@ function readDashboard(dashboardFilePath: string) {
   const dashboardConfig = JSON.parse(fs.readFileSync(dashboardFilePath).toString());
 
   if (!dashboardConfig.layout) {
-    logger().error(`No layout field found in ${dashboardFilePath}`);
+    logger.error(`No layout field found in ${dashboardFilePath}`);
   }
 
   if (!dashboardConfig.layout.widgets) {
-    logger().error(`No widgets field found in ${dashboardFilePath}`);
+    logger.error(`No widgets field found in ${dashboardFilePath}`);
   }
   return dashboardConfig;
 }
@@ -69,7 +69,7 @@ function processDashboard(allJobs: any, dashboardName: string, dashboardConfig: 
 
       const candidateJobs = resolveCandidates(allJobs, jobItem.job, 'jobs', '.js');
       if (!candidateJobs.length) {
-        logger().error(`
+        logger.error(`
         ERROR RESOLVING JOB
         No job file found for "${jobItem.job}" in ${dashboardName}
         Have you pulled all the packages dependencies? (They are git submodules.)
@@ -107,7 +107,6 @@ function processDashboard(allJobs: any, dashboardName: string, dashboardConfig: 
  * @param  {Function} callback
  */
 export function getJobs(options: any, callback: any) {
-
   const packagesPath = options.packagesPath;
   const filters = options.filters || {};
 
@@ -123,7 +122,7 @@ export function getJobs(options: any, callback: any) {
     try {
       generalDashboardConfig = JSON.parse(fs.readFileSync(configPath).toString()).config;
       if (!generalDashboardConfig) {
-        logger().error('invalid format. config property not found');
+        logger.error('invalid format. config property not found');
       }
     } catch (e) {
       return callback('ERROR reading general config file...' + configPath);

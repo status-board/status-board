@@ -3,7 +3,7 @@ import { EventQueue } from './EventQueue';
 import globalAuth from './global-auth';
 import { fillDependencies } from './job-dependencies/loader';
 import { getJobs } from './job-manager';
-import logger from './logger';
+import { logger } from './logger';
 import Scheduler from './Scheduler';
 
 export function init(options: any, cb: any) {
@@ -13,9 +13,10 @@ export function init(options: any, cb: any) {
     }
 
     const loadGlobalAuth = globalAuth(configManager('auth').authenticationFilePath);
+    logger.info('loadGlobalAuth', loadGlobalAuth);
 
     if (!jobWorkers.length) {
-      logger().warn('No jobs found matching the current configuration and filters');
+      logger.warn('No jobs found matching the current configuration and filters');
     } else {
       const queue = new EventQueue(options.deps.io);
       jobWorkers.forEach((jobWorker: any, index: any) => {

@@ -74,6 +74,7 @@ function installDependencie(options: any, callback: any) {
 }
 
 export default function (options: any, callback: any) {
+  logger.log('Local Status Board');
   const config = options || {};
 
   installDependencie(config, callback);

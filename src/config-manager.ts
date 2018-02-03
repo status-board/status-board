@@ -2,12 +2,12 @@ import * as bug from 'debug';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as extend from 'xtend';
-import logger from './logger';
+import { logger } from './logger';
 
 const debug = bug('config-manager');
 
 function readConfigIfExists(fileName: string) {
-  let configFileName = fileName ;
+  let configFileName = fileName;
 
   if (!path.extname(configFileName)) {
     configFileName = configFileName + '.js';
@@ -38,7 +38,7 @@ function readEnv(configFileName: string) {
         return JSON.parse(environmentKey);
       }
 
-      logger().error(`
+      logger.error(`
         ENV configuration key ${key} could not be serialized into an object: ${environmentKey}
       `);
 

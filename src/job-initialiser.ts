@@ -13,7 +13,6 @@ export function init(options: any, cb: any) {
     }
 
     const loadGlobalAuth = globalAuth(configManager('auth').authenticationFilePath);
-    logger.info('loadGlobalAuth', loadGlobalAuth);
 
     if (!jobWorkers.length) {
       logger.warn('No jobs found matching the current configuration and filters');

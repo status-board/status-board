@@ -91,7 +91,7 @@
     "@types/stylus": "0.48.29",
     "@types/traverse": "0.6.30",
     "@types/underscore": "1.8.7",
-    "@types/winston": "2.3.7",
+    "@types/winston": "2.3.8",
     "@types/xtend": "4.0.2",
     "all-contributors-cli": "4.10.1",
     "chance": "1.0.13",

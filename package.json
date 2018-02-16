@@ -59,7 +59,7 @@
     "semver": "5.5.0",
     "socket.io": "2.0.4",
     "stylus": "0.54.5",
-    "tracer": "0.8.11",
+    "tracer": "0.8.12",
     "traverse": "0.6.6",
     "underscore": "1.8.3",
     "winston": "2.4.0",

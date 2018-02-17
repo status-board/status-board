@@ -5346,12 +5346,13 @@ tr46@^1.0.0:
   dependencies:
     punycode "^2.1.0"
 
-tracer@0.8.11:
-  version "0.8.11"
-  resolved "https://registry.yarnpkg.com/tracer/-/tracer-0.8.11.tgz#5941c67404410d86665b75bba68bb1c9d2c3cacd"
+tracer@0.8.12:
+  version "0.8.12"
+  resolved "https://registry.yarnpkg.com/tracer/-/tracer-0.8.12.tgz#2601c61121593ce3437c5a839e6c006c8c070932"
   dependencies:
     colors "1.1.2"
     dateformat "2.0.0"
+    mkdirp "^0.5.1"
     tinytim "0.1.1"
 
 traverse@0.6.6, traverse@~0.6.6:

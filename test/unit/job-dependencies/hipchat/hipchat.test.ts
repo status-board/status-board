@@ -1,5 +1,6 @@
 import * as Chance from 'chance';
 import * as qstring from 'querystring';
+import { noop } from '../../../../src/helpers';
 import { create } from '../../../../src/job-dependencies/hipchat/hipchat';
 import { logger } from '../../../../src/logger';
 
@@ -23,17 +24,14 @@ const options = {
 };
 
 describe('Job Dependencies: Hipchat', () => {
-  const spy: any = {};
-
   beforeAll(() => {
-    spy.console = jest.spyOn(logger, 'error').mockImplementation(() => {
-    });
-    spy.console = jest.spyOn(logger, 'log').mockImplementation(() => {
-    });
+    jest.spyOn(logger, 'error').mockImplementation(noop);
+    jest.spyOn(logger, 'log').mockImplementation(noop);
   });
 
   afterAll(() => {
-    spy.console.mockRestore();
+    logger.error.mockRestore();
+    logger.log.mockRestore();
   });
 
   test('Should call hipchat rest api to send room message', (done: any) => {

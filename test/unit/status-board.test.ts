@@ -20,15 +20,14 @@ jest.mock('../../src/webapp/server', () => {
 });
 
 describe('Status Board', () => {
-  const spy: any = {};
-
   beforeAll(() => {
-    spy.console = jest.spyOn(logger, 'error').mockImplementation(noop);
-    spy.console = jest.spyOn(logger, 'log').mockImplementation(noop);
+    jest.spyOn(logger, 'error').mockImplementation(noop);
+    jest.spyOn(logger, 'log').mockImplementation(noop);
   });
 
   afterAll(() => {
-    spy.console.mockRestore();
+    logger.error.mockRestore();
+    logger.log.mockRestore();
   });
 
   describe('Install Dependencies', () => {
@@ -142,15 +141,15 @@ describe('Status Board', () => {
     beforeAll(() => {
       server = new Server();
       ioServer = server.getIoServer();
-      spy.socket = jest.spyOn(socket, 'listen').mockImplementation(() => ioServer);
-      spy.on = jest.spyOn(ioServer, 'on').mockImplementation((event: string, cb: any) => cb(ioServer));
-      spy.emit = jest.spyOn(ioServer, 'emit').mockImplementation(noop);
+      jest.spyOn(socket, 'listen').mockImplementation(() => ioServer);
+      jest.spyOn(ioServer, 'on').mockImplementation((event: string, cb: any) => cb(ioServer));
+      jest.spyOn(ioServer, 'emit').mockImplementation(noop);
     });
 
     afterAll(() => {
-      spy.socket.mockRestore();
-      spy.on.mockRestore();
-      spy.emit.mockRestore();
+      socket.listen.mockRestore();
+      ioServer.on.mockRestore();
+      ioServer.emit.mockRestore();
       server.stopServer();
     });
 

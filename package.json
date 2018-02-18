@@ -101,6 +101,7 @@
     "cz-conventional-changelog": "2.1.0",
     "faker": "4.1.0",
     "jest": "22.3.0",
+    "jest-express": "1.5.2",
     "jest-junit": "3.6.0",
     "lint-staged": "6.1.1",
     "opt-cli": "1.6.0",

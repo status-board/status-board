@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import { Response } from 'jest-express/lib/response';
 import * as path from 'path';
 import * as helpers from '../../../src/helpers';
 import * as itemManager from '../../../src/item-manager';
@@ -8,18 +9,17 @@ import {
   log,
   renderJsDashboard,
 } from '../../../src/webapp/logic';
-import { Response } from '../../helpers/express';
 
 describe('Webapp: Logic', () => {
-  const spyOn: any = {};
   let response: any;
   let request: any;
 
   beforeEach(() => {
     response = new Response();
+    response.write = jest.fn();
     request = jest.fn();
-    spyOn.error = jest.spyOn(logger, 'error');
-    spyOn.getFirst = jest.spyOn(itemManager, 'getFirst')
+    jest.spyOn(logger, 'error');
+    jest.spyOn(itemManager, 'getFirst')
     // tslint:disable-next-line max-line-length
       .mockImplementation((packagesPath: string, safeDashboardName: string, dashboards: string, json: string, callback: any) => {
         if (packagesPath === 'NO_DASHBOARD_PATH') {
@@ -36,8 +36,7 @@ describe('Webapp: Logic', () => {
           callback('ERROR');
         }
       });
-
-    spyOn.readJSONFile = jest.spyOn(helpers, 'readJSONFile')
+    jest.spyOn(helpers, 'readJSONFile')
       .mockImplementation((dashboardPath: string, callback: any) => {
         if (dashboardPath === 'JSON_FILE') {
           callback(null, { layout: { customJS: ['custom.js'] } });
@@ -49,8 +48,7 @@ describe('Webapp: Logic', () => {
           callback('ERROR');
         }
       });
-
-    spyOn.join = jest.spyOn(path, 'join')
+    jest.spyOn(path, 'join')
       .mockImplementation((arg1: string, arg2: string, arg3: string, arg4: string) => {
         if (arg4) {
           return `/path/to/${arg3}/${arg4}`;
@@ -60,8 +58,7 @@ describe('Webapp: Logic', () => {
         }
         return `${arg1}/${arg2}/${arg3}`;
       });
-
-    spyOn.readFile = jest.spyOn(fs, 'readFile')
+    jest.spyOn(fs, 'readFile')
       .mockImplementation((assetFullPath: string, callback: any) => {
         if (assetFullPath.includes('custom.js')) {
           callback(null, 'Hello World!');
@@ -73,17 +70,19 @@ describe('Webapp: Logic', () => {
 
   afterEach(() => {
     response.resetMocked();
-    spyOn.join.mockRestore();
-    spyOn.getFirst.mockRestore();
-    spyOn.readJSONFile.mockRestore();
-    spyOn.error.mockRestore();
+
+    logger.error.mockRestore();
+    itemManager.getFirst.mockRestore();
+    helpers.readJSONFile.mockRestore();
+    path.join.mockRestore();
+    fs.readFile.mockRestore();
   });
 
   test('Should render log template', () => {
     log(request, response);
 
-    expect(response.mockedRender).toBeCalled();
-    expect(response.mockedRender).toBeCalledWith('/path/to/templates/dashboard-log.ejs');
+    expect(response.render).toBeCalled();
+    expect(response.render).toBeCalledWith('/path/to/templates/dashboard-log.ejs');
   });
 
   test('getFirst returns a error', () => {
@@ -91,10 +90,10 @@ describe('Webapp: Logic', () => {
 
     expect(itemManager.getFirst).toBeCalled();
     expect(itemManager.getFirst).toBeCalledWith('ERROR', 'dashboardName', 'dashboards', '.json', expect.anything());
-    expect(response.mockedStatus).toBeCalled();
-    expect(response.mockedStatus).toBeCalledWith(400);
-    expect(response.mockedSend).toBeCalled();
-    expect(response.mockedSend).toBeCalledWith('ERROR');
+    expect(response.status).toBeCalled();
+    expect(response.status).toBeCalledWith(400);
+    expect(response.send).toBeCalled();
+    expect(response.send).toBeCalledWith('ERROR');
   });
 
   test('getFirst returns no dashboardPath', () => {
@@ -103,10 +102,10 @@ describe('Webapp: Logic', () => {
     expect(itemManager.getFirst).toBeCalled();
     expect(itemManager.getFirst)
       .toBeCalledWith('NO_DASHBOARD_PATH', 'dashboardName', 'dashboards', '.json', expect.anything());
-    expect(response.mockedStatus).toBeCalled();
-    expect(response.mockedStatus).toBeCalledWith(404);
-    expect(response.mockedSend).toBeCalled();
-    expect(response.mockedSend)
+    expect(response.status).toBeCalled();
+    expect(response.status).toBeCalledWith(404);
+    expect(response.send).toBeCalled();
+    expect(response.send)
     // tslint:disable-next-line max-line-length
       .toBeCalledWith('Trying to render dashboard dashboardName, but couldn\'t find any dashboard in the packages folder');
   });
@@ -117,10 +116,10 @@ describe('Webapp: Logic', () => {
     expect(itemManager.getFirst).toBeCalled();
     expect(itemManager.getFirst)
       .toBeCalledWith('JSON_FILE_ERROR', 'dashboardName', 'dashboards', '.json', expect.anything());
-    expect(response.mockedStatus).toBeCalled();
-    expect(response.mockedStatus).toBeCalledWith(400);
-    expect(response.mockedSend).toBeCalled();
-    expect(response.mockedSend).toBeCalledWith('Error reading dashboard');
+    expect(response.status).toBeCalled();
+    expect(response.status).toBeCalledWith(400);
+    expect(response.send).toBeCalled();
+    expect(response.send).toBeCalledWith('Error reading dashboard');
   });
 
   test('readJSONFile returns dashboardJSON', () => {
@@ -128,14 +127,14 @@ describe('Webapp: Logic', () => {
 
     expect(itemManager.getFirst).toBeCalled();
     expect(itemManager.getFirst).toBeCalledWith('JSON_FILE', 'dashboardName', 'dashboards', '.json', expect.anything());
-    expect(response.mockedType).toBeCalled();
-    expect(response.mockedType).toBeCalledWith('application/javascript');
+    expect(response.type).toBeCalled();
+    expect(response.type).toBeCalledWith('application/javascript');
     expect(fs.readFile).toBeCalled();
     expect(fs.readFile).toBeCalledWith('wallboardAssetsFolder/javascripts/custom.js', expect.anything());
 
-    expect(response.mockedWrite).toBeCalled();
-    expect(response.mockedWrite).toBeCalledWith('Hello World!\n\n');
-    expect(response.mockedEnd).toBeCalled();
+    expect(response.write).toBeCalled();
+    expect(response.write).toBeCalledWith('Hello World!\n\n');
+    expect(response.end).toBeCalled();
   });
 
   test('fs.readFile returns error', () => {
@@ -144,13 +143,13 @@ describe('Webapp: Logic', () => {
     expect(itemManager.getFirst).toBeCalled();
     expect(itemManager.getFirst)
       .toBeCalledWith('READ_FILE_ERROR', 'dashboardName', 'dashboards', '.json', expect.anything());
-    expect(response.mockedType).toBeCalled();
-    expect(response.mockedType).toBeCalledWith('application/javascript');
+    expect(response.type).toBeCalled();
+    expect(response.type).toBeCalledWith('application/javascript');
     expect(fs.readFile).toBeCalled();
     expect(fs.readFile).toBeCalledWith('wallboardAssetsFolder/javascripts/error.js', expect.anything());
     expect(logger.error).toBeCalled();
     expect(logger.error).toBeCalledWith('wallboardAssetsFolder/javascripts/error.js not found');
-    expect(response.mockedEnd).toBeCalled();
+    expect(response.end).toBeCalled();
   });
 
   test('No custom js', () => {
@@ -159,9 +158,9 @@ describe('Webapp: Logic', () => {
     expect(itemManager.getFirst).toBeCalled();
     expect(itemManager.getFirst)
       .toBeCalledWith('NO_CUSTOM_JS', 'dashboardName', 'dashboards', '.json', expect.anything());
-    expect(response.mockedType).toBeCalled();
-    expect(response.mockedType).toBeCalledWith('application/javascript');
-    expect(response.mockedEnd).toBeCalled();
+    expect(response.type).toBeCalled();
+    expect(response.type).toBeCalledWith('application/javascript');
+    expect(response.end).toBeCalled();
   });
 
   test('Should return the filename without ext', () => {

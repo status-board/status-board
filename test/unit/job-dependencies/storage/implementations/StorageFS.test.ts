@@ -4,10 +4,8 @@ import { noop } from '../../../../../src/helpers';
 import StorageFS from '../../../../../src/job-dependencies/storage/implementations/StorageFS';
 
 describe('Job Dependencies: StorageFS', () => {
-  const spy: any = {};
-
   beforeEach(() => {
-    spy.readFile = jest.spyOn(fs, 'readFile').mockImplementation((storagePath: string, callback: any) => {
+    jest.spyOn(fs, 'readFile').mockImplementation((storagePath: string, callback: any) => {
       if (storagePath === 'src/error') {
         callback('ERROR');
       } else if (storagePath === 'src/json/error') {
@@ -18,17 +16,17 @@ describe('Job Dependencies: StorageFS', () => {
         callback(null, JSON.stringify({ foo: { bar: { data: 'Hello World!' } } }));
       }
     });
-    spy.writeFile = jest.spyOn(fs, 'writeFile').mockImplementation((storagePath: string, content: string, callback: any) => {
+    jest.spyOn(fs, 'writeFile').mockImplementation((storagePath: string, content: string, callback: any) => {
       callback(null, {});
     });
-    spy.join = jest.spyOn(path, 'join').mockImplementation(() => '/path/to/job-data-storage.json');
+    jest.spyOn(path, 'join').mockImplementation(() => '/path/to/job-data-storage.json');
   })
   ;
 
   afterEach(() => {
-    spy.readFile.mockRestore();
-    spy.writeFile.mockRestore();
-    spy.join.mockRestore();
+    fs.readFile.mockRestore();
+    fs.writeFile.mockRestore();
+    path.join.mockRestore();
   });
 
   test('StorageFS passed no options', () => {

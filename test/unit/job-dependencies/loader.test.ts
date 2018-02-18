@@ -18,12 +18,11 @@ jest.mock(
 );
 
 describe('Job Dependencies: Loader', () => {
-  const spyOn: any = {};
   beforeAll(() => {
-    spyOn.readdirSync = jest.spyOn(fs, 'readdirSync')
+    jest.spyOn(fs, 'readdirSync')
       .mockImplementationOnce(() => ['foo', 'bar'])
       .mockImplementationOnce(() => ['abc', '123']);
-    spyOn.statSync = jest.spyOn(fs, 'statSync')
+    jest.spyOn(fs, 'statSync')
       .mockImplementation((folderPath: string) => {
         if (folderPath === './foo' || folderPath === './bar' || folderPath === './abc') {
           return {
@@ -34,7 +33,7 @@ describe('Job Dependencies: Loader', () => {
           isDirectory: () => false,
         };
       });
-    spyOn.join = jest.spyOn(path, 'join')
+    jest.spyOn(path, 'join')
       .mockImplementation((dirname: string, dependencyFolders: string) => {
         if (dependencyFolders === 'foo' || dependencyFolders === 'bar' || dependencyFolders === 'abc') {
           return `./${dependencyFolders}`;
@@ -45,9 +44,9 @@ describe('Job Dependencies: Loader', () => {
   });
 
   afterAll(() => {
-    spyOn.readdirSync.mockRestore();
-    spyOn.statSync.mockRestore();
-    spyOn.join.mockRestore();
+    fs.readdirSync.mockRestore();
+    fs.statSync.mockRestore();
+    path.join.mockRestore();
   });
 
   test('Should add job dependency to the jobWorker', () => {

@@ -6,7 +6,6 @@ import { logger } from '../../../src/logger';
 const config = {};
 
 describe('Job Dependencies: PostgreSQL', () => {
-  const spy: any = {};
   const connect = jest.fn((callback: any) => {
     callback(null);
   });
@@ -16,8 +15,8 @@ describe('Job Dependencies: PostgreSQL', () => {
   });
 
   beforeEach(() => {
-    spy.console = jest.spyOn(logger, 'error').mockImplementation(noop);
-    spy.pg = jest.spyOn(pg, 'Client').mockImplementation((conf: any) => {
+    jest.spyOn(logger, 'error').mockImplementation(noop);
+    jest.spyOn(pg, 'Client').mockImplementation((conf: any) => {
       if (conf.response === 'connectError') {
         return {
           connect: jest.fn((callback: any) => {
@@ -47,8 +46,8 @@ describe('Job Dependencies: PostgreSQL', () => {
   });
 
   afterEach(() => {
-    spy.console.mockRestore();
-    spy.pg.mockRestore();
+    logger.error.mockRestore();
+    pg.Client.mockRestore();
   });
 
   test('Should setup PostgreSQL', () => {

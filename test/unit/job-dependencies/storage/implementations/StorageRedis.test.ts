@@ -3,14 +3,12 @@ import StorageRedis from '../../../../../src/job-dependencies/storage/implementa
 import { logger } from '../../../../../src/logger';
 
 describe('Job Dependencies: StorageRedis', () => {
-  const spy: any = {};
-
   beforeAll(() => {
-    spy.console = jest.spyOn(logger, 'error').mockImplementation(noop);
+    jest.spyOn(logger, 'error').mockImplementation(noop);
   });
 
   afterAll(() => {
-    spy.console.mockRestore();
+    logger.error.mockRestore();
   });
 
   test('StorageRedis get should console a error', () => {

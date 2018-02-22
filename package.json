@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "6.1.0",
-    "@commitlint/config-conventional": "6.1.0",
+    "@commitlint/config-conventional": "6.1.1",
     "@types/async": "2.0.47",
     "@types/body-parser": "1.16.8",
     "@types/chance": "0.7.36",

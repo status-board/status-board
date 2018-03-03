@@ -228,9 +228,9 @@
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/@types/caseless/-/caseless-0.12.1.tgz#9794c69c8385d0192acc471a540d1f8e0d16218a"
 
-"@types/chance@0.7.36":
-  version "0.7.36"
-  resolved "https://registry.yarnpkg.com/@types/chance/-/chance-0.7.36.tgz#1c3e14b9b11463d454182393ebcd8e977f1daff5"
+"@types/chance@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/chance/-/chance-1.0.0.tgz#f9afc0fea03a24025dfd40396d62e9e152211c8e"
 
 "@types/compression@0.0.35":
   version "0.0.35"

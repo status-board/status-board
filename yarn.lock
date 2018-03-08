@@ -3580,7 +3580,7 @@ jsesc@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-1.3.0.tgz#46c3fec8c1892b12b0833db9bc7622176dbab34b"
 
-json-parse-better-errors@^1.0.0, json-parse-better-errors@^1.0.1:
+json-parse-better-errors@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/json-parse-better-errors/-/json-parse-better-errors-1.0.1.tgz#50183cd1b2d25275de069e9e71b467ac9eab973a"
 
@@ -4791,12 +4791,12 @@ rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-read-package-json@2.0.12:
-  version "2.0.12"
-  resolved "https://registry.yarnpkg.com/read-package-json/-/read-package-json-2.0.12.tgz#68ea45f98b3741cb6e10ae3bbd42a605026a6951"
+read-package-json@2.0.13:
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/read-package-json/-/read-package-json-2.0.13.tgz#2e82ebd9f613baa6d2ebe3aa72cefe3f68e41f4a"
   dependencies:
     glob "^7.1.1"
-    json-parse-better-errors "^1.0.0"
+    json-parse-better-errors "^1.0.1"
     normalize-package-data "^2.0.0"
     slash "^1.0.0"
   optionalDependencies:

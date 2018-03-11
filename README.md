@@ -9,9 +9,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/361a35856d52f3e4bf72/test_coverage)](https://codeclimate.com/github/jameswlane/status-board/test_coverage)
 [![codecov](https://codecov.io/gh/jameswlane/status-board/branch/master/graph/badge.svg)](https://codecov.io/gh/jameswlane/status-board)
 [![Code Style](https://img.shields.io/badge/code%20style-Airbnb-red.svg)](https://github.com/airbnb/javascript)
-
-
-
+[![Slack Channel](https://slackin-xmjstmxrio.now.sh/badge.svg)](https://slackin-xmjstmxrio.now.sh/)
 
 
 Status Board is a fork of [Atlasboard](https://atlasboard.bitbucket.io) dashboard framework written in nodejs.

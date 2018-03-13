@@ -252,7 +252,7 @@ describe('Webapp: Dashboard', () => {
     });
   });
 
-  test('renderDashboard', () => {
+  test('renderDashboard should render specified dashboard', () => {
     const item1 = 'title';
     const item2 = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
     const item3 = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
@@ -277,7 +277,7 @@ describe('Webapp: Dashboard', () => {
     });
   });
 
-  test('renderDashboard 2', () => {
+  test('renderDashboard if getFirst returns a error respond with a 400 and error message', () => {
     const item1 = 'error';
     const item2 = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
     const item3 = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
@@ -297,7 +297,7 @@ describe('Webapp: Dashboard', () => {
     expect(response.send).toHaveBeenCalledWith('ERROR');
   });
 
-  test('renderDashboard 3', () => {
+  test('renderDashboard if getFirst returns a no dashboard path respond with a 404 and error message', () => {
     const item1 = 'not-found';
     const item2 = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
     const item3 = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
@@ -321,7 +321,7 @@ describe('Webapp: Dashboard', () => {
       '        ');
   });
 
-  test('renderDashboard 4', () => {
+  test('renderDashboard if readJSONFile returns a error respond with 400 and error message', () => {
     const item1 = 'readError';
     const item2 = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
     const item3 = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });

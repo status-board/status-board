@@ -14,12 +14,14 @@ jest.mock('../../src/job-initialiser.ts', () => {
     init: jest.fn(),
   };
 });
-jest.mock('express');
+jest.mock('express', () => {
+  return require('jest-express');
+});
 jest.mock('../../src/webapp/server', () => {
   return { default: jest.fn() };
 });
 
-describe.skip('Status Board', () => {
+describe('Status Board', () => {
   beforeAll(() => {
     jest.spyOn(logger, 'error').mockImplementation(noop);
     jest.spyOn(logger, 'log').mockImplementation(noop);

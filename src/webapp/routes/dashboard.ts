@@ -32,7 +32,7 @@ export function readDashboardJSON(dashboardPath: any, cb: any) {
  * @param response
  */
 export function listAllDashboards(packagesPath: any, request: Request, response: Response) {
-  get(packagesPath, 'dashboards', '.json', (getError: any, dashboardConfigFiles: any) => {
+  get(packagesPath, 'dashboards', '.json', (getError: any, dashboardConfigFiles: string[]) => {
     if (getError) {
       logger.error(getError);
       return response.status(400).send('Error loading dashboards');

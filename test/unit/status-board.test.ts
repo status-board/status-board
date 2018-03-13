@@ -19,7 +19,7 @@ jest.mock('../../src/webapp/server', () => {
   return { default: jest.fn() };
 });
 
-describe('Status Board', () => {
+describe.skip('Status Board', () => {
   beforeAll(() => {
     jest.spyOn(logger, 'error').mockImplementation(noop);
     jest.spyOn(logger, 'log').mockImplementation(noop);

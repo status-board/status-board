@@ -26,6 +26,17 @@ describe('Webapp: Widget: Render Widget Resource', () => {
     jest.restoreAllMocks();
   });
 
+  test('if resource id is not specified should return error', () => {
+    const localPackagesPath = chance.system.filePath();
+    const resource = null;
+
+    renderWidgetResource(localPackagesPath, resource, request, response);
+
+    expect(response.status).toBeCalledWith(400);
+    expect(response.send).toBeCalledWith('resource id not specified');
+    expect(response.sendFile).not.toHaveBeenCalled();
+  });
+
   test('if resource string is incorrectly formed should return error ', () => {
     const localPackagesPath = chance.system.filePath();
     const resource = `///`;

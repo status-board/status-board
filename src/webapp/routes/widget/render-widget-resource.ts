@@ -11,22 +11,28 @@ export function renderWidgetResource(localPackagesPath: string,
                                      resource: string,
                                      request: Request,
                                      response: Response) {
-  // Sanitization
-  const input = resource.split('/');
-  const packageName = input[0];
-  const widgetName = input[1];
-  const resourceName = input[2];
+  let input;
+  let resourcePath;
+  if (resource) {
+    // Sanitization
+    input = resource.split('/');
+    const packageName = input[0];
+    const widgetName = input[1];
+    const resourceName = input[2];
 
-  // TODO: add extra sensitization
-  const resourcePath = path.join(
-    localPackagesPath,
-    packageName,
-    'widgets',
-    widgetName,
-    resourceName,
-  );
+    // TODO: add extra sensitization
+    resourcePath = path.join(
+      localPackagesPath,
+      packageName,
+      'widgets',
+      widgetName,
+      resourceName,
+    );
+  }
 
-  if (input.length !== 3) {
+  if (!resource) {
+    response.status(400).send('resource id not specified');
+  } else if (input.length !== 3) {
     response.status(400).send('bad input');
   } else if (fs.existsSync(resourcePath)) {
     response.sendFile(resourcePath);

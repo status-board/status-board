@@ -8,8 +8,8 @@ import * as addNamespace from '../../../../../src/webapp/routes/widget/add-names
 const chance = new Chance();
 
 describe('Webapp: Widget: Add Namespace CSS to Response', () => {
-  let request: any;
-  let response: any;
+  let request: Request;
+  let response: Response;
 
   beforeEach(() => {
     request = new Request();

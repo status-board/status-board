@@ -10,8 +10,8 @@ import { addNamespace } from '../../../../../src/webapp/routes/widget';
 const chance = new Chance();
 
 describe('Webapp: Widget: Add Namespace', () => {
-  let request: any;
-  let response: any;
+  let request: Request;
+  let response: Response;
 
   beforeEach(() => {
     request = new Request();

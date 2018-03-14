@@ -9,8 +9,8 @@ const chance = new Chance();
 chance.mixin(system);
 
 describe('Webapp: Widget: Namespace Rules AST', () => {
-  let request: any;
-  let response: any;
+  let request: Request;
+  let response: Response;
 
   beforeEach(() => {
     request = new Request();

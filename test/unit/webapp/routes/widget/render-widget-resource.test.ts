@@ -3,14 +3,14 @@ import { Request } from 'jest-express/lib/request';
 import { Response } from 'jest-express/lib/response';
 import { system } from '../../../../helpers/chance-system';
 
-import { log } from '../../../../../src/webapp/routes/widget';
+import { renderWidgetResource } from '../../../../../src/webapp/routes/widget';
 
 const chance = new Chance();
 chance.mixin(system);
 
 describe('Webapp: Widget: Render Widget Resource', () => {
-  let request: any;
-  let response: any;
+  let request: Request;
+  let response: Response;
 
   beforeEach(() => {
     request = new Request();
@@ -23,7 +23,7 @@ describe('Webapp: Widget: Render Widget Resource', () => {
   });
 
   test('test', () => {
-    // widget.addNamespace();
+    renderWidgetResource();
     expect(true).toEqual(true);
   });
 });

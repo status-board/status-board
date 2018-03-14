@@ -3,8 +3,8 @@ import { Response } from 'jest-express/lib/response';
 import { log } from '../../../../../src/webapp/routes/widget';
 
 describe('Webapp: Widget: Log', () => {
-  let request: any;
-  let response: any;
+  let request: Request;
+  let response: Response;
 
   beforeEach(() => {
     request = new Request();

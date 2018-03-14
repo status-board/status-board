@@ -12,7 +12,7 @@ const chance = new Chance();
 chance.mixin(system);
 
 describe('Webapp: Widget: Load Stylus If Present', () => {
-  let response: any;
+  let response: Response;
   let code: string;
 
   beforeEach(() => {

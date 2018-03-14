@@ -9,7 +9,7 @@ import * as path from 'path';
 
 import configManager from '../config-manager';
 import { logger } from '../logger';
-import stylus from '../stylus';
+import { stylus } from '../stylus';
 import routes from './routes';
 
 export default function (app: express.Application, options: any) {
@@ -29,7 +29,7 @@ export default function (app: express.Application, options: any) {
   app.use(methodOverride());
   app.use(errorhandler());
 
-  app.use(stylus().getMiddleware({
+  app.use(stylus.getMiddleware({
     dest: compiledAssetsFolder,
     src: atlasboardAssetsFolder,
   }));

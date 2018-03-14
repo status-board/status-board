@@ -7,8 +7,8 @@ import { Request, Response } from 'express';
 import * as fs from 'fs';
 import * as path from 'path';
 
-export function renderWidgetResource(localPackagesPath: any,
-                                     resource: any,
+export function renderWidgetResource(localPackagesPath: string,
+                                     resource: string,
                                      request: Request,
                                      response: Response) {
   // Sanitization
@@ -26,9 +26,7 @@ export function renderWidgetResource(localPackagesPath: any,
     resourceName,
   );
 
-  if (!resource) {
-    response.status(400).send('resource id not specified');
-  } else if (input.length !== 3) {
+  if (input.length !== 3) {
     response.status(400).send('bad input');
   } else if (fs.existsSync(resourcePath)) {
     response.sendFile(resourcePath);

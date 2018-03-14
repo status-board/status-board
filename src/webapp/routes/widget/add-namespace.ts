@@ -7,10 +7,8 @@ export function addNamespace(code: string, response: Response, widgetNamespace: 
   if (code) {
     try {
       const cssAST: css.Stylesheet = css.parse(code);
-      if (cssAST.stylesheet) {
-        namespaceRulesAST(cssAST.stylesheet, widgetNamespace);
-        response.write(css.stringify(cssAST));
-      }
+      namespaceRulesAST(cssAST.stylesheet, widgetNamespace);
+      response.write(css.stringify(cssAST));
     } catch (error) {
       logger.error(error);
     }

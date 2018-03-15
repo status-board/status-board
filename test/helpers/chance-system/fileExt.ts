@@ -24,5 +24,5 @@ export default function (type?: string): string {
   const mimeType = type ? mimeTypes[type] : mimeTypes[chance.pickone(types)];
   const fileExts = mimeType.extensions;
 
-  return chance.pickone(fileExts);
+  return `.${chance.pickone(fileExts)}`;
 }

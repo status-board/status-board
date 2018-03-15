@@ -71,7 +71,7 @@
     "@types/async": "2.0.47",
     "@types/body-parser": "1.16.8",
     "@types/chance": "1.0.0",
-    "@types/compression": "0.0.35",
+    "@types/compression": "0.0.36",
     "@types/css": "0.0.31",
     "@types/debug": "0.0.30",
     "@types/ejs": "2.5.0",

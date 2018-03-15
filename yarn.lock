@@ -220,9 +220,9 @@
     into-stream "^3.1.0"
     lodash "^4.17.4"
 
-"@types/async@2.0.47":
-  version "2.0.47"
-  resolved "https://registry.yarnpkg.com/@types/async/-/async-2.0.47.tgz#f49ba1dd1f189486beb6e1d070a850f6ab4bd521"
+"@types/async@2.0.48":
+  version "2.0.48"
+  resolved "https://registry.yarnpkg.com/@types/async/-/async-2.0.48.tgz#97436de4c84163b04f678066b3f77b01e58deb7a"
 
 "@types/body-parser@*", "@types/body-parser@1.16.8":
   version "1.16.8"

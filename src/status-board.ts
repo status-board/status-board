@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import * as express from 'express';
 import * as path from 'path';
-import { listen } from 'socket.io';
+import { listen, Server } from 'socket.io';
 
 import { init } from './job-initialiser';
 import { logger } from './logger';
@@ -33,7 +33,7 @@ function runner(options: any, callback: any) {
   // Init socket.io server
   // -----------------------------------
 
-  const io: SocketIO.Server = listen(httpServer);
+  const io: Server = listen(httpServer);
   const startTime = new Date().getTime();
   io.on('connection', (socket) => {
     socket.emit('serverinfo', { startTime });

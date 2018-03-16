@@ -22,23 +22,21 @@ describe('Event Queue', () => {
 
   afterAll(() => {
     server.stopServer();
+    jest.restoreAllMocks();
   });
 
   test('Should call emit with the correct events when send is called', () => {
-    const spyOn = jest.spyOn(ioServer, 'on');
-    const spyEmit = jest.spyOn(ioServer, 'emit');
+    jest.spyOn(ioServer, 'on');
+    jest.spyOn(ioServer, 'emit');
     instance = new EventQueue(ioServer);
 
     instance.send(expectedId, expectedData);
 
-    spyOn.mockRestore();
-    expect(spyOn).toHaveBeenCalledTimes(1);
-    expect(spyOn).toHaveBeenCalledWith('connection', expect.anything());
-
-    spyEmit.mockRestore();
-    expect(spyEmit).toHaveBeenCalledTimes(2);
-    expect(spyEmit).toHaveBeenCalledWith(expectedId, expectedData);
-    expect(spyEmit).toHaveBeenCalledWith('client', { data: expectedData, widgetId: expectedId });
+    expect(ioServer.on).toHaveBeenCalledTimes(1);
+    expect(ioServer.on).toHaveBeenCalledWith('connection', expect.anything());
+    expect(ioServer.emit).toHaveBeenCalledTimes(2);
+    expect(ioServer.emit).toHaveBeenCalledWith(expectedId, expectedData);
+    expect(ioServer.emit).toHaveBeenCalledWith('client', { data: expectedData, widgetId: expectedId });
   });
 
   test('Server should broadcast the correct events to the client', (done: any) => {

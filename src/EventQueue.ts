@@ -1,3 +1,5 @@
+import * as SocketIO from 'socket.io';
+
 export interface IEventQueue {
   send: (id: string, data: any) => void;
 }

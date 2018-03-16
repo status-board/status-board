@@ -14,7 +14,6 @@ import * as templateManager from '../../../../src/template-manager';
 const chance = new Chance();
 
 describe('Webapp: Dashboard', () => {
-  const spyOn: any = {};
   let request: any;
   let response: any;
 
@@ -22,7 +21,7 @@ describe('Webapp: Dashboard', () => {
     request = new Request();
     response = new Response();
 
-    spyOn.readJSONFile = jest.spyOn(helpers, 'readJSONFile')
+    jest.spyOn(helpers, 'readJSONFile')
       .mockImplementation((dashboardPath: any, cb: any) => {
         if (dashboardPath.includes('title')) {
           cb(null, { title: 'Dashboard Title' });
@@ -38,7 +37,7 @@ describe('Webapp: Dashboard', () => {
           cb(null, {});
         }
       });
-    spyOn.get = jest.spyOn(itemManager, 'get')
+    jest.spyOn(itemManager, 'get')
       .mockImplementation((packagesPath: any, itemType: string, extension: string, cb: any) => {
         if (packagesPath.includes('single')) {
           const dashboardConfigFiles = `single/foo/bar`;
@@ -72,7 +71,7 @@ describe('Webapp: Dashboard', () => {
           cb(null, {});
         }
       });
-    spyOn.getFirst = jest.spyOn(itemManager, 'getFirst')
+    jest.spyOn(itemManager, 'getFirst')
       .mockImplementation((packagesPath: string, safeDashboardName: string, args3, exten, cb) => {
         if (packagesPath.includes('title')) {
           cb(null, packagesPath);
@@ -84,8 +83,8 @@ describe('Webapp: Dashboard', () => {
           cb(null, null);
         }
       });
-    spyOn.error = jest.spyOn(logger, 'error').mockImplementation(helpers.noop);
-    spyOn.resolveTemplateLocation = jest.spyOn(templateManager, 'resolveTemplateLocation')
+    jest.spyOn(logger, 'error').mockImplementation(helpers.noop);
+    jest.spyOn(templateManager, 'resolveTemplateLocation')
       .mockImplementation((fileName: string, cb: any) => {
         cb(null, 'something');
       });
@@ -94,12 +93,7 @@ describe('Webapp: Dashboard', () => {
   afterEach(() => {
     request.resetMocked();
     response.resetMocked();
-
-    spyOn.readJSONFile.mockRestore();
-    spyOn.get.mockRestore();
-    spyOn.error.mockRestore();
-    spyOn.getFirst.mockRestore();
-    spyOn.resolveTemplateLocation.mockRestore();
+    jest.restoreAllMocks();
   });
 
   test('getSafeItemName should return the file name without extension', () => {

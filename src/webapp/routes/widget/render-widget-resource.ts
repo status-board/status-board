@@ -32,9 +32,9 @@ export function renderWidgetResource(localPackagesPath: string,
 
   if (!resource) {
     response.status(400).send('resource id not specified');
-  } else if (input.length !== 3) {
+  } else if (input && input.length !== 3) {
     response.status(400).send('bad input');
-  } else if (fs.existsSync(resourcePath)) {
+  } else if (resourcePath && fs.existsSync(resourcePath)) {
     response.sendFile(resourcePath);
   } else {
     response.status(404).send('resource not found');

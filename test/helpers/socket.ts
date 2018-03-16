@@ -1,5 +1,7 @@
 import * as io from 'socket.io';
+import SocketIO = require('socket.io');
 import * as socketClient from 'socket.io-client';
+import SocketIOClient from 'socket.io-client';
 
 export interface IServer {
   getIoServer: () => SocketIO.Server;

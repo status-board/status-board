@@ -113,7 +113,6 @@ describe('Status Board', () => {
 
     test('Should emit server information', () => {
       const socketIO = require.requireActual('socket.io');
-      const socketListernerMock = jest.fn();
       const onMock = jest.fn();
 
       function callback(error) {

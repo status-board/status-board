@@ -11,7 +11,7 @@ import { resolveLocation } from './resolve-location';
  */
 export function resolveCandidates(items: string[],
                                   name: string,
-                                  itemType: string,
+                                  itemType: 'dashboards' | 'jobs' | 'widgets',
                                   extension: string) {
   let searchCriteria = '';
   if (name.indexOf('#') > -1) {

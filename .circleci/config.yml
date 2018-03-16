@@ -6,8 +6,8 @@ yarnCheck: &yarnCheck
     command: |
       if [[ ! -e ~/.yarn/bin/yarn || $(yarn --version) != "${YARN_VERSION}" ]]; then
         curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
+        source /home/circleci/.bashrc
       fi
-      source /home/circleci/.bashrc
 
 defaultFilters: &defaultFilters
   filters:

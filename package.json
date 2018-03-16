@@ -26,7 +26,7 @@
     "tslint:fix": "tslint --config tslint.json --fix \"src/**/*.ts\"",
     "verify": "yarn verify:npmvet && yarn verify:david && yarn verify:nsp && yarn verify:tscheck && yarn tslint && yarn test",
     "verify:offline": "yarn verify:npmvet && yarn tslint && yarn test",
-    "verify:circleci": "circleci config validate",
+    "verify:circleci": "circleci config validate -c .circleci/config.yml",
     "verify:ci": "yarn verify:npmvet && yarn verify:nsp && yarn test:ci",
     "verify:check": "depcheck",
     "verify:david": "david",

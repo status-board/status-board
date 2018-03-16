@@ -1,5 +1,11 @@
 version: 2
 
+defaultFilters: &defaultFilters
+  filters:
+    branches:
+      only:
+        - master
+
 docker_defaults: &docker_defaults
   docker:
     - image: circleci/node:8
@@ -155,6 +161,7 @@ jobs:
 
   semantic-release:
     <<: *docker_defaults
+    <<: *defaultFilters
     steps:
       - *attach_workspace
       - run:
@@ -202,6 +209,3 @@ workflows:
       - semantic-release:
           requires:
             - build-typescript
-          branches:
-            only:
-              - master

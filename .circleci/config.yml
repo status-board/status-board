@@ -155,6 +155,9 @@ jobs:
 
   semantic-release:
     <<: *docker_defaults
+    branches:
+      only:
+        - master
     steps:
       - *attach_workspace
       - run:

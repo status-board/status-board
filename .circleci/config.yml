@@ -155,9 +155,6 @@ jobs:
 
   semantic-release:
     <<: *docker_defaults
-    branches:
-      only:
-        - master
     steps:
       - *attach_workspace
       - run:
@@ -205,3 +202,6 @@ workflows:
       - semantic-release:
           requires:
             - build-typescript
+          branches:
+            only:
+              - master

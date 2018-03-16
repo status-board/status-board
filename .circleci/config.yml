@@ -1,12 +1,12 @@
 version: 2
 
 yarnCheck: &yarnCheck
-  # install yarn if it's not already installed
-  - |
-    if [[ ! -e ~/.yarn/bin/yarn || $(yarn --version) != "${YARN_VERSION}" ]]; then
-      curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
-    fi
-
+  run:
+    name: Install Yarn If It's Not Already Installed
+    command: |
+      if [[ ! -e ~/.yarn/bin/yarn || $(yarn --version) != "${YARN_VERSION}" ]]; then
+        curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
+      fi
 
 defaultFilters: &defaultFilters
   filters:
@@ -37,6 +37,7 @@ install_steps: &install_steps
         name: Install Greenkeeper Packages
         command: |
           sudo npm install -g greenkeeper-lockfile@1
+    - *yarnCheck
     - run:
         name: Install Dependencies
         command: yarn install

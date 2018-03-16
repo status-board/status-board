@@ -1,5 +1,13 @@
 version: 2
 
+yarnCheck: &yarnCheck
+  # install yarn if it's not already installed
+  - |
+    if [[ ! -e ~/.yarn/bin/yarn || $(yarn --version) != "${YARN_VERSION}" ]]; then
+      curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
+    fi
+
+
 defaultFilters: &defaultFilters
   filters:
     branches:
@@ -65,6 +73,7 @@ test_steps: &test_steps
 jobs:
   install:
     <<: *docker_defaults
+    <<: *yarnCheck
     <<: *install_steps
 
   npmvet:

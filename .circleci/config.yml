@@ -1,14 +1,5 @@
 version: 2
 
-yarnCheck: &yarnCheck
-  run:
-    name: Install Yarn If It's Not Already Installed
-    command: |
-      if [[ ! -e ~/.yarn/bin/yarn || $(yarn --version) != "${YARN_VERSION}" ]]; then
-        curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
-        source /home/circleci/.bashrc
-      fi
-
 defaultFilters: &defaultFilters
   filters:
     branches:
@@ -28,7 +19,6 @@ install_steps: &install_steps
   steps:
     - checkout
     - *attach_workspace
-    - *yarnCheck
     - restore_cache:
         name: Restore node_modules cache
         keys:
@@ -65,7 +55,6 @@ test_steps: &test_steps
     - checkout
     - restore_cache:
         key: node-modules-{{ .Branch }}-{{ checksum "yarn.lock" }}
-    - *yarnCheck
     - run:
         name: Install Local Packages
         command: yarn install --ignore-engines
@@ -76,14 +65,12 @@ test_steps: &test_steps
 jobs:
   install:
     <<: *docker_defaults
-    <<: *yarnCheck
     <<: *install_steps
 
   npmvet:
     <<: *docker_defaults
     steps:
       - *attach_workspace
-      - *yarnCheck
       - run:
           name: NPM Vet
           command: |
@@ -94,7 +81,6 @@ jobs:
     <<: *docker_defaults
     steps:
       - *attach_workspace
-      - *yarnCheck
       - run:
           name: Node Security
           command: |
@@ -105,7 +91,6 @@ jobs:
     <<: *docker_defaults
     steps:
       - *attach_workspace
-      - *yarnCheck
       - run:
           name: Create TSLint report directory
           command: mkdir reports &&  mkdir reports/tslint
@@ -141,7 +126,6 @@ jobs:
     <<: *docker_defaults
     steps:
       - *attach_workspace
-      - *yarnCheck
       - run:
           name: Setup Code Climate test-reporter
           command: |
@@ -167,7 +151,6 @@ jobs:
     <<: *docker_defaults
     steps:
       - *attach_workspace
-      - *yarnCheck
       - run:
           name: Build JavaScript
           command: yarn ts:build
@@ -181,7 +164,6 @@ jobs:
     <<: *defaultFilters
     steps:
       - *attach_workspace
-      - *yarnCheck
       - run:
           name: Avoid hosts unknown for github
           command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config

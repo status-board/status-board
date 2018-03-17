@@ -15,6 +15,9 @@ module.exports = {
     "json",
     "node"
   ],
+  "collectCoverageFrom": [
+    "src/**/*.{ts,tsx}",
+  ],
   "testMatch": [
     "<rootDir>/test/**/*.(test|spec).(ts|tsx|js)"
   ],

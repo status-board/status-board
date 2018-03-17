@@ -35,7 +35,7 @@
     "verify:tscheck": "types-checker"
   },
   "main": "./lib/status-board.js",
-  "types": "./types/status-board.d.ts",
+  "types": "./lib/status-board.d.ts",
   "repository": "git@github.com:jameswlane/status-board.git",
   "author": "James W. Lane <james.w.lane@mac.com>",
   "license": "MIT",

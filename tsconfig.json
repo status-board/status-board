@@ -6,7 +6,6 @@
     "module": "commonjs",
     "target": "es2015",
     "declaration": true,
-    "declarationDir": "types",
     "lib": ["dom", "es6"],
     "moduleResolution": "node",
     "pretty": true,
@@ -20,7 +19,7 @@
     ]
   },
   "include": [
-    "./typings/*.d.ts",
+    "./types/*.d.ts",
     "./src/**/*"
   ]
 }

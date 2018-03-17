@@ -2,7 +2,7 @@ import * as bug from 'debug';
 import * as fs from 'fs';
 import * as nib from 'nib';
 import * as realStylus from 'stylus';
-import configManager from './config-manager';
+import { configManager } from './config-manager';
 import {
   fromAtlasboard,
   fromLocalWallboard,

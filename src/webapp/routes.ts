@@ -1,7 +1,7 @@
 import { Application, Request, Response } from 'express';
 import * as path from 'path';
 
-// import configManager from '../config-manager';
+import { configManager } from '../config-manager';
 import {
   log,
   renderJsDashboard,
@@ -16,7 +16,7 @@ import {
   renderWidgetResource,
 } from './routes/widget';
 
-export default function (app: Application, packagesPath: any) {
+export function routes(app: Application, packagesPath: any) {
   const wallboardAssetsFolder = path.join(process.cwd(), 'assets');
 
   // -----------------------------------------

@@ -14,7 +14,7 @@ function ensureSafeJobWorkerConfiguration(jobWorker: any) {
  * @param jobWorker
  * @constructor
  */
-export default class Scheduler {
+export class Scheduler {
   private jobWorker: any;
   private originalInterval: number;
 

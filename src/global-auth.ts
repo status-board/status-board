@@ -5,11 +5,11 @@ import { logger } from './logger';
 
 const ENV_VAR_REGEX = /\$\{([^}]+)\}/;
 
-export default function (file: any) {
-  let globalAuth = {};
+export function globalAuth(file: any) {
+  let auth = {};
 
   try {
-    globalAuth = JSON.parse(fs.readFileSync(file).toString());
+    auth = JSON.parse(fs.readFileSync(file).toString());
   } catch (e) {
     if (e.code === 'ENOENT') {
       logger.warn(`Authentication file not found in ${file}.`);
@@ -19,11 +19,11 @@ export default function (file: any) {
     } else {
       logger.error('Error reading ' + file + '. It may contain invalid json format');
     }
-    return globalAuth;
+    return auth;
   }
 
   try {
-    traverse(globalAuth).forEach(function (val) {
+    traverse(auth).forEach(function (val) {
       if ('string' === typeof val) {
         const match = ENV_VAR_REGEX.exec(val);
         let modified;
@@ -60,5 +60,5 @@ export default function (file: any) {
     `);
   }
 
-  return globalAuth;
+  return auth;
 }

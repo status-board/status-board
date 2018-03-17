@@ -6,13 +6,12 @@ import * as http from 'http';
 import * as methodOverride from 'method-override';
 import * as morgan from 'morgan';
 import * as path from 'path';
-
-import configManager from '../config-manager';
+import { configManager } from '../config-manager';
 import { logger } from '../logger';
 import { stylus } from '../stylus';
-import routes from './routes';
+import { routes } from './routes';
 
-export default function (app: express.Application, options: any) {
+export function server(app: express.Application, options: any) {
   http.globalAgent.maxSockets = 100;
 
   const atlasboardAssetsFolder = path.join(__dirname, '../../assets');

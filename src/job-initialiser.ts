@@ -1,10 +1,10 @@
-import configManager from './config-manager';
+import { configManager } from './config-manager';
 import { EventQueue } from './EventQueue';
-import globalAuth from './global-auth';
+import { globalAuth } from './global-auth';
 import { fillDependencies } from './job-dependencies/loader';
 import { getJobs } from './job-manager';
 import { logger } from './logger';
-import Scheduler from './Scheduler';
+import { Scheduler } from './Scheduler';
 
 export function init(options: any, cb: any) {
   getJobs(options, (err: any, jobWorkers: any) => {

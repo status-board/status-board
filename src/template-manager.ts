@@ -13,6 +13,7 @@ export type Callback = (error: Error | null, response?: string) => void;
 export function resolveTemplateLocation(fileName: string, callback: Callback) {
   const localWallboardLocation = path.join(process.cwd(), 'templates', fileName);
   const defaultStatusBoardLocation = path.join(__dirname, '../templates', fileName);
+
   checkIfFileExists(localWallboardLocation, (error, exists) => {
     if (error) {
       return callback(error);

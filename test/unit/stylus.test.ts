@@ -1,7 +1,7 @@
-import {} from '../../src/stylus';
+import { stylus } from '../../src/stylus';
 
-describe('Test', () => {
-  test('Test', () => {
-    expect('foo').toMatch('foo');
+describe('Stylus', () => {
+  test('Should match snapshot', () => {
+    expect(stylus).toMatchSnapshot();
   });
 });

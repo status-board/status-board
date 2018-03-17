@@ -1,7 +1,7 @@
-import {} from '../../src/job-initialiser';
+import { init } from '../../src/job-initialiser';
 
-describe('Test', () => {
-  test('Test', () => {
-    expect('foo').toMatch('foo');
+describe('Job Initialiser', () => {
+  test('Should match snapshot', () => {
+    expect(init).toMatchSnapshot();
   });
 });

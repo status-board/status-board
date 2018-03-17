@@ -1,7 +1,7 @@
-import {} from '../../src/job-manager';
+import {getJobs} from '../../src/job-manager';
 
-describe('Test', () => {
-  test('Test', () => {
-    expect('foo').toMatch('foo');
+describe('Job Manager', () => {
+  test('Should match snapshot', () => {
+    expect(getJobs).toMatchSnapshot();
   });
 });

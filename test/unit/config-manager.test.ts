@@ -1,7 +1,7 @@
-import {} from '../../src/config-manager';
+import { configManager } from '../../src/config-manager';
 
-describe('Test', () => {
-  test('Test', () => {
-    expect('foo').toMatch('foo');
+describe('Config Manager', () => {
+  test('Should match snapshot', () => {
+    expect(configManager).toMatchSnapshot();
   });
 });

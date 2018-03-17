@@ -1,7 +1,7 @@
-import {} from '../../src/logger';
+import logger from '../../src/logger';
 
-describe('Test', () => {
-  test('Test', () => {
-    expect('foo').toMatch('foo');
+describe('Logger', () => {
+  test('Should match snapshot', () => {
+    expect(logger).toMatchSnapshot();
   });
 });

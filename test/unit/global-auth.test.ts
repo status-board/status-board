@@ -1,7 +1,7 @@
-import {} from '../../src/global-auth';
+import { globalAuth } from '../../src/global-auth';
 
-describe('Test', () => {
-  test('Test', () => {
-    expect('foo').toMatch('foo');
+describe('Globsl Auth', () => {
+  test('Should match snapshot', () => {
+    expect(globalAuth).toMatchSnapshot();
   });
 });

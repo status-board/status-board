@@ -1,7 +1,7 @@
-import {} from '../../src/scheduler';
+import { Scheduler } from '../../src/scheduler';
 
-describe('Test', () => {
-  test('Test', () => {
-    expect('foo').toMatch('foo');
+describe('Scheduler', () => {
+  test('Should match snapshot', () => {
+    expect(Scheduler).toMatchSnapshot();
   });
 });

@@ -1,7 +1,7 @@
-import {} from '../../../src/webapp/server';
+import { server } from '../../../src/webapp/server';
 
-describe('Test', () => {
-  test('Test', () => {
-    expect('foo').toMatch('foo');
+describe('Webapp: Server', () => {
+  test('Should match snapshot', () => {
+    expect(server).toMatchSnapshot();
   });
 });

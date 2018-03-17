@@ -2,7 +2,7 @@ import * as Chance from 'chance';
 import { system } from 'faker';
 import { Express } from 'jest-express/lib/express';
 import * as logic from '../../../src/webapp/logic';
-import routes from '../../../src/webapp/routes';
+import { routes } from '../../../src/webapp/routes';
 import * as dashboard from '../../../src/webapp/routes/dashboard';
 import * as widget from '../../../src/webapp/routes/widget';
 

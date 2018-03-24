@@ -1,4 +1,4 @@
-import { Scheduler } from '../../src/scheduler';
+import { Scheduler } from '../../src/Scheduler';
 
 describe('Scheduler', () => {
   test('Should match snapshot', () => {

@@ -106,12 +106,6 @@ jobs:
       - image: circleci/node:6
     <<: *test_steps
 
-  test-node-7:
-    working_directory: ~/status-board
-    docker:
-      - image: circleci/node:7
-    <<: *test_steps
-
   test-node-8:
     <<: *docker_defaults
     <<: *test_steps
@@ -188,9 +182,6 @@ workflows:
       - test-node-6:
           requires:
             - tslint
-      - test-node-7:
-          requires:
-            - tslint
       - test-node-8:
           requires:
             - tslint
@@ -200,7 +191,6 @@ workflows:
       - coverage:
           requires:
             - test-node-6
-            - test-node-7
             - test-node-8
             - test-node-9
       - build-typescript:

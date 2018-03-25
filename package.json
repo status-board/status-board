@@ -120,5 +120,11 @@
   },
   "jest-junit": {
     "output": "./ts-test-results.xml"
+  },
+  "tscheck": {
+    "exclude": [
+      "chalk",
+      "moment"
+    ]
   }
 }

@@ -7,8 +7,8 @@ import { fromAtlasboard, fromLocalWallboard } from '../path-resolver';
 const debug = bug('theming');
 const themingConfig = configManager('theming');
 const localTheme = fromLocalWallboard('themes', themingConfig.theme, 'variables.styl');
-const atlasboardTheme = fromAtlasboard('../../themes', themingConfig.theme, 'variables.styl');
-const defaultTheme = fromAtlasboard('../../assets', 'stylesheets', 'variables.styl');
+const atlasboardTheme = fromAtlasboard('../themes', themingConfig.theme, 'variables.styl');
+const defaultTheme = fromAtlasboard('../assets', 'stylesheets', 'variables.styl');
 
 export function getStylusObject(str: any): any {
   const stylObj = stylus(str);

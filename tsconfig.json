@@ -6,13 +6,17 @@
     "module": "commonjs",
     "target": "es2015",
     "declaration": true,
-    "lib": ["dom", "es6"],
+    "lib": [
+      "dom",
+      "es6"
+    ],
     "moduleResolution": "node",
     "pretty": true,
     "removeComments": true,
     "strict": true,
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "types"
     ],
     "types": [
       "node"

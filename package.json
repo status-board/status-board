@@ -15,7 +15,7 @@
     "semantic-release": "semantic-release",
     "setup": "npm i -g npmvet david nsp depcheck types-checker commitizen semantic-release-cli all-contributors-cli",
     "test": "jest --coverage",
-    "test:ci": "jest --ci",
+    "test:ci": "jest --ci --maxWorkers=4",
     "test:coverage:ci": "jest --ci --coverage --testResultsProcessor=\"jest-junit\"",
     "test:coverage:codecov": "codecov",
     "test:watch": "jest --watch",

@@ -1,12 +1,20 @@
 import * as Chance from 'chance';
 import { Response } from 'jest-express/lib/response';
 import { noop } from '../../../../../src/helpers';
-import { logger } from '../../../../../src/logger';
+import logger from '../../../../../src/logger';
 import { stylus } from '../../../../../src/stylus';
 import { loadStylusIfPresent } from '../../../../../src/webapp/routes/widget';
 import * as addNamespacesCSSToResponse from '../../../../../src/webapp/routes/widget/add-namespaces-css-to-response';
 import * as getFileContents from '../../../../../src/webapp/routes/widget/get-file-contents';
 import { system } from '../../../../helpers/chance-system';
+
+jest.mock('../../../../../src/logger', () => {
+  const errorMock = jest.fn();
+  return {
+    default: () => ({ error: errorMock }),
+    error: errorMock,
+  };
+});
 
 const chance = new Chance();
 chance.mixin(system);
@@ -40,7 +48,6 @@ describe('Webapp: Widget: Load Stylus If Present', () => {
       }
     });
     jest.spyOn(addNamespacesCSSToResponse, 'addNamespacesCSSToResponse').mockImplementation(noop);
-    jest.spyOn(logger, 'error').mockImplementation(noop);
   });
 
   afterEach(() => {
@@ -66,7 +73,7 @@ describe('Webapp: Widget: Load Stylus If Present', () => {
           expect.any(Function),
         );
       expect(addNamespacesCSSToResponse.addNamespacesCSSToResponse).toBeCalled();
-      expect(logger.error).not.toBeCalled();
+      expect(logger().error).not.toBeCalled();
     });
   });
 
@@ -84,7 +91,7 @@ describe('Webapp: Widget: Load Stylus If Present', () => {
         );
       expect(stylus.getWidgetCSS).not.toBeCalled();
       expect(addNamespacesCSSToResponse.addNamespacesCSSToResponse).not.toBeCalled();
-      expect(logger.error).not.toBeCalled();
+      expect(logger().error).not.toBeCalled();
     });
   });
 
@@ -102,7 +109,7 @@ describe('Webapp: Widget: Load Stylus If Present', () => {
         );
       expect(stylus.getWidgetCSS).not.toBeCalled();
       expect(addNamespacesCSSToResponse.addNamespacesCSSToResponse).not.toBeCalled();
-      expect(logger.error).not.toBeCalled();
+      expect(logger().error).not.toBeCalled();
     });
   });
 
@@ -124,7 +131,7 @@ describe('Webapp: Widget: Load Stylus If Present', () => {
           expect.any(Function),
         );
       expect(addNamespacesCSSToResponse.addNamespacesCSSToResponse).not.toBeCalled();
-      expect(logger.error).toBeCalledWith('STYLUS_ERROR');
+      expect(logger().error).toBeCalledWith('STYLUS_ERROR');
     });
   });
 });

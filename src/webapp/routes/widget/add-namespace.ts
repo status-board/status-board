@@ -1,6 +1,6 @@
 import * as css from 'css';
 import { Response } from 'express';
-import { logger } from '../../../logger';
+import logger from '../../../logger';
 import { namespaceRulesAST } from './namespace-rules-ast';
 
 export function addNamespace(code: string, response: Response, widgetNamespace: string) {
@@ -10,7 +10,7 @@ export function addNamespace(code: string, response: Response, widgetNamespace: 
       namespaceRulesAST(cssAST.stylesheet, widgetNamespace);
       response.write(css.stringify(cssAST));
     } catch (error) {
-      logger.error(error);
+      logger().error(error);
     }
   }
 }

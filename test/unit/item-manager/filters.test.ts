@@ -1,9 +1,16 @@
 import * as Chance from 'chance';
 import * as fs from 'fs';
-import { noop } from '../../../src/helpers';
 import { filters } from '../../../src/item-manager/filters';
-import { logger } from '../../../src/logger';
+import logger from '../../../src/logger';
 import { system } from '../../helpers/chance-system';
+
+jest.mock('../../../src/logger', () => {
+  const errorMock = jest.fn();
+  return {
+    default: () => ({ error: errorMock }),
+    error: errorMock,
+  };
+});
 
 const chance = new Chance();
 chance.mixin(system);
@@ -20,7 +27,6 @@ describe('Item Manager: Filters', () => {
         return Buffer.from('{"enabled": true}', 'utf8');
       }
     });
-    jest.spyOn(logger, 'error').mockImplementation(noop);
   });
 
   afterEach(() => {
@@ -34,7 +40,7 @@ describe('Item Manager: Filters', () => {
     const shouldBeFiltered = dashboards(dashboardPath);
 
     expect(shouldBeFiltered).toBeTruthy();
-    expect(logger.error).not.toHaveBeenCalled();
+    expect(logger().error).not.toHaveBeenCalled();
   });
 
   test('should return false if dashboard is disabled', () => {
@@ -44,7 +50,7 @@ describe('Item Manager: Filters', () => {
     const shouldBeFiltered = dashboards(dashboardPath);
 
     expect(shouldBeFiltered).toBeFalsy();
-    expect(logger.error).not.toHaveBeenCalled();
+    expect(logger().error).not.toHaveBeenCalled();
   });
 
   test('should return false a log error if dashboard is invalid or doesnt exist', () => {
@@ -54,6 +60,6 @@ describe('Item Manager: Filters', () => {
     const shouldBeFiltered = dashboards(dashboardPath);
 
     expect(shouldBeFiltered).toBeFalsy();
-    expect(logger.error).toBeCalledWith(`## ERROR ## ${dashboardPath} has an invalid format or file doesn't exist\n`);
+    expect(logger().error).toBeCalledWith(`## ERROR ## ${dashboardPath} has an invalid format or file doesn't exist\n`);
   });
 });

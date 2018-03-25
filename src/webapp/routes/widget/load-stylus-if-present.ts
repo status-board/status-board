@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { logger } from '../../../logger';
+import logger from '../../../logger';
 import { stylus } from '../../../stylus';
 import { addNamespacesCSSToResponse } from './add-namespaces-css-to-response';
 import { getFileContents } from './get-file-contents';
@@ -16,7 +16,7 @@ export function loadStylusIfPresent(
         if (!stylusError) {
           addNamespacesCSSToResponse(css, widgetName, response);
         } else {
-          logger.error(stylusError);
+          logger().error(stylusError);
         }
         cb(stylusError);
       });

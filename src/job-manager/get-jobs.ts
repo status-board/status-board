@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as extend from 'xtend';
 import { get } from '../item-manager';
-import { logger } from '../logger';
+import logger from '../logger';
 import { matchDashboardFilter } from './match-dashboard-filter';
 import { processDashboard } from './process-dashboard';
 import { readDashboard } from './read-dashboard';
@@ -29,7 +29,7 @@ export function getJobs(options: any, callback: any) {
     try {
       generalDashboardConfig = JSON.parse(fs.readFileSync(configPath).toString()).config;
       if (!generalDashboardConfig) {
-        logger.error('invalid format. config property not found');
+        logger().error('invalid format. config property not found');
       }
     } catch (e) {
       return callback('ERROR reading general config file...' + configPath);

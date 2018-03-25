@@ -1,6 +1,6 @@
 import * as Chance from 'chance';
-import { random, system } from 'faker';
-import { logger } from '../../../../src/logger';
+import { system } from 'faker';
+import logger from '../../../../src/logger';
 
 import * as dashboard from '../../../../src/webapp/routes/dashboard';
 
@@ -10,6 +10,14 @@ import { Response } from 'jest-express/lib/response';
 import * as helpers from '../../../../src/helpers';
 import * as itemManager from '../../../../src/item-manager';
 import * as templateManager from '../../../../src/template-manager';
+
+jest.mock('../../../../src/logger', () => {
+  const errorMock = jest.fn();
+  return {
+    default: () => ({ error: errorMock }),
+    error: errorMock,
+  };
+});
 
 const chance = new Chance();
 
@@ -83,7 +91,6 @@ describe('Webapp: Dashboard', () => {
           cb(null, null);
         }
       });
-    jest.spyOn(logger, 'error').mockImplementation(helpers.noop);
     jest.spyOn(templateManager, 'resolveTemplateLocation')
       .mockImplementation((fileName: string, cb: any) => {
         cb(null, 'something');
@@ -158,7 +165,7 @@ describe('Webapp: Dashboard', () => {
 
     dashboard.readDashboardJSON(dashboardPath, (error: any, dashboard: any) => {
       expect(error).toMatch('ERROR');
-      expect(logger.error).toHaveBeenCalledWith(`Error reading dashboard: ${dashboardPath}`);
+      expect(logger().error).toHaveBeenCalledWith(`Error reading dashboard: ${dashboardPath}`);
       expect(dashboard).toBeUndefined();
     });
   });
@@ -175,8 +182,8 @@ describe('Webapp: Dashboard', () => {
 
     expect(itemManager.get).toHaveBeenCalled();
     expect(itemManager.get).toHaveBeenCalledWith(packagesPath, 'dashboards', '.json', expect.anything());
-    expect(logger.error).toHaveBeenCalled();
-    expect(logger.error).toHaveBeenCalledWith('ERROR');
+    expect(logger().error).toHaveBeenCalled();
+    expect(logger().error).toHaveBeenCalledWith('ERROR');
     expect(response.status).toHaveBeenCalled();
     expect(response.status).toHaveBeenCalledWith(400);
     expect(response.send).toHaveBeenCalled();

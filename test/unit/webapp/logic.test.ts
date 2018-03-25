@@ -3,12 +3,20 @@ import { Response } from 'jest-express/lib/response';
 import * as path from 'path';
 import * as helpers from '../../../src/helpers';
 import * as itemManager from '../../../src/item-manager';
-import { logger } from '../../../src/logger';
+import logger from '../../../src/logger';
 import {
   getSafeItemName,
   log,
   renderJsDashboard,
 } from '../../../src/webapp/logic';
+
+jest.mock('../../../src/logger', () => {
+  const errorMock = jest.fn();
+  return {
+    default: () => ({ error: errorMock }),
+    error: errorMock,
+  };
+});
 
 describe('Webapp: Logic', () => {
   let response: any;
@@ -18,7 +26,6 @@ describe('Webapp: Logic', () => {
     response = new Response();
     response.write = jest.fn();
     request = jest.fn();
-    jest.spyOn(logger, 'error');
     jest.spyOn(itemManager, 'getFirst')
     // tslint:disable-next-line max-line-length
       .mockImplementation((packagesPath: string, safeDashboardName: string, dashboards: string, json: string, callback: any) => {
@@ -71,7 +78,6 @@ describe('Webapp: Logic', () => {
   afterEach(() => {
     response.resetMocked();
 
-    logger.error.mockRestore();
     itemManager.getFirst.mockRestore();
     helpers.readJSONFile.mockRestore();
     path.join.mockRestore();
@@ -147,8 +153,8 @@ describe('Webapp: Logic', () => {
     expect(response.type).toBeCalledWith('application/javascript');
     expect(fs.readFile).toBeCalled();
     expect(fs.readFile).toBeCalledWith('wallboardAssetsFolder/javascripts/error.js', expect.anything());
-    expect(logger.error).toBeCalled();
-    expect(logger.error).toBeCalledWith('wallboardAssetsFolder/javascripts/error.js not found');
+    expect(logger().error).toBeCalled();
+    expect(logger().error).toBeCalledWith('wallboardAssetsFolder/javascripts/error.js not found');
     expect(response.end).toBeCalled();
   });
 

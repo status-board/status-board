@@ -5,7 +5,7 @@ import * as path from 'path';
 
 import { readJSONFile } from '../helpers';
 import { getFirst } from '../item-manager';
-import { logger } from '../logger';
+import logger from '../logger';
 
 export function getSafeItemName(itemName: string) {
   return path.basename(itemName).split('.')[0];
@@ -24,7 +24,7 @@ export function renderJsDashboard(packagesPath: any,
     const assetFullPath = path.join(wallboardAssetsFolder, '/javascripts/', fileName);
     fs.readFile(assetFullPath, (error, fileContent) => {
       if (error) {
-        logger.error(assetFullPath + ' not found');
+        logger().error(assetFullPath + ' not found');
       } else {
         response.write(fileContent + '\n\n');
       }

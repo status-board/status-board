@@ -1,11 +1,18 @@
 import * as Chance from 'chance';
 import { Request } from 'jest-express/lib/request';
 import { Response } from 'jest-express/lib/response';
-import { noop } from '../../../../../src/helpers';
 import * as itemManager from '../../../../../src/item-manager';
-import { logger } from '../../../../../src/logger';
+import logger from '../../../../../src/logger';
 import { renderJsWidget } from '../../../../../src/webapp/routes/widget';
 import { system } from '../../../../helpers/chance-system';
+
+jest.mock('../../../../../src/logger', () => {
+  const errorMock = jest.fn();
+  return {
+    default: () => ({ error: errorMock }),
+    error: errorMock,
+  };
+});
 
 const chance = new Chance();
 chance.mixin(system);
@@ -26,7 +33,6 @@ describe('Webapp: Widget: Render JS Widget', () => {
         cb(null, 'JS_FILE_CODE');
       }
     });
-    jest.spyOn(logger, 'error').mockImplementation(noop);
   });
 
   afterEach(() => {
@@ -48,7 +54,7 @@ describe('Webapp: Widget: Render JS Widget', () => {
       '.js',
       expect.any(Function),
     );
-    expect(logger.error).not.toHaveBeenCalled();
+    expect(logger().error).not.toHaveBeenCalled();
     expect(response.status).not.toHaveBeenCalled();
     expect(response.send).not.toHaveBeenCalled();
     expect(response.sendFile).toBeCalledWith('JS_FILE_CODE');
@@ -69,7 +75,7 @@ describe('Webapp: Widget: Render JS Widget', () => {
       '.js',
       expect.any(Function),
     );
-    expect(logger.error).toBeCalledWith(expectedMsg);
+    expect(logger().error).toBeCalledWith(expectedMsg);
     expect(response.status).toBeCalledWith(400);
     expect(response.send).toBeCalledWith(`Error rendering widget: ${expectedMsg}`);
     expect(response.sendFile).not.toHaveBeenCalled();
@@ -89,7 +95,7 @@ describe('Webapp: Widget: Render JS Widget', () => {
       '.js',
       expect.any(Function),
     );
-    expect(logger.error).toBeCalledWith('GET_FIRST_ERROR');
+    expect(logger().error).toBeCalledWith('GET_FIRST_ERROR');
     expect(response.status).toBeCalledWith(400);
     expect(response.send).toBeCalledWith('Error rendering widget: GET_FIRST_ERROR');
     expect(response.sendFile).not.toHaveBeenCalled();

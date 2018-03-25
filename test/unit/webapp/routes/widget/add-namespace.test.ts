@@ -3,9 +3,16 @@ import * as css from 'css';
 import { Request } from 'jest-express/lib/request';
 import { Response } from 'jest-express/lib/response';
 
-import { noop } from '../../../../../src/helpers';
-import { logger } from '../../../../../src/logger';
+import logger from '../../../../../src/logger';
 import { addNamespace } from '../../../../../src/webapp/routes/widget';
+
+jest.mock('../../../../../src/logger', () => {
+  const errorMock = jest.fn();
+  return {
+    default: () => ({ error: errorMock }),
+    error: errorMock,
+  };
+});
 
 const chance = new Chance();
 
@@ -58,13 +65,12 @@ describe('Webapp: Widget: Add Namespace', () => {
     jest.spyOn(css, 'parse').mockImplementation(() => {
       throw new Error(error);
     });
-    jest.spyOn(logger, 'error').mockImplementation(noop);
     const code = `div{ background-color:${chance.color({ format: 'hex' })} }`;
     const namespace = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
 
     addNamespace(code, response, namespace);
 
-    expect(logger.error).toHaveBeenCalled();
-    expect(logger.error).toHaveBeenCalledWith(Error(error));
+    expect(logger().error).toHaveBeenCalled();
+    expect(logger().error).toHaveBeenCalledWith(Error(error));
   });
 });

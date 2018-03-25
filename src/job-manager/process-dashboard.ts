@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { noop } from '../helpers';
 import { resolveCandidates } from '../item-manager';
-import { logger } from '../logger';
+import logger from '../logger';
 import { matchJobFilter } from './match-job-filter';
 
 /**
@@ -31,7 +31,7 @@ export function processDashboard(
 
       const candidateJobs = resolveCandidates(allJobs, jobItem.job, 'jobs', '.js');
       if (!candidateJobs.length) {
-        logger.error(`
+        logger().error(`
         ERROR RESOLVING JOB
         No job file found for "${jobItem.job}" in ${dashboardName}
         Have you pulled all the packages dependencies? (They are git submodules.)

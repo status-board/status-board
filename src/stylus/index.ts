@@ -1,6 +1,10 @@
+import { NextFunction,Request,Response } from 'express';
 import * as nib from 'nib';
 import * as realStylus from 'stylus';
 import { getStylusObject } from './get-stylus-object';
+
+export type Middleware = (req: Request, res: Response, next: NextFunction) => void;
+export type Callback = (err: Error, css: string, js: string) => void;
 
 export const stylus = {
   /**
@@ -8,12 +12,12 @@ export const stylus = {
    * @param options
    * @returns {*}
    */
-  getMiddleware(options: any) {
+  getMiddleware(options: { dest: string, src: string }): Middleware {
     return realStylus.middleware({
       dest: options.dest,
       src: options.src,
 
-      compile(str: any, filePath: any) {
+      compile(str: string, filePath: string) {
         const stylObj = getStylusObject(str);
         stylObj.set('filename', filePath)
           .set('warn', false)
@@ -28,9 +32,9 @@ export const stylus = {
   /**
    * Process widget stylus
    * @param str
-   * @param cb
+   * @param callback
    */
-  getWidgetCSS(str: any, cb: any) {
-    getStylusObject(str).render(cb);
+  getWidgetCSS(str: string, callback: Callback): void {
+    getStylusObject(str).render(callback);
   },
 };

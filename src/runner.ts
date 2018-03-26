@@ -6,7 +6,13 @@ import { init } from './job-initialiser';
 import { logger } from './logger';
 import { server } from './webapp/server';
 
-export function runner(options: any, callback: any) {
+export function runner(
+  options: {
+    port: number,
+    filters?: string,
+  },
+  callback: (error?: any) => void,
+) {
   const packagesLocalFolder = path.join(process.cwd(), '/packages');
   const packagesAtlasboardFolder = path.join(__dirname, '../packages');
   const configPath = path.join(process.cwd(), '/config');

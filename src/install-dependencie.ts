@@ -3,7 +3,10 @@ import * as path from 'path';
 import { logger } from './logger';
 import { installDependencies } from './package-dependency-manager';
 
-export function installDependencie(options: any, callback: any) {
+export function installDependencie(
+  options: { install: boolean },
+  callback: (error?: string) => void,
+) {
   const packagesLocalFolder = path.join(process.cwd(), '/packages');
 
   if (options.install) {
@@ -13,6 +16,9 @@ export function installDependencie(options: any, callback: any) {
         return callback(error);
       }
       logger.log(chalk.green('done!'));
+      return callback();
     });
+  } else {
+    return callback();
   }
 }

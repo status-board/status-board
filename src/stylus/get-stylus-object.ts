@@ -10,7 +10,15 @@ const localTheme = fromLocalWallboard('themes', themingConfig.theme, 'variables.
 const atlasboardTheme = fromAtlasboard('../themes', themingConfig.theme, 'variables.styl');
 const defaultTheme = fromAtlasboard('../assets', 'stylesheets', 'variables.styl');
 
-export function getStylusObject(str: any): any {
+export type Callback = (err: Error, css: string, js: string) => void;
+
+export interface IStylusObject {
+  render: (callback: Callback) => void;
+  set: (key: string, val: any) => this;
+  use: (fn: (renderer: IStylusObject) => any) => this;
+}
+
+export function getStylusObject(str: string): IStylusObject {
   const stylObj = stylus(str);
 
   // import default core stylus variables

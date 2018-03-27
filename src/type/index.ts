@@ -61,6 +61,7 @@ export interface IFilters {
 }
 
 export interface IProcessedJob {
+  config?: IConfig;
   configKey: string;
   dashboard_name: string;
   job_name: string;

@@ -2,6 +2,7 @@ import * as path from 'path';
 import { noop } from '../helpers';
 import { resolveCandidates } from '../item-manager';
 import logger from '../logger';
+import { IDashboardConfig, IFilters, IProcessedJob } from '../type';
 import { matchJobFilter } from './match-job-filter';
 
 /**
@@ -14,11 +15,11 @@ import { matchJobFilter } from './match-job-filter';
  * @return {array} related jobs
  */
 export function processDashboard(
-  allJobs: any,
+  allJobs: string[],
   dashboardName: string,
-  dashboardConfig: any,
-  filters: any,
-) {
+  dashboardConfig: IDashboardConfig,
+  filters: IFilters,
+): IProcessedJob[] {
   const jobs = [];
   for (let i = 0, l = dashboardConfig.layout.widgets.length; i < l; i += 1) {
     const jobItem = dashboardConfig.layout.widgets[i];

@@ -83,7 +83,7 @@ const jobWorker = {
 };
 
 describe('Logger', () => {
-  beforeEach(() => {
+  beforeEach((done: () => void) => {
     server = new Server();
     ioServer = server.getIoServer();
     ioClient = server.getIoClient();
@@ -91,11 +91,13 @@ describe('Logger', () => {
     jest.spyOn(ioServer, 'emit');
     jest.spyOn(tracer, 'colorConsole')
       .mockImplementation((loggerConfig) => tracerLogger(loggerConfig));
+    done();
   });
 
-  afterEach(() => {
+  afterEach((done: () => void) => {
     server.stopServer();
     jest.restoreAllMocks();
+    done();
   });
 
   test('Logger should be a instance of Console', () => {

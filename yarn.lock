@@ -3191,7 +3191,7 @@ isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
 
-isstream@0.1.x, isstream@~0.1.2:
+isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
@@ -4128,9 +4128,9 @@ log-update@^1.0.2:
     ansi-escapes "^1.0.0"
     cli-cursor "^1.0.2"
 
-logform@^1.2.1:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/logform/-/logform-1.3.0.tgz#7fc8d03d7d5b1314353cc8a6d7223f51fe8b31e5"
+logform@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/logform/-/logform-1.4.1.tgz#372a84eedb01dbace3bfbcd32b78d556b5ea8333"
   dependencies:
     colors "^1.2.0"
     fecha "^2.3.2"
@@ -6393,22 +6393,22 @@ window-size@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
 
-winston-transport@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/winston-transport/-/winston-transport-3.0.1.tgz#8008b15eef5660c4fb3fa094d58ccbd08528c58d"
+winston-transport@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/winston-transport/-/winston-transport-3.1.0.tgz#52b097176c5c26acf9c603630c57ffd575c42572"
 
-winston@3.0.0-rc3:
-  version "3.0.0-rc3"
-  resolved "https://registry.yarnpkg.com/winston/-/winston-3.0.0-rc3.tgz#dd31ebbd76e35968dcf5f130e57473329534904e"
+winston@3.0.0-rc4:
+  version "3.0.0-rc4"
+  resolved "https://registry.yarnpkg.com/winston/-/winston-3.0.0-rc4.tgz#2e34e05b1130bae677c79b3ace993d091e678c5f"
   dependencies:
     async "^2.6.0"
     diagnostics "^1.0.1"
-    isstream "0.1.x"
-    logform "^1.2.1"
+    is-stream "^1.1.0"
+    logform "^1.4.1"
     one-time "0.0.4"
     stack-trace "0.0.x"
     triple-beam "^1.0.1"
-    winston-transport "^3.0.1"
+    winston-transport "^3.1.0"
 
 word-wrap@^1.0.3:
   version "1.2.3"

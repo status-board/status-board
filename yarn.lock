@@ -253,9 +253,9 @@
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/debug/-/debug-0.0.30.tgz#dc1e40f7af3b9c815013a7860e6252f6352a84df"
 
-"@types/ejs@2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@types/ejs/-/ejs-2.5.0.tgz#e8f76bef977666f3d71730208bcb6bbcc172a080"
+"@types/ejs@2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@types/ejs/-/ejs-2.5.1.tgz#cd9a5392c00ebba94cb6fe85022c5621e50b4dec"
 
 "@types/errorhandler@0.0.32":
   version "0.0.32"

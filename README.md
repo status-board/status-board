@@ -1,3 +1,9 @@
+<div align="center">
+  <a href="https://github.com/jameswlane/status-board">
+    <img src="https://github.com/jameswlane/status-board-logo/raw/master/status-board-logo.png">
+  </a>
+</div>
+
 # status-board
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
 [![CircleCI](https://circleci.com/gh/jameswlane/status-board.svg?style=svg)](https://circleci.com/gh/jameswlane/status-board)

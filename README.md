@@ -19,6 +19,9 @@
 
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/jameswlane/status-board.svg?columns=all)](https://waffle.io/jameswlane/status-board)
 
+<a href="https://www.patreon.com/jameswlane">
+	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
 
 Status Board is a fork of [Atlasboard](https://atlasboard.bitbucket.io) dashboard framework written in nodejs.
 

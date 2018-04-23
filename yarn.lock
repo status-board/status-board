@@ -3431,9 +3431,9 @@ jest-environment-node@^22.4.3:
     jest-mock "^22.4.3"
     jest-util "^22.4.3"
 
-jest-express@1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/jest-express/-/jest-express-1.5.2.tgz#d6fa24bc2837eae946929172efbb9f2658cf3bc0"
+jest-express@1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/jest-express/-/jest-express-1.5.3.tgz#0fa309c64c5225f7f0db18572c029c9954a61afe"
 
 jest-get-type@^22.1.0:
   version "22.1.0"

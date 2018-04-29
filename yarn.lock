@@ -334,9 +334,9 @@
   dependencies:
     moment ">=2.14.0"
 
-"@types/pg@7.4.6":
-  version "7.4.6"
-  resolved "https://registry.yarnpkg.com/@types/pg/-/pg-7.4.6.tgz#d1343f985f0785405ba8f316d4b922ced3adf5ca"
+"@types/pg@7.4.8":
+  version "7.4.8"
+  resolved "https://registry.yarnpkg.com/@types/pg/-/pg-7.4.8.tgz#93ed2c906bd232ad876a1ebcf48137efc33d6d6d"
   dependencies:
     "@types/events" "*"
     "@types/node" "*"

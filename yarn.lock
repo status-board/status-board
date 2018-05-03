@@ -1339,9 +1339,9 @@ colors@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.0.3.tgz#0433f44d809680fdeb60ed260f1b0c262e82a40b"
 
-colors@1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/colors/-/colors-1.1.2.tgz#168a4701756b6a7f51a12ce0c97bfa28c084ed63"
+colors@1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/colors/-/colors-1.2.3.tgz#1b152a9c4f6c9f74bc4bb96233ad0b7983b79744"
 
 colors@^1.2.0:
   version "1.2.1"
@@ -1657,9 +1657,9 @@ date-fns@^1.27.2:
   version "1.29.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.29.0.tgz#12e609cdcb935127311d04d33334e2960a2a54e6"
 
-dateformat@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-2.0.0.tgz#2743e3abb5c3fc2462e527dca445e04e9f4dee17"
+dateformat@3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-3.0.3.tgz#a6e37499a4d9a9cf85ef5872044d62901c9889ae"
 
 dateformat@^1.0.11:
   version "1.0.12"
@@ -6151,12 +6151,12 @@ tr46@^1.0.0:
   dependencies:
     punycode "^2.1.0"
 
-tracer@0.8.12:
-  version "0.8.12"
-  resolved "https://registry.yarnpkg.com/tracer/-/tracer-0.8.12.tgz#2601c61121593ce3437c5a839e6c006c8c070932"
+tracer@0.8.15:
+  version "0.8.15"
+  resolved "https://registry.yarnpkg.com/tracer/-/tracer-0.8.15.tgz#c4bb5b8c788ed3d7106c081288e22fd5a5abc474"
   dependencies:
-    colors "1.1.2"
-    dateformat "2.0.0"
+    colors "1.2.3"
+    dateformat "3.0.3"
     mkdirp "^0.5.1"
     tinytim "0.1.1"
 

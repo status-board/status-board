@@ -2,7 +2,7 @@ import { Express } from 'express-serve-static-core';
 import { Server } from 'socket.io';
 import { UnderscoreStatic } from 'underscore';
 
-export type IJobCallback = (error: Error | null, data?: any) => void;
+export type IVoidCallbackWithData = (error: Error | null, data?: any) => void;
 export type IVoidCallbackWithError = (error?: Error) => void;
 
 // TODO: Improve typings for dependencies
@@ -69,8 +69,15 @@ export interface IProcessedJob {
   dashboard_name: string;
   job_name: string;
   widget_item: IWidget;
-  onRun: (config: IConfig, dependencies: IDependencies) => void;
-  onInit: (config: IConfig, dependencies: IDependencies, jobCallback: IJobCallback) => void;
+  onRun: (
+    config: IConfig,
+    dependencies: IDependencies,
+  ) => void;
+  onInit: (
+    config: IConfig,
+    dependencies: IDependencies,
+    jobCallback: IVoidCallbackWithData,
+  ) => void;
 }
 
 export interface IJobOptions {

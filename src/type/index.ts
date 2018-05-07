@@ -1,6 +1,9 @@
+import { Express } from 'express-serve-static-core';
+import { Server } from 'socket.io';
 import { UnderscoreStatic } from 'underscore';
 
 export type IJobCallback = (error: Error | null, data?: any) => void;
+export type IVoidCallbackWithError = (error?: Error) => void;
 
 // TODO: Improve typings for dependencies
 export interface IDependencies {
@@ -68,4 +71,20 @@ export interface IProcessedJob {
   widget_item: IWidget;
   onRun: (config: IConfig, dependencies: IDependencies) => void;
   onInit: (config: IConfig, dependencies: IDependencies, jobCallback: IJobCallback) => void;
+}
+
+export interface IJobOptions {
+  configPath: string;
+  deps: {
+    app: Express;
+    io: Server;
+  };
+  filters?: IFilters;
+  packagesPath: string[];
+}
+
+export interface IOptions {
+  port: number;
+  install?: boolean;
+  filters?: IFilters;
 }

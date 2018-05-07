@@ -4,14 +4,12 @@ import * as path from 'path';
 import { listen, Server } from 'socket.io';
 import { init } from './job-initialiser';
 import { logger } from './logger';
+import { IOptions, IVoidCallbackWithError } from './type';
 import { server } from './webapp/server';
 
 export function runner(
-  options: {
-    port: number,
-    filters?: string,
-  },
-  callback: (error?: any) => void,
+  options: IOptions,
+  callback: IVoidCallbackWithError,
 ) {
   const packagesLocalFolder = path.join(process.cwd(), '/packages');
   const packagesAtlasboardFolder = path.join(__dirname, '../packages');

@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as extend from 'xtend';
 import { get } from '../item-manager';
 import logger from '../logger';
+import { IJobOptions } from '../type';
 import { matchDashboardFilter } from './match-dashboard-filter';
 import { processDashboard } from './process-dashboard';
 import { readDashboard } from './read-dashboard';
@@ -13,7 +14,7 @@ import { readDashboard } from './read-dashboard';
  * @param  {object}   options  options object
  * @param  {Function} callback
  */
-export function getJobs(options: any, callback: any) {
+export function getJobs(options: IJobOptions, callback: any) {
   const packagesPath = options.packagesPath;
   const filters = options.filters || {};
 

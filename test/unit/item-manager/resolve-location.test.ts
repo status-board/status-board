@@ -9,7 +9,7 @@ describe('Item Manager: Resolve Location', () => {
   test('should return path relative to packages path for dashboards', () => {
     const name = chance.name();
     const itemType = 'dashboards';
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
     const expectedLocation = `${itemType}/${name}${extension}`;
 
     const location = resolveLocation(name, itemType, extension);
@@ -20,7 +20,7 @@ describe('Item Manager: Resolve Location', () => {
   test('should return path relative to packages path for jobs', () => {
     const name = chance.name();
     const itemType = 'jobs';
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
     const expectedLocation = `${itemType}/${name}/${name}${extension}`;
 
     const location = resolveLocation(name, itemType, extension);
@@ -31,7 +31,7 @@ describe('Item Manager: Resolve Location', () => {
   test('should return path relative to packages path for widgets', () => {
     const name = chance.name();
     const itemType = 'widgets';
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
     const expectedLocation = `${itemType}/${name}/${name}${extension}`;
 
     const location = resolveLocation(name, itemType, extension);

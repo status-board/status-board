@@ -40,7 +40,7 @@ describe('Item Manager: Get', () => {
   test('should return list of items found', () => {
     const packagesPath = chance.word();
     const itemType = chance.pickone(['dashboards', 'jobs', 'widgets']);
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
 
     get(packagesPath, itemType, extension, (error, items) => {
       expect(error).toBeNull();
@@ -57,7 +57,7 @@ describe('Item Manager: Get', () => {
   test('should return error', () => {
     const packagesPath = 'THROW_ERROR';
     const itemType = chance.pickone(['dashboards', 'jobs', 'widgets']);
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
 
     get(packagesPath, itemType, extension, (error, items) => {
       expect(error).toEqual('GET_BY_PACKAGE_ERROR');

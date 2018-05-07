@@ -27,7 +27,7 @@ describe('Webapp: Widget: Render Widget Resource', () => {
   });
 
   test('if resource id is not specified should return error', () => {
-    const localPackagesPath = chance.system.filePath();
+    const localPackagesPath = chance.filePath();
     const resource = null;
 
     renderWidgetResource(localPackagesPath, resource, request, response);
@@ -38,7 +38,7 @@ describe('Webapp: Widget: Render Widget Resource', () => {
   });
 
   test('if resource string is incorrectly formed should return error ', () => {
-    const localPackagesPath = chance.system.filePath();
+    const localPackagesPath = chance.filePath();
     const resource = `///`;
 
     renderWidgetResource(localPackagesPath, resource, request, response);
@@ -49,10 +49,10 @@ describe('Webapp: Widget: Render Widget Resource', () => {
   });
 
   test('if resource files exist should send file', () => {
-    const localPackagesPath = chance.system.filePath();
+    const localPackagesPath = chance.filePath();
     const packageName = chance.word();
     const widgetName = 'SEND_FILE';
-    const resourceName = chance.system.fileName();
+    const resourceName = chance.fileName();
     const resource = `${packageName}/${widgetName}/${resourceName}`;
     const expectedPath = `${localPackagesPath}/${packageName}/widgets/${widgetName}/${resourceName}`;
 
@@ -64,10 +64,10 @@ describe('Webapp: Widget: Render Widget Resource', () => {
   });
 
   test('if resource files doesnt exist should send error', () => {
-    const localPackagesPath = chance.system.filePath();
+    const localPackagesPath = chance.filePath();
     const packageName = chance.word();
     const widgetName = chance.word();
-    const resourceName = chance.system.fileName();
+    const resourceName = chance.fileName();
     const resource = `${packageName}/${widgetName}/${resourceName}`;
 
     renderWidgetResource(localPackagesPath, resource, request, response);

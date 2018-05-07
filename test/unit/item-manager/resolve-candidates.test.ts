@@ -20,7 +20,7 @@ describe('Item Manager: Resolve Candidates', () => {
     const forthName = `${chance.word()}-${chance.word()}`;
     const fifthName = `${chance.word()}-${chance.word()}`;
     const itemType = chance.pickone(['jobs', 'widgets']);
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
     const items = [
       `/packages/demo/${itemType}/${fifthName}/${fifthName}${extension}`,
       `/packages/demo/${itemType}/${forthName}/${forthName}${extension}`,
@@ -43,7 +43,7 @@ describe('Item Manager: Resolve Candidates', () => {
     const forthName = `${chance.word()}-${chance.word()}`;
     const fifthName = `${chance.word()}-${chance.word()}`;
     const itemType = chance.pickone(['jobs', 'widgets']);
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
     const items = [
       `/packages/${namespace}/${itemType}/${fifthName}/${fifthName}${extension}`,
       `/packages/${namespace}/${itemType}/${forthName}/${forthName}${extension}`,

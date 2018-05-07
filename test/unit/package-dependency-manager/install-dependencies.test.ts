@@ -27,7 +27,7 @@ describe('Package Dependency Manager: Install Dependencies', () => {
   });
 
   test('test', () => {
-    const packagesPath = [chance.system.filePath()];
+    const packagesPath = [chance.filePath()];
     installDependencies(packagesPath, (error) => {
       expect(error).toBeNull();
     });

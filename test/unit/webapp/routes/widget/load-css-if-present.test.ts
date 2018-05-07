@@ -36,7 +36,7 @@ describe('Webapp: Widget: Load CSS If Present', () => {
 
   test('should get the files content and add it to the namespace', () => {
     const widgetName = chance.name();
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     loadCSSIfPresent(response, widgetName, packagesPath, (error) => {
       expect(error).toBeNull();
       expect(getFileContents.getFileContents)
@@ -57,7 +57,7 @@ describe('Webapp: Widget: Load CSS If Present', () => {
 
   test('should return nothing if there is no css', () => {
     const widgetName = 'RETURN_NO_CSS';
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     loadCSSIfPresent(response, widgetName, packagesPath, (error) => {
       expect(error).toBeNull();
       expect(getFileContents.getFileContents)
@@ -74,7 +74,7 @@ describe('Webapp: Widget: Load CSS If Present', () => {
 
   test('should return error from get file content', () => {
     const widgetName = 'RETURN_ERROR';
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     loadCSSIfPresent(response, widgetName, packagesPath, (error) => {
       expect(error).toEqual('GET_FILE_CONTENTS_ERROR');
       expect(getFileContents.getFileContents)

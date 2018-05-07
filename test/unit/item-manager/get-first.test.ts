@@ -14,7 +14,7 @@ describe('Item Manager: Get First', () => {
         if (path.includes('GET_THROWS_ERROR')) {
           cb('ERROR');
         } else {
-          const items = [chance.system.filePath()];
+          const items = [chance.filePath()];
           cb(null, items);
         }
       });
@@ -33,10 +33,10 @@ describe('Item Manager: Get First', () => {
   });
 
   test('should return first candidate found matching name, type and extension', () => {
-    const packagesPath = [chance.system.filePath()];
+    const packagesPath = [chance.filePath()];
     const itemName = chance.name();
     const itemType = chance.pickone(['dashboards', 'jobs', 'widgets']);
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
 
     getFirst(packagesPath, itemName, itemType, extension, (error, candidates) => {
       expect(error).toBeNull();
@@ -48,7 +48,7 @@ describe('Item Manager: Get First', () => {
     const packagesPath = ['GET_THROWS_ERROR'];
     const itemName = chance.name();
     const itemType = chance.pickone(['dashboards', 'jobs', 'widgets']);
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
 
     getFirst(packagesPath, itemName, itemType, extension, (error, candidates) => {
       expect(error).toEqual('ERROR');
@@ -57,10 +57,10 @@ describe('Item Manager: Get First', () => {
   });
 
   test('should return null if there are no matches', () => {
-    const packagesPath = [chance.system.filePath(),];
+    const packagesPath = [chance.filePath(),];
     const itemName = 'RESOLVE_CANDIDATES_RETURNS_NOTHING';
     const itemType = chance.pickone(['dashboards', 'jobs', 'widgets']);
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
 
     getFirst(packagesPath, itemName, itemType, extension, (error, candidates) => {
       expect(error).toBeNull();

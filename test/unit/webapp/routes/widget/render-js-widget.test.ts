@@ -41,7 +41,7 @@ describe('Webapp: Widget: Render JS Widget', () => {
   });
 
   test('should send js file', () => {
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     const widgetName = chance.name();
 
     renderJsWidget(packagesPath, widgetName, request, response);
@@ -61,7 +61,7 @@ describe('Webapp: Widget: Render JS Widget', () => {
   });
 
   test('should return error if js file is not found', () => {
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     const widgetName = 'NO_PATH';
     const expectedMsg = `JS file not found for widget ${widgetName}`;
 
@@ -82,7 +82,7 @@ describe('Webapp: Widget: Render JS Widget', () => {
   });
 
   test('should return error', () => {
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     const widgetName = 'ERROR';
 
     renderJsWidget(packagesPath, widgetName, request, response);

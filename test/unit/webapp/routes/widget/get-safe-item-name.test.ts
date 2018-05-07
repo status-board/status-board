@@ -23,7 +23,7 @@ describe('Webapp: Widget: Get Safe Item Name', () => {
   });
 
   test('should return filename without extension from path', () => {
-    const filePath = chance.system.filePath();
+    const filePath = chance.filePath();
     const myRegexp = /.*\/(.+?)\./g;
     const match = myRegexp.exec(filePath);
 

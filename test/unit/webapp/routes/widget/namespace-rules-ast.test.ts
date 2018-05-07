@@ -40,7 +40,7 @@ describe('Webapp: Widget: Namespace Rules AST', () => {
 
   test('should not namespace fonts', () => {
     const fontFamily = chance.name();
-    const fontFile = chance.system.fileName();
+    const fontFile = chance.fileName();
     const code = `@font-face{font-family:'${fontFamily}';src:url('${fontFile}');}`;
     const namespace = chance.string({ pool: 'abcdefghijklmnopqrstuvwxyz' });
     const stylesheet = css.parse(code);

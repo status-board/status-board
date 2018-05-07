@@ -14,7 +14,7 @@ describe('Package Dependency Manager: Get Valid Package JSON', () => {
   });
 
   test('should call read-package-json with package path and callback', () => {
-    const pathPackage = chance.system.filePath();
+    const pathPackage = chance.filePath();
     const callback = jest.fn();
 
     getValidPackageJSON(pathPackage, callback);

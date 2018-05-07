@@ -57,7 +57,7 @@ describe('Webapp: Widget: Load Stylus If Present', () => {
 
   test('should get the files content and add it to the namespace', () => {
     const widgetName = chance.name();
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     loadStylusIfPresent(response, widgetName, packagesPath, (error) => {
       expect(error).toBeNull();
       expect(getFileContents.getFileContents)
@@ -79,7 +79,7 @@ describe('Webapp: Widget: Load Stylus If Present', () => {
 
   test('should return error from get file content', () => {
     const widgetName = 'RETURN_ERROR';
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     loadStylusIfPresent(response, widgetName, packagesPath, (error) => {
       expect(error).toEqual('GET_FILE_CONTENTS_ERROR');
       expect(getFileContents.getFileContents)
@@ -97,7 +97,7 @@ describe('Webapp: Widget: Load Stylus If Present', () => {
 
   test('should return nothing if there is no css', () => {
     const widgetName = 'RETURN_NO_STYL';
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     loadStylusIfPresent(response, widgetName, packagesPath, (error) => {
       expect(error).toBeNull();
       expect(getFileContents.getFileContents)
@@ -115,7 +115,7 @@ describe('Webapp: Widget: Load Stylus If Present', () => {
 
   test('should return error if is a stylus error', () => {
     const widgetName = 'STYLUS_RETURN_ERROR';
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     loadStylusIfPresent(response, widgetName, packagesPath, (error) => {
       expect(error).toEqual('STYLUS_ERROR');
       expect(getFileContents.getFileContents)

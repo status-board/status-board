@@ -35,7 +35,7 @@ describe('Item Manager: Filters', () => {
 
   test('should return true if dashboard is enabled', () => {
     const { dashboards } = filters;
-    const dashboardPath = chance.system.filePath();
+    const dashboardPath = chance.filePath();
 
     const shouldBeFiltered = dashboards(dashboardPath);
 
@@ -45,7 +45,7 @@ describe('Item Manager: Filters', () => {
 
   test('should return false if dashboard is disabled', () => {
     const { dashboards } = filters;
-    const dashboardPath = `/NOT_ENABLED${chance.system.filePath()}`;
+    const dashboardPath = `/NOT_ENABLED${chance.filePath()}`;
 
     const shouldBeFiltered = dashboards(dashboardPath);
 
@@ -55,7 +55,7 @@ describe('Item Manager: Filters', () => {
 
   test('should return false a log error if dashboard is invalid or doesnt exist', () => {
     const { dashboards } = filters;
-    const dashboardPath = `/THROW_ERROR${chance.system.filePath()}`;
+    const dashboardPath = `/THROW_ERROR${chance.filePath()}`;
 
     const shouldBeFiltered = dashboards(dashboardPath);
 

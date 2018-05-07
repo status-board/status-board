@@ -17,7 +17,7 @@ describe('Webapp: Widget: Render HTML Widget', () => {
   let widgetName: any;
 
   beforeEach(() => {
-    packagesPath = chance.system.filePath();
+    packagesPath = chance.filePath();
     widgetName = chance.name();
     request = new Request();
     response = new Response();
@@ -42,7 +42,7 @@ describe('Webapp: Widget: Render HTML Widget', () => {
   });
 
   test('should renders html widget', () => {
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     const widgetName = chance.name();
 
     renderHtmlWidget(packagesPath, widgetName, request, response);
@@ -63,7 +63,7 @@ describe('Webapp: Widget: Render HTML Widget', () => {
   });
 
   test('should respond with error from load html', () => {
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     const widgetName = 'LOAD_HTML_ERROR';
 
     renderHtmlWidget(packagesPath, widgetName, request, response);

@@ -44,7 +44,7 @@ describe('Package Dependency Manager: Install', () => {
   });
 
   test('should return null if install was successful', () => {
-    const pathPackageJson = chance.system.filePath();
+    const pathPackageJson = chance.filePath();
 
     install(pathPackageJson, (message) => {
       expect(message).toBeNull();
@@ -92,7 +92,7 @@ describe('Package Dependency Manager: Install', () => {
     });
 
     test('if platform is win32 it should call npm with npm.cmd', () => {
-      const pathPackageJson = chance.system.filePath();
+      const pathPackageJson = chance.filePath();
 
       install(pathPackageJson, (message) => {
         expect(message).toBeNull();

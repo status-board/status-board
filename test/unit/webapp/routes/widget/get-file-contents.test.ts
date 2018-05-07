@@ -17,7 +17,7 @@ describe('Webapp: Widget: Get File Contents', () => {
   beforeEach(() => {
     request = new Request();
     response = new Response();
-    filePath = chance.system.filePath();
+    filePath = chance.filePath();
     jest.spyOn(fs, 'readFile').mockImplementation((path, options, cb) => cb(null, 'FS_READFILE_DATA'));
     jest.spyOn(itemManager, 'getFirst').mockImplementation((packagesPath, itemName, itemType, extension, cb) => {
       if (itemName === 'NO_PATH') {
@@ -37,9 +37,9 @@ describe('Webapp: Widget: Get File Contents', () => {
   });
 
   test('should fs read the content of the widget file', () => {
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
     const widgetName = chance.name();
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
 
     getFileContents(extension, widgetName, packagesPath, (error, data) => {
       expect(error).toBeNull();
@@ -62,9 +62,9 @@ describe('Webapp: Widget: Get File Contents', () => {
   });
 
   test('should call the callback with error if there is no path returned by getFirst', () => {
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
     const widgetName = 'NO_PATH';
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
 
     getFileContents(extension, widgetName, packagesPath, (error, data) => {
       expect(error).toEqual('File does not exist');
@@ -82,9 +82,9 @@ describe('Webapp: Widget: Get File Contents', () => {
   });
 
   test('should call the callback with error if getFirst returns error', () => {
-    const extension = chance.system.fileExt();
+    const extension = chance.fileExt();
     const widgetName = 'ERROR';
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
 
     getFileContents(extension, widgetName, packagesPath, (error, data) => {
       expect(error).toEqual('GET_FIRST_ERROR');

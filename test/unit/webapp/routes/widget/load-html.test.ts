@@ -35,7 +35,7 @@ describe('Webapp: Widget: Load HTML', () => {
 
   test('should get the files content and add wite response', () => {
     const widgetName = chance.name();
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     loadHTML(response, widgetName, packagesPath, (error) => {
       expect(error).toBeNull();
       expect(getFileContents.getFileContents).toHaveBeenCalledWith(
@@ -50,7 +50,7 @@ describe('Webapp: Widget: Load HTML', () => {
 
   test('should return nothing if there is no html and not write a response', () => {
     const widgetName = 'RETURN_NO_HTML';
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     loadHTML(response, widgetName, packagesPath, (error) => {
       expect(error).toBeNull();
       expect(getFileContents.getFileContents).toHaveBeenCalledWith(
@@ -65,7 +65,7 @@ describe('Webapp: Widget: Load HTML', () => {
 
   test('should return error from get file content and not write a response', () => {
     const widgetName = 'RETURN_ERROR';
-    const packagesPath = chance.system.filePath();
+    const packagesPath = chance.filePath();
     loadHTML(response, widgetName, packagesPath, (error) => {
       expect(error).toEqual('GET_FILE_CONTENTS_ERROR');
       expect(getFileContents.getFileContents).toHaveBeenCalledWith(

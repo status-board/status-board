@@ -88,7 +88,7 @@ describe('Logger', () => {
     ioServer = server.getIoServer();
     ioClient = server.getIoClient();
   });
-  
+
   beforeEach((done: () => void) => {
 
     jest.spyOn(ioServer, 'emit');

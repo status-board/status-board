@@ -29,31 +29,42 @@ export interface IGlobalAuth {
 export interface IConfig {
   interval: number;
   globalAuth: IGlobalAuth;
-
   [key: string]: any;
 }
 
 export interface IWidget {
-  row: number;
-  col: number;
-  width: number;
-  height: number;
+  enabled?: boolean;
+  r?: number;
+  row?: number;
+  c?: number;
+  col?: number;
+  w?: number;
+  width?: number;
+  h?: number;
+  height?: number;
   widget: string;
   job?: string;
-  config: string;
+  config: string | string[];
+}
+
+export interface IGridSize {
+  columns: number;
+  rows: number;
 }
 
 export interface ILayout {
+  gridSize: IGridSize;
   customJS: string[];
   widgets: IWidget[];
 }
 
 export interface IDashboardConfig {
-  title: string;
-  titleVisible: boolean;
-  description: string;
+  enabled?: boolean;
+  title?: string;
+  titleVisible?: boolean;
+  description?: string;
   layout: ILayout;
-  config: {
+  config?: {
     [key: string]: IConfig;
   };
 }
@@ -94,4 +105,25 @@ export interface IOptions {
   port: number;
   install?: boolean;
   filters?: IFilters;
+}
+
+export type IOnInit = (
+  config: IConfig,
+  dependencies: IDependencies,
+) => void;
+
+export type IOnRun = (
+  config: IConfig,
+  dependencies: IDependencies,
+  jobCallback: IVoidCallbackWithData,
+) => void;
+
+export interface IJob {
+  configKey: string;
+  dashboard_name: string;
+  job_name: string;
+  widget_item: IWidget;
+  onRun: IOnRun;
+  onInit: IOnInit;
+  config: IConfig;
 }

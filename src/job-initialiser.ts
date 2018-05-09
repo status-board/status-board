@@ -5,10 +5,10 @@ import { fillDependencies } from './job-dependencies/loader';
 import { getJobs } from './job-manager';
 import logger from './logger';
 import { Scheduler } from './Scheduler';
-import { IJobOptions } from './type';
+import { IJob, IJobOptions } from './type';
 
 export function init(options: IJobOptions, cb: (error?: any) => void) {
-  getJobs(options, (err: any, jobWorkers: any) => {
+  getJobs(options, (err: any, jobWorkers: IJob[]) => {
     if (err) {
       return cb(err);
     }

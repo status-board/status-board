@@ -6,7 +6,7 @@ import { stylus } from '../../../../../src/stylus';
 import { loadStylusIfPresent } from '../../../../../src/webapp/routes/widget';
 import * as addNamespacesCSSToResponse from '../../../../../src/webapp/routes/widget/add-namespaces-css-to-response';
 import * as getFileContents from '../../../../../src/webapp/routes/widget/get-file-contents';
-import { system } from '../../../../helpers/chance-system';
+import { IChanceSystem, system } from '../../../../helpers/chance-system';
 
 jest.mock('../../../../../src/logger', () => {
   const errorMock = jest.fn();
@@ -16,8 +16,8 @@ jest.mock('../../../../../src/logger', () => {
   };
 });
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Webapp: Widget: Load Stylus If Present', () => {
   let response: Response;

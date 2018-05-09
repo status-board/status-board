@@ -1,12 +1,12 @@
 import * as Chance from 'chance';
 import { Request } from 'jest-express/lib/request';
 import { Response } from 'jest-express/lib/response';
-import { system } from '../../../../helpers/chance-system';
+import { IChanceSystem, system } from '../../../../helpers/chance-system';
 
 import { getSafeItemName } from '../../../../../src/webapp/routes/widget';
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Webapp: Widget: Get Safe Item Name', () => {
   let request: Request;

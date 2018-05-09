@@ -1,10 +1,10 @@
 import * as Chance from 'chance';
 import * as fs from 'fs';
 import { checkPackagesFolder } from '../../../src/package-dependency-manager/check-packages-folder';
-import { system } from '../../helpers/chance-system';
+import { IChanceSystem, system } from '../../helpers/chance-system';
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Package Dependency Manager: Check Packages Folder', () => {
 

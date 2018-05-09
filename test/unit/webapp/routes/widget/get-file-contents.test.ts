@@ -4,10 +4,10 @@ import { Request } from 'jest-express/lib/request';
 import { Response } from 'jest-express/lib/response';
 import * as itemManager from '../../../../../src/item-manager';
 import { getFileContents } from '../../../../../src/webapp/routes/widget';
-import { system } from '../../../../helpers/chance-system';
+import { IChanceSystem, system } from '../../../../helpers/chance-system';
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Webapp: Widget: Get File Contents', () => {
   let request: Request;

@@ -4,13 +4,13 @@ import {
   checkValidIfAtlasboardVersionForPackage,
 } from '../../../src/package-dependency-manager/check-valid-if-atlasboard-version-for-package';
 import * as getJson from '../../../src/package-dependency-manager/get-valid-package-json';
-import { system } from '../../helpers/chance-system';
+import { IChanceSystem, system } from '../../helpers/chance-system';
 import { getValidPackageJSON } from "../../../src/package-dependency-manager/get-valid-package-json";
 
 const atlasboardPackageJsonPath = path.join(__dirname, '../../../');
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Package Dependency Manager: Check Valid If Atlasboard Version For Package', () => {
   beforeEach(() => {

@@ -5,10 +5,10 @@ import * as checkPkdDir from '../../../src/package-dependency-manager/check-pack
 import * as checkVerPkg from '../../../src/package-dependency-manager/check-valid-if-atlasboard-version-for-package';
 import * as install from '../../../src/package-dependency-manager/install';
 import { installDependencies } from '../../../src/package-dependency-manager';
-import { system } from '../../helpers/chance-system';
+import { IChanceSystem, system } from '../../helpers/chance-system';
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Package Dependency Manager: Install Dependencies', () => {
   beforeEach(() => {

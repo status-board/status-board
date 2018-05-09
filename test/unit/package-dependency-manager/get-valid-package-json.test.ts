@@ -1,12 +1,12 @@
 import * as Chance from 'chance';
 import * as readJson from 'read-package-json';
 import { getValidPackageJSON } from '../../../src/package-dependency-manager/get-valid-package-json';
-import { system } from '../../helpers/chance-system';
+import { IChanceSystem, system } from '../../helpers/chance-system';
 
 jest.mock('read-package-json');
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Package Dependency Manager: Get Valid Package JSON', () => {
   afterEach(() => {

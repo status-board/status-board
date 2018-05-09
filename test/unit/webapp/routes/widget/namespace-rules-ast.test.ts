@@ -3,10 +3,10 @@ import * as css from 'css';
 import { Request } from 'jest-express/lib/request';
 import { Response } from 'jest-express/lib/response';
 import { namespaceRulesAST } from '../../../../../src/webapp/routes/widget';
-import { system } from '../../../../helpers/chance-system';
+import { IChanceSystem, system } from '../../../../helpers/chance-system';
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Webapp: Widget: Namespace Rules AST', () => {
   let request: Request;

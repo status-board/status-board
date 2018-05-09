@@ -5,10 +5,10 @@ import { renderHtmlWidget } from '../../../../../src/webapp/routes/widget';
 import * as loadCSSIfPresent from '../../../../../src/webapp/routes/widget/load-css-if-present';
 import * as loadHTML from '../../../../../src/webapp/routes/widget/load-html';
 import * as loadStylusIfPresent from '../../../../../src/webapp/routes/widget/load-stylus-if-present';
-import { system } from '../../../../helpers/chance-system';
+import { IChanceSystem, system } from '../../../../helpers/chance-system';
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Webapp: Widget: Render HTML Widget', () => {
   let request: Request;

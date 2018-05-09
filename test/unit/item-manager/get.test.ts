@@ -1,10 +1,10 @@
 import * as Chance from 'chance';
 import { get } from '../../../src/item-manager';
 import * as getByPackage from '../../../src/item-manager/get-by-package';
-import { system } from '../../helpers/chance-system';
+import { IChanceSystem, system } from '../../helpers/chance-system';
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Item Manager: Get', () => {
   beforeEach(() => {

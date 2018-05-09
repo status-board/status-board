@@ -1,12 +1,12 @@
 import * as Chance from 'chance';
 import { Response } from 'jest-express/lib/response';
-import { system } from '../../../../helpers/chance-system';
+import { IChanceSystem, system } from '../../../../helpers/chance-system';
 
 import { loadHTML } from '../../../../../src/webapp/routes/widget';
 import * as getFileContents from '../../../../../src/webapp/routes/widget/get-file-contents';
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Webapp: Widget: Load HTML', () => {
   let response: Response;

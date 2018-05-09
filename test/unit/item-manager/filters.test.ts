@@ -2,7 +2,7 @@ import * as Chance from 'chance';
 import * as fs from 'fs';
 import { filters } from '../../../src/item-manager/filters';
 import logger from '../../../src/logger';
-import { system } from '../../helpers/chance-system';
+import { IChanceSystem, system } from '../../helpers/chance-system';
 
 jest.mock('../../../src/logger', () => {
   const errorMock = jest.fn();
@@ -12,8 +12,8 @@ jest.mock('../../../src/logger', () => {
   };
 });
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Item Manager: Filters', () => {
 

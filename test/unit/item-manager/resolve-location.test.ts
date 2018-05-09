@@ -1,9 +1,9 @@
 import * as Chance from 'chance';
 import { resolveLocation } from '../../../src/item-manager';
-import { system } from '../../helpers/chance-system';
+import { IChanceSystem, system } from '../../helpers/chance-system';
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Item Manager: Resolve Location', () => {
   test('should return path relative to packages path for dashboards', () => {

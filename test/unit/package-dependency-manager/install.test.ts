@@ -2,10 +2,10 @@ import * as Chance from 'chance';
 import { noop } from '../../../src/helpers';
 import * as executeCommand from '../../../src/package-dependency-manager/execute-command';
 import { install } from '../../../src/package-dependency-manager/install';
-import { system } from '../../helpers/chance-system';
+import { IChanceSystem, system } from '../../helpers/chance-system';
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Package Dependency Manager: Install', () => {
   let errorMessage;

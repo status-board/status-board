@@ -4,7 +4,7 @@ import { Response } from 'jest-express/lib/response';
 import * as itemManager from '../../../../../src/item-manager';
 import logger from '../../../../../src/logger';
 import { renderJsWidget } from '../../../../../src/webapp/routes/widget';
-import { system } from '../../../../helpers/chance-system';
+import { IChanceSystem, system } from '../../../../helpers/chance-system';
 
 jest.mock('../../../../../src/logger', () => {
   const errorMock = jest.fn();
@@ -14,8 +14,8 @@ jest.mock('../../../../../src/logger', () => {
   };
 });
 
-const chance = new Chance();
-chance.mixin(system);
+const chance = new Chance() as Chance.Chance & IChanceSystem;
+chance.mixin(system as any);
 
 describe('Webapp: Widget: Render JS Widget', () => {
   let request: Request;

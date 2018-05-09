@@ -1,22 +1,9 @@
-import * as io from 'socket.io';
-import SocketIO = require('socket.io');
-import * as socketClient from 'socket.io-client';
-import SocketIOClient from 'socket.io-client';
+import { SocketIO, Server } from 'mock-socket';
 
-export interface IServer {
-  getIoServer: () => SocketIO.Server;
-  getIoClient: () => SocketIOClient.Socket;
-  stopServer: () => void;
-}
-
-export class Server implements IServer {
-  private ioServer: SocketIO.Server;
-  private ioClient: SocketIOClient.Socket;
-
+export class Server {
   constructor() {
-    this.ioServer = io();
-    this.ioServer.listen(3000);
-    this.ioClient = socketClient('http://localhost:3000', { reconnection: false });
+    this.ioServer = new Server('http://localhost:8080');
+    this.ioClient = new SocketIO('http://localhost:8080');
   }
 
   public getIoServer() {
@@ -25,10 +12,5 @@ export class Server implements IServer {
 
   public getIoClient() {
     return this.ioClient;
-  }
-
-  public stopServer() {
-    this.ioServer.close();
-    this.ioClient.disconnect();
   }
 }

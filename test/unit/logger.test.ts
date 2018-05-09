@@ -3,7 +3,7 @@ import { Console } from 'console';
 import * as tracer from 'tracer';
 import * as configManager from '../../src/config-manager';
 import { noop } from '../../src/helpers';
-import { IServer, Server } from '../helpers/socket';
+import { Server } from '../helpers/socket';
 
 jest.mock('../../src/config-manager', () => {
   let config = {};
@@ -73,9 +73,9 @@ const tracerLogger = (
   };
 };
 
-let server: IServer;
-let ioServer: SocketIO.Server;
-let ioClient: SocketIOClient.Socket;
+let server;
+let ioServer;
+let ioClient;
 
 const jobWorker = {
   dashboard_name: chance.name(),
@@ -83,10 +83,13 @@ const jobWorker = {
 };
 
 describe('Logger', () => {
-  beforeEach((done: () => void) => {
+  beforeAll(() => {
     server = new Server();
     ioServer = server.getIoServer();
     ioClient = server.getIoClient();
+  });
+  
+  beforeEach((done: () => void) => {
 
     jest.spyOn(ioServer, 'emit');
     jest.spyOn(tracer, 'colorConsole')
@@ -95,7 +98,7 @@ describe('Logger', () => {
   });
 
   afterEach((done: () => void) => {
-    server.stopServer();
+    // server.stopServer();
     jest.restoreAllMocks();
     done();
   });

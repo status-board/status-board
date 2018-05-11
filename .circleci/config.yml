@@ -215,8 +215,5 @@ workflows:
           requires:
             - coverage
       - semantic-release:
-          branches:
-            only:
-              - master
           requires:
             - build-typescript

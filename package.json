@@ -107,7 +107,7 @@
     "mock-socket": "7.1.0",
     "opt-cli": "1.6.0",
     "rimraf": "2.6.2",
-    "semantic-release": "15.4.0",
+    "semantic-release": "15.4.1",
     "socket.io-client": "2.1.0",
     "ts-jest": "22.4.6",
     "tslint": "5.10.0",

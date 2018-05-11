@@ -5,7 +5,7 @@ import logger from './logger';
 
 const ENV_VAR_REGEX = /\$\{([^}]+)\}/;
 
-export function globalAuth(file: any) {
+export function globalAuth(file: string) {
   let auth = {};
 
   try {
@@ -21,7 +21,6 @@ export function globalAuth(file: any) {
     }
     return auth;
   }
-
   try {
     traverse(auth).forEach(function (val) {
       if ('string' === typeof val) {

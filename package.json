@@ -40,7 +40,7 @@
   "author": "James W. Lane <james.w.lane@mac.com>",
   "license": "MIT",
   "dependencies": {
-    "async": "2.6.0",
+    "async": "2.6.1",
     "body-parser": "1.18.2",
     "chalk": "2.4.1",
     "compression": "1.7.2",

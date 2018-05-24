@@ -1406,7 +1406,7 @@ commander@^2.14.1:
   version "2.14.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.14.1.tgz#2235123e37af8ca3c65df45b026dbd357b01b9aa"
 
-commitizen@2.10.0:
+commitizen@^2.10.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/commitizen/-/commitizen-2.10.0.tgz#c25778d6c708ec82f7c5c1fa5a37ebd74e7db760"
   dependencies:

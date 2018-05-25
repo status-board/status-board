@@ -1,4 +1,4 @@
-import { NextFunction,Request,Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import * as nib from 'nib';
 import * as realStylus from 'stylus';
 import { getStylusObject } from './get-stylus-object';

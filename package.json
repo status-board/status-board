@@ -82,7 +82,7 @@
     "@types/method-override": "0.0.31",
     "@types/morgan": "1.7.35",
     "@types/node": "8.10.10",
-    "@types/pg": "7.4.8",
+    "@types/pg": "7.4.9",
     "@types/request": "2.47.0",
     "@types/semver": "5.5.0",
     "@types/serve-favicon": "2.2.30",

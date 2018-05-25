@@ -55,7 +55,7 @@
     "nib": "1.1.2",
     "pg": "7.4.3",
     "read-package-json": "2.0.13",
-    "request": "2.86.0",
+    "request": "2.87.0",
     "semver": "5.5.0",
     "socket.io": "2.1.1",
     "stylus": "0.54.5",

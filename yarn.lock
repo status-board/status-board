@@ -6776,7 +6776,7 @@ winston-transport@^4.0.0:
   dependencies:
     triple-beam "^1.2.0"
 
-winston@3.0.0-rc6:
+winston@^3.0.0-rc6:
   version "3.0.0-rc6"
   resolved "https://registry.yarnpkg.com/winston/-/winston-3.0.0-rc6.tgz#f6a0417be6cc2fe5c9a64fbb698e8da674cdf26a"
   dependencies:

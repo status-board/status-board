@@ -76,7 +76,7 @@
     "@types/debug": "0.0.30",
     "@types/ejs": "2.5.1",
     "@types/errorhandler": "0.0.32",
-    "@types/express": "4.11.1",
+    "@types/express": "4.16.0",
     "@types/faker": "4.1.2",
     "@types/jest": "22.2.3",
     "@types/method-override": "0.0.31",

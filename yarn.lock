@@ -6445,9 +6445,9 @@ tr46@^1.0.0:
   dependencies:
     punycode "^2.1.0"
 
-tracer@0.8.15:
-  version "0.8.15"
-  resolved "https://registry.yarnpkg.com/tracer/-/tracer-0.8.15.tgz#c4bb5b8c788ed3d7106c081288e22fd5a5abc474"
+tracer@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/tracer/-/tracer-0.9.0.tgz#f289fda7c53287812bc38509764397ebc05c760b"
   dependencies:
     colors "1.2.3"
     dateformat "3.0.3"

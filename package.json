@@ -109,7 +109,7 @@
     "rimraf": "2.6.2",
     "semantic-release": "15.5.0",
     "socket.io-client": "2.1.1",
-    "ts-jest": "22.4.6",
+    "ts-jest": "23.0.0",
     "tslint": "5.10.0",
     "tslint-config-airbnb": "5.9.2",
     "typescript": "2.8.3"

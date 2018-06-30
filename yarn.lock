@@ -6321,7 +6321,7 @@ triple-beam@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/triple-beam/-/triple-beam-1.2.0.tgz#8b5c1f3d491229bf6ddcf721c0ba84cef5ab51fa"
 
-ts-jest@23.0.0:
+ts-jest@^23.0.0:
   version "23.0.0"
   resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-23.0.0.tgz#3216310fb51e40789c6e4aa20bfe80198d250e9b"
   dependencies:

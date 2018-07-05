@@ -4603,7 +4603,7 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mock-socket@8.0.0:
+mock-socket@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/mock-socket/-/mock-socket-8.0.0.tgz#d1d7f2740d3a419c61b05c0da9f93e7da6be6a0e"
   dependencies:

@@ -61,7 +61,7 @@
     "stylus": "0.54.5",
     "tracer": "0.8.15",
     "traverse": "0.6.6",
-    "underscore": "1.9.0",
+    "underscore": "1.9.1",
     "winston": "3.0.0-rc5",
     "xtend": "4.0.1"
   },

@@ -89,7 +89,7 @@
     "@types/socket.io": "1.4.36",
     "@types/socket.io-client": "1.4.32",
     "@types/stylus": "0.48.30",
-    "@types/traverse": "0.6.31",
+    "@types/traverse": "0.6.32",
     "@types/underscore": "1.8.8",
     "@types/winston": "2.3.9",
     "@types/xtend": "4.0.2",

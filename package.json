@@ -133,5 +133,19 @@
     "ignore": [
       "@types/node"
     ]
+  },
+  "greenkeeper": {
+    "ignore": [
+      "@types/node"
+    ],
+    "commitMessages": {
+      "initialBadge": ":memo: Docs: Add Greenkeeper badge",
+      "initialDependencies": ":gem: Upgrade: Update dependencies",
+      "initialBranches": ":tada: Build: Whitelist greenkeeper branches",
+      "dependencyUpdate": ":gem: Upgrade: Update ${dependency} to version ${version}",
+      "devDependencyUpdate": ":gem: Upgrade: Update ${dependency} to version ${version}",
+      "dependencyPin": "fix(package): Updated ${dependency} to version ${version}",
+      "devDependencyPin": "chore(package): Updated ${dependency} to version ${version}"
+    }
   }
 }

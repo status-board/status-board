@@ -16,6 +16,7 @@
 [![codecov](https://codecov.io/gh/jameswlane/status-board/branch/master/graph/badge.svg)](https://codecov.io/gh/jameswlane/status-board)
 [![Code Style](https://img.shields.io/badge/code%20style-Airbnb-red.svg)](https://github.com/airbnb/javascript)
 [![Slack Channel](https://slackin-xmjstmxrio.now.sh/badge.svg)](https://slackin-xmjstmxrio.now.sh/)
+[![Module LTS Adopted'](https://img.shields.io/badge/Module%20LTS-Adopted-brightgreen.svg?style=flat)](http://github.com/CloudNativeJS/ModuleLTS)
 
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/jameswlane/status-board.svg?columns=all)](https://waffle.io/jameswlane/status-board)
 
@@ -73,7 +74,28 @@ You'll need to add the Status Board dependency to your ``package.json``.
 
 Nothing is supposed to break once you upgrade but you may want to update a few things:
 
-# Roadmap
+## Module Long Term Support Policy
+
+This module adopts the [Module Long Term Support (LTS)](http://github.com/CloudNativeJS/ModuleLTS) policy, with the following End Of Life (EOL) dates:
+
+| Module Version   | Release Date | Minimum EOL | EOL With     | Status  |
+|------------------|--------------|-------------|--------------|---------|
+| 5.x.x	           | Apr 2021   |               | Node.js 12.x |         |
+| 4.x.x	           | Dec 2019     | Apr 2021    | Node.js 10.x |         |
+| 3.x.x	           | Jun 2019     | Dec 2019    | Node.js 8.x  |         |
+| 2.x.x	           | Apr 2019     | Jun 2019    | Node.js 11.x |         |
+| 1.x.x	           | Nov 2017     | Apr 2019    | Node.js 6.x  | Current |
+
+Learn more about our LTS plan in [docs](https://github.com/jameswlane/status-board/blob/master/docs/LTS.md).
+
+## Roadmap
+Learn more about our reoadmap plan in [docs](https://github.com/jameswlane/status-board/blob/master/docs/ROADMAP.md).
+
+### Big Thanks
+
+Cross-browser Testing Platform and Open Source <3 Provided by [Sauce Labs][homepage]
+
+[homepage]: https://saucelabs.com
 
 ## Contributors
 

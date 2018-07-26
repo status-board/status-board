@@ -105,7 +105,7 @@
     "jest-express": "1.6.0",
     "jest-junit": "5.1.0",
     "lint-staged": "7.2.0",
-    "mock-socket": "8.0.1",
+    "mock-socket": "8.0.2",
     "opt-cli": "1.6.0",
     "rimraf": "2.6.2",
     "semantic-release": "15.8.1",

@@ -80,10 +80,6 @@ This module adopts the [Module Long Term Support (LTS)](http://github.com/CloudN
 
 | Module Version   | Release Date | Minimum EOL | EOL With     | Status  |
 |------------------|--------------|-------------|--------------|---------|
-| 5.x.x	           | Apr 2021   |               | Node.js 12.x |         |
-| 4.x.x	           | Dec 2019     | Apr 2021    | Node.js 10.x |         |
-| 3.x.x	           | Jun 2019     | Dec 2019    | Node.js 8.x  |         |
-| 2.x.x	           | Apr 2019     | Jun 2019    | Node.js 11.x |         |
 | 1.x.x	           | Nov 2017     | Apr 2019    | Node.js 6.x  | Current |
 
 Learn more about our LTS plan in [docs](https://github.com/jameswlane/status-board/blob/master/docs/LTS.md).

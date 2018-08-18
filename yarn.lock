@@ -426,11 +426,11 @@
   version "1.8.8"
   resolved "https://registry.yarnpkg.com/@types/underscore/-/underscore-1.8.8.tgz#510fe1ca5e7fa87fccd405b9a8b566d420bc3d1b"
 
-"@types/winston@2.3.9":
-  version "2.3.9"
-  resolved "https://registry.yarnpkg.com/@types/winston/-/winston-2.3.9.tgz#1ff9f1bb57952fe3d88c1b21c4899ede316a35bc"
+"@types/winston@2.4.4":
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/@types/winston/-/winston-2.4.4.tgz#48cc744b7b42fad74b9a2e8490e0112bd9a3d08d"
   dependencies:
-    "@types/node" "*"
+    winston "*"
 
 "@types/xtend@4.0.2":
   version "4.0.2"
@@ -8004,7 +8004,7 @@ winston-transport@^4.2.0:
     readable-stream "^2.3.6"
     triple-beam "^1.2.0"
 
-winston@3.0.0:
+winston@*, winston@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/winston/-/winston-3.0.0.tgz#1f0b24a96586798bcf0cd149fb07ed47cb01a1b2"
   dependencies:

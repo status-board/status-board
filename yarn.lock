@@ -1954,6 +1954,12 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
   dependencies:
     ms "2.0.0"
 
+debug@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.0.tgz#cfba3c774175ee0f59a51cf8e0849aca9bfd8a9c"
+  dependencies:
+    ms "^2.1.1"
+
 debuglog@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/debuglog/-/debuglog-1.0.1.tgz#aa24ffb9ac3df9a2351837cfb2d279360cd78492"

@@ -16,7 +16,7 @@ export function checkValidIfAtlasboardVersionForPackage(pathPackage: string, cal
 
     getValidPackageJSON(atlasboardPackageJsonPath, (error: any, atlasboardPackageJson: any) => {
       if (error) {
-        return callback('package.json not found for atlasboard at ' + atlasboardPackageJsonPath);
+        return callback(`package.json not found for atlasboard at ${atlasboardPackageJsonPath}`);
       }
 
       if (packageJson.engines && packageJson.engines.atlasboard) {

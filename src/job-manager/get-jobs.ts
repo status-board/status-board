@@ -33,7 +33,7 @@ export function getJobs(options: IJobOptions, callback: IVoidCallbackWithData) {
         logger().error('invalid format. config property not found');
       }
     } catch (e) {
-      return callback(new Error('ERROR reading general config file...' + configPath));
+      return callback(new Error(`ERROR reading general config file... ${configPath}`));
     }
   }
 

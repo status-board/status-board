@@ -42,7 +42,7 @@ export default function (jobWorker: any) {
           expand: 'body.view',
           limit: 1,
         },
-        url: baseUrl + '/rest/api/content',
+        url: `${baseUrl}/rest/api/content`,
       };
       addAuthConfig(auth, opts);
 

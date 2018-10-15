@@ -5,7 +5,7 @@ export function readConfigIfExists(fileName: string) {
   let configFileName = fileName;
 
   if (!path.extname(configFileName)) {
-    configFileName = configFileName + '.js';
+    configFileName = `${configFileName}.js`;
   }
 
   if (fs.existsSync(configFileName)) {

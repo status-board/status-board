@@ -22,9 +22,8 @@ export function init(options: IJobOptions, cb: (error?: any) => void) {
       jobWorkers.forEach((jobWorker: any, index: any) => {
 
         // unique id for this widget in the wallboard
-        jobWorker.id = jobWorker.dashboard_name + '-' +
-          (jobWorker.widget_item.r || jobWorker.widget_item.row) + '-' +
-          (jobWorker.widget_item.c || jobWorker.widget_item.col);
+        // tslint:disable-next-line:max-line-length
+        jobWorker.id = `${jobWorker.dashboard_name}-${(jobWorker.widget_item.r || jobWorker.widget_item.row)}-${(jobWorker.widget_item.c || jobWorker.widget_item.col)}`;
 
         jobWorker.pushUpdate = (data: any) => {
           queue.send(jobWorker.id, data);

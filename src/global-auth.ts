@@ -17,7 +17,7 @@ export function globalAuth(file: string) {
       logger().warn('You can also define the place where the credential file will be located by ' +
         'editing the auth file configuration property \'authenticationFilePath\'');
     } else {
-      logger().error('Error reading ' + file + '. It may contain invalid json format');
+      logger().error(`Error reading ${file}. It may contain invalid json format`);
     }
     return auth;
   }

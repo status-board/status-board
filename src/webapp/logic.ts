@@ -24,9 +24,9 @@ export function renderJsDashboard(packagesPath: any,
     const assetFullPath = path.join(wallboardAssetsFolder, '/javascripts/', fileName);
     fs.readFile(assetFullPath, (error, fileContent) => {
       if (error) {
-        logger().error(assetFullPath + ' not found');
+        logger().error(`${assetFullPath} not found`);
       } else {
-        response.write(fileContent + '\n\n');
+        response.write(`${fileContent}\n\n`);
       }
       cb(null);
     });
@@ -40,8 +40,8 @@ export function renderJsDashboard(packagesPath: any,
     '.json',
     (err: any, dashboardPath: any) => {
       if (err || !dashboardPath) {
-        return response.status(err ? 400 : 404).send(err ? err : 'Trying to render dashboard ' +
-          safeDashboardName + ', but couldn\'t find any dashboard in the packages folder');
+        // tslint:disable-next-line:max-line-length
+        return response.status(err ? 400 : 404).send(err ? err : `Trying to render dashboard ${safeDashboardName}, but couldn\'t find any dashboard in the packages folder`);
       }
       readJSONFile(dashboardPath, (error: any, dashboardJSON: any) => {
         if (error) {

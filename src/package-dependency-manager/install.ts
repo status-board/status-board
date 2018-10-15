@@ -15,9 +15,9 @@ export function install(pathPackageJson: any, callback: any) {
     ['install', '--production', pathPackageJson],
     (error: any, code: any) => {
       if (error) {
-        callback('Error installing dependencies for ' + pathPackageJson + '. err:' + error);
+        callback(`Error installing dependencies for ${pathPackageJson}. err:${error}`);
       } else {
-        callback(code !== 0 ? 'error installing ' + pathPackageJson : null);
+        callback(code !== 0 ? `error installing ${pathPackageJson}` : null);
       }
     });
 

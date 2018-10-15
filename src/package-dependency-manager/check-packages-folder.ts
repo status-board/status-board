@@ -19,7 +19,7 @@ export function checkPackagesFolder(packagesPath: string, cb: any) {
 
     // make sure we have package.json file
     processAllPackagesDir = processAllPackagesDir.filter((dir) => {
-      return fs.statSync(dir).isDirectory() && fs.existsSync(dir + '/package.json');
+      return fs.statSync(dir).isDirectory() && fs.existsSync(`${dir}/package.json`);
     });
 
     cb(null, processAllPackagesDir);

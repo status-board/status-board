@@ -10,7 +10,7 @@ export const logger = new Console(process.stdout, process.stderr);
 export default function (jobWorker?: any, io?: SocketIO.Server) {
   const loggerConfig = config.logger || {};
   const prefix = jobWorker ?
-    ('[dashboard: ' + jobWorker.dashboard_name + '] [job: ' + jobWorker.job_name + '] ') : '';
+    (`[dashboard: ${jobWorker.dashboard_name}] [job: ${jobWorker.job_name}] `) : '';
 
   loggerConfig.transport = (data: any) => {
     const logText = prefix + data.output;

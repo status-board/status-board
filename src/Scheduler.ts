@@ -34,7 +34,7 @@ export class Scheduler {
     // const interval: number = this.originalInterval;
 
     function handleError(err: any) {
-      job.dependencies.logger.error('executed with errors: ' + err);
+      job.dependencies.logger.error(`executed with errors: ${err}`);
 
       // in case of error retry in one third of the original interval or 1 min, whatever is lower
       job.config.interval = Math.min(self.originalInterval / 3, 60000);
@@ -51,8 +51,8 @@ export class Scheduler {
         if (job.config.retryOnErrorTimes) {
           job.retryOnErrorCounter = (job.retryOnErrorCounter) ? job.retryOnErrorCounter : 0;
           if (job.retryOnErrorCounter <= job.config.retryOnErrorTimes) {
-            job.dependencies.logger.warn('widget with retryOnErrorTimes. attempts: ' +
-              job.retryOnErrorCounter);
+            job.dependencies.logger
+              .warn(`widget with retryOnErrorTimes. attempts: ${job.retryOnErrorCounter}`);
             sendError = false;
             job.retryOnErrorCounter += 1;
           }
@@ -89,8 +89,8 @@ export class Scheduler {
       function jobCallback(this: any, err: any, data: any) {
         if (cbCalled) {
           job.dependencies.logger
-            .warn('WARNING!!!!: job_callback executed more than once for job ' +
-              job.widget_item.job + ' in dashboard ' + job.dashboard_name);
+            // tslint:disable-next-line:max-line-length
+            .warn(`WARNING!!!!: job_callback executed more than once for job ${job.widget_item.job} in dashboard ${job.dashboard_name}`);
         }
 
         cbCalled = true;
@@ -106,7 +106,7 @@ export class Scheduler {
       job.onRun.call(job, job.config, job.dependencies, jobCallback);
 
     } catch (e) {
-      job.dependencies.logger.error('Uncaught exception executing job: ' + e);
+      job.dependencies.logger.error(`Uncaught exception executing job: ${e}`);
       handleError(e);
       self.scheduleNext();
     }

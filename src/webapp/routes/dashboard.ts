@@ -39,7 +39,7 @@ export function listAllDashboards(packagesPath: any, request: Request, response:
     }
 
     if (dashboardConfigFiles.length === 1) {
-      return response.redirect('/' + getSafeItemName(dashboardConfigFiles[0]));
+      return response.redirect(`/${getSafeItemName(dashboardConfigFiles[0])}`);
     }
 
     async.map(dashboardConfigFiles, readDashboardJSON, (mapError: any, dashboardJSONs: any) => {

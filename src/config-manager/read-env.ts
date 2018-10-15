@@ -3,7 +3,7 @@ import * as bug from 'debug';
 const debug = bug('config-manager');
 
 export function readEnv(configFileName: string) {
-  const key = 'ATLASBOARD_CONFIG_' + configFileName;
+  const key = `ATLASBOARD_CONFIG_${configFileName}`;
 
   debug('ENV key', key);
 

@@ -7,7 +7,7 @@ const projectPackageJson = fs.readFileSync(path.join(__dirname, '../../..', 'pac
 export default function () {
   return request.defaults({
     headers: {
-      'User-Agent': 'Status Board/' + JSON.parse(projectPackageJson.toString()).version,
+      'User-Agent': `Status Board/${JSON.parse(projectPackageJson.toString()).version}`,
     },
     jar: true,
   });

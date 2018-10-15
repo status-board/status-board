@@ -4666,10 +4666,10 @@ jest-environment-node@^23.4.0:
     jest-mock "^23.2.0"
     jest-util "^23.4.0"
 
-jest-express@1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/jest-express/-/jest-express-1.6.1.tgz#4e9fcd2944299be77705463cc8c0da2e7d4d4b8b"
-  integrity sha512-mlHIL29hgzJEd+pHqvKvzYuaGAUJwKPCIDQEWP0qDRs2xTo7hNl+sA1ibmVYBL2REgjxCQb1ChdylSE8L2a8/w==
+jest-express@1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/jest-express/-/jest-express-1.8.0.tgz#ed805b6ebcca23e1687f639281c8190e9b41114b"
+  integrity sha512-YpSqg9RW2DvpqotNPwXezTtKNyG2p8lt/vN2/quT4qTH7KCowoRRv1j4tnqcz/KgN+YA+tWnFYTt+BTWe8rGDA==
 
 jest-get-type@^22.1.0:
   version "22.1.0"

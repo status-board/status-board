@@ -415,12 +415,11 @@
   dependencies:
     moment ">=2.14.0"
 
-"@types/pg@7.4.10":
-  version "7.4.10"
-  resolved "https://registry.yarnpkg.com/@types/pg/-/pg-7.4.10.tgz#1cf4d6c5d32e621566eca82981161b371fb90ace"
-  integrity sha512-IQ9vRZ3oX99TXZiVq5PgODNoqgHvn2girbkxa6gBT7DPGgvRiJ7kZNwmPiLqSOzlRgMHBIujFeiwD5Sf5TIJqg==
+"@types/pg@7.4.11":
+  version "7.4.11"
+  resolved "https://registry.yarnpkg.com/@types/pg/-/pg-7.4.11.tgz#dcc560e89c17d859c83c91ad3faf60bfeacaad6c"
+  integrity sha512-Eksj2yOBNHnNqLuU1AqwF1qXgdaYDcWVH1ZQlxS7k1i34+JZd/ZNd15ugIpTVQxmBBMqjliJstmrnusjXy08Tg==
   dependencies:
-    "@types/events" "*"
     "@types/node" "*"
     "@types/pg-types" "*"
 

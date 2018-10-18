@@ -256,7 +256,7 @@
     into-stream "^3.1.0"
     lodash "^4.17.4"
 
-"@types/async@2.0.50":
+"@types/async@^2.0.50":
   version "2.0.50"
   resolved "https://registry.yarnpkg.com/@types/async/-/async-2.0.50.tgz#117540e026d64e1846093abbd5adc7e27fda7bcb"
 

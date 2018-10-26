@@ -7530,7 +7530,7 @@ tr46@^1.0.0:
   dependencies:
     punycode "^2.1.0"
 
-tracer@0.9.2:
+tracer@^0.9.2:
   version "0.9.2"
   resolved "https://registry.yarnpkg.com/tracer/-/tracer-0.9.2.tgz#03b7e3d0d7bece84a4ab3e74a53e0b10b4986257"
   dependencies:

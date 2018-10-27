@@ -6679,7 +6679,7 @@ sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
-semantic-release@15.10.6:
+semantic-release@^15.10.6:
   version "15.10.6"
   resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-15.10.6.tgz#39be835aca3fe7b451d10af582d679c34c23437f"
   dependencies:

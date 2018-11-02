@@ -5813,10 +5813,10 @@ mkdirp@0.5.x, mkdirp@0.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp
   dependencies:
     minimist "0.0.8"
 
-mock-socket@8.0.4:
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/mock-socket/-/mock-socket-8.0.4.tgz#ec21fee718845d292901adbdb38414f77d54a134"
-  integrity sha512-xuO+Ep0xI60sXfBwIXezHuBnSj3Rafh6TSeTH81k2aFuNf64JW46PeDaViWMXQ/nMInknUzfMriPkoVhmh5Aag==
+mock-socket@8.0.5:
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/mock-socket/-/mock-socket-8.0.5.tgz#4ce8909601b2bcdf5f7680f35c2f7b34beb2afc4"
+  integrity sha512-dE2EbcxJKQCeYLZSsI7BAiMZCe/bHbJ2LHb5aGwUuDmfoOINEJ8QI6qYJ85NHsSNkNa90F3s6onZcmt/+MppFA==
   dependencies:
     url-parse "^1.2.0"
 

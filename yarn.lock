@@ -4540,10 +4540,10 @@ jest-environment-node@^23.4.0:
     jest-mock "^23.2.0"
     jest-util "^23.4.0"
 
-jest-express@1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/jest-express/-/jest-express-1.8.0.tgz#ed805b6ebcca23e1687f639281c8190e9b41114b"
-  integrity sha512-YpSqg9RW2DvpqotNPwXezTtKNyG2p8lt/vN2/quT4qTH7KCowoRRv1j4tnqcz/KgN+YA+tWnFYTt+BTWe8rGDA==
+jest-express@1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/jest-express/-/jest-express-1.9.0.tgz#0963f46a0bacd58843269bfb5c9e1d4af65a14bc"
+  integrity sha512-ggYvfovzfmkWLdapQuG993UjIo/KLVK7Pxb25oxbYE5OCFLuvBh+mes943CTTh1aueGgN5SfsjJZdpt0crqt1Q==
 
 jest-get-type@^22.1.0:
   version "22.1.0"

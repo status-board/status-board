@@ -15,7 +15,7 @@ module.exports = {
     },
   },
   testMatch: [
-    '<rootDir>/test/**/*.(test|spec).(ts|tsx|js)',
+    '<rootDir>/test/unit/**/*.(test|spec).(ts|tsx|js)',
   ],
   preset: 'ts-jest',
-}
+};

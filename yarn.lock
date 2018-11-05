@@ -389,7 +389,7 @@
     "@types/node" "*"
     "@types/pg-types" "*"
 
-"@types/request@2.48.1":
+"@types/request@^2.48.1":
   version "2.48.1"
   resolved "https://registry.yarnpkg.com/@types/request/-/request-2.48.1.tgz#e402d691aa6670fbbff1957b15f1270230ab42fa"
   dependencies:

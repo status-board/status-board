@@ -110,16 +110,16 @@ jobs:
     <<: *docker_defaults
     <<: *test_steps
 
-  test-node-9:
-    working_directory: ~/status-board
-    docker:
-      - image: circleci/node:9
-    <<: *test_steps
-
   test-node-10:
     working_directory: ~/status-board
     docker:
       - image: circleci/node:10
+    <<: *test_steps
+
+  test-node-11:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:11
     <<: *test_steps
 
   coverage:
@@ -195,12 +195,12 @@ workflows:
             - npmvet
             - nsp
             - tslint
-      - test-node-9:
+      - test-node-10:
           requires:
             - npmvet
             - nsp
             - tslint
-      - test-node-10:
+      - test-node-11:
           requires:
             - npmvet
             - nsp
@@ -209,8 +209,8 @@ workflows:
           requires:
             - test-node-6
             - test-node-8
-            - test-node-9
             - test-node-10
+            - test-node-11
       - build-typescript:
           requires:
             - coverage

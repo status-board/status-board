@@ -83,6 +83,8 @@ export function getJobs(options: IJobOptions, callback: IVoidCallbackWithData) {
                 dashboardConfig.config[key],
               );
             });
+            // TODO: Remove extend and replace with something better.
+            // @ts-ignore
             job.config = extend.apply(null, configs);
           } else { // single configuration
             job.config = extend(

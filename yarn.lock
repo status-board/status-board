@@ -1559,10 +1559,10 @@ chalk@^2.0.0, chalk@^2.0.1, chalk@^2.3.0:
     escape-string-regexp "^1.0.5"
     supports-color "^4.0.0"
 
-chance@1.0.16:
-  version "1.0.16"
-  resolved "https://registry.yarnpkg.com/chance/-/chance-1.0.16.tgz#bd61912716b0010c3dca8e3948a960efcaa7bb1b"
-  integrity sha512-2bgDHH5bVfAXH05SPtjqrsASzZ7h90yCuYT2z4mkYpxxYvJXiIydBFzVieVHZx7wLH1Ag2Azaaej2/zA1XUrNQ==
+chance@1.0.18:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/chance/-/chance-1.0.18.tgz#79788fe6fca4c338bf404321c347eecc80f969ee"
+  integrity sha512-g9YLQVHVZS/3F+zIicfB58vjcxopvYQRp7xHzvyDFDhXH1aRZI/JhwSAO0X5qYiQluoGnaNAU6wByD2KTxJN1A==
 
 chardet@^0.4.0:
   version "0.4.2"

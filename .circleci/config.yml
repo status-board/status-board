@@ -13,7 +13,7 @@ docker_defaults: &docker_defaults
 
 attach_workspace: &attach_workspace
   attach_workspace:
-      at: ~/project
+    at: ~/project
 
 install_steps: &install_steps
   steps:
@@ -22,7 +22,7 @@ install_steps: &install_steps
     - restore_cache:
         name: Restore node_modules cache
         keys:
-          - node-modules-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          - node-modules-{{ .Branch }}-{{ checksum "package-lock.json" }}
           - node-modules-{{ .Branch }}-
           - node-modules-
     - run:
@@ -31,36 +31,32 @@ install_steps: &install_steps
           sudo npm install -g greenkeeper-lockfile@1
     - run:
         name: Install Dependencies
-        command: yarn install
+        command: npm i
     - run:
         name: Updating Lockfiles
         command: |
-          greenkeeper-lockfile-update
-          greenkeeper-lockfile-upload
           greenkeeper-shrinkwrap-update
           greenkeeper-shrinkwrap-upload
     - save_cache:
         name: Save node_modules cache
-        key: node-modules-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        key: node-modules-{{ .Branch }}-{{ checksum "package-lock.json" }}
         paths:
           - node_modules/
-          - ~/.cache/yarn
     - persist_to_workspace:
         root: ~/project
-        paths:
-          - status-board
+        paths: status-board
 
 test_steps: &test_steps
   steps:
     - checkout
     - restore_cache:
-        key: node-modules-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        key: node-modules-{{ .Branch }}-{{ checksum "package-lock.json" }}
     - run:
         name: Install Local Packages
-        command: yarn install --ignore-engines
+        command: npm i
     - run:
         name: Test Suite
-        command: yarn test:ci
+        command: npm run test:ci
 
 jobs:
   install:
@@ -74,18 +70,16 @@ jobs:
       - run:
           name: NPM Vet
           command: |
-            yarn global add npmvet
-            yarn verify:npmvet
+            sudo npm i -g npmvet
+            npm run verify:npmvet
 
-  nsp:
+  audit:
     <<: *docker_defaults
     steps:
       - *attach_workspace
       - run:
-          name: Node Security
-          command: |
-            yarn global add nsp
-            yarn verify:nsp
+          name: NPM Audit Fix
+          command: npm audit fix
 
   tslint:
     <<: *docker_defaults
@@ -96,7 +90,7 @@ jobs:
           command: mkdir reports &&  mkdir reports/tslint
       - run:
           name: TSLint
-          command: yarn tslint
+          command: npm run tslint
       - store_artifacts:
           path: reports/tslint
 
@@ -137,9 +131,9 @@ jobs:
             JEST_JUNIT_OUTPUT: reports/jest/jest-test-results.xml
           command: |
             ./cc-test-reporter before-build
-            yarn test:coverage:ci
+            npm run test:coverage:ci
             ./cc-test-reporter after-build --exit-code $?
-            yarn test:coverage:codecov
+            npm run test:coverage:codecov
       - store_artifacts:
           path: coverage
       - store_artifacts:
@@ -153,15 +147,13 @@ jobs:
       - *attach_workspace
       - run:
           name: Build JavaScript
-          command: yarn ts:build
+          command: npm run ts:build
       - persist_to_workspace:
           root: ~/project
-          paths:
-            - status-board
+          paths: status-board
 
   semantic-release:
     <<: *docker_defaults
-    <<: *defaultFilters
     steps:
       - *attach_workspace
       - run:
@@ -169,7 +161,7 @@ jobs:
           command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run:
           name: Semantic Release
-          command: yarn semantic-release
+          command: npm run semantic-release
 
 workflows:
   version: 2
@@ -179,31 +171,23 @@ workflows:
       - npmvet:
           requires:
             - install
-      - nsp:
-          requires:
-            - install
-      - tslint:
-          requires:
-            - install
-      - test-node-6:
+      - audit:
           requires:
             - npmvet
-            - nsp
+      - tslint:
+          requires:
+            - audit
+      - test-node-6:
+          requires:
             - tslint
       - test-node-8:
           requires:
-            - npmvet
-            - nsp
             - tslint
       - test-node-10:
           requires:
-            - npmvet
-            - nsp
             - tslint
       - test-node-11:
           requires:
-            - npmvet
-            - nsp
             - tslint
       - coverage:
           requires:

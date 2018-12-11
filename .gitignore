@@ -21,6 +21,7 @@ node_modules/
 # macOS
 .DS_Store
 
+yarn.lock
 
 reports/junit/
 ts-lint-results.xml

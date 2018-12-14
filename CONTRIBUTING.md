@@ -41,6 +41,7 @@ Once you are ready to commit the changes, please use the below commands
 
 ### opt into git hooks
 
+
 There are git hooks set up with this project that are automatically installed when you install dependencies. They're
 really handy, but are turned off by default (so as to not hinder new contributors). You can opt into these by creating
 a file called `.opt-in` at the root of the project and putting this inside:

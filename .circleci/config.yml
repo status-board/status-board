@@ -4,7 +4,11 @@ defaultFilters: &defaultFilters
   filters:
     branches:
       only:
+        - beta
+        - 2.x
+        - 1.x
         - master
+        - gh-pages
 
 docker_defaults: &docker_defaults
   docker:

@@ -1,0 +1,34 @@
+{
+  "branches": [
+    {
+      "name": "1.x",
+      "range": "1.x",
+      "channel": "1.x"
+    },
+    {
+      "name": "2.x",
+      "range": "2.x",
+      "channel": "2.x"
+    },
+    {
+      "name": "master"
+    },
+    {
+      "name": "beta",
+      "channel": "beta",
+      "prerelease": "beta"
+    }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md"
+      }
+    ],
+    "@semantic-release/github",
+    "@semantic-release/git"
+  ]
+}

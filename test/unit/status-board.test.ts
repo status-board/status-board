@@ -30,7 +30,7 @@ describe('Status Board', () => {
     statusBoard(options, callback);
 
     expect(runner.runner).toHaveBeenCalledWith(options, callback);
-    expect(logger.log).toHaveBeenCalledWith('Local Status Board');
+    expect(logger.log).toHaveBeenCalledWith('Status Board - Beta (Enabled)');
     expect(installDependencie.installDependencie).toHaveBeenCalledWith(options, callback);
   });
 
@@ -42,7 +42,7 @@ describe('Status Board', () => {
     statusBoard(options, callback);
 
     expect(runner.runner).toHaveBeenCalledWith(expectedOptions, callback);
-    expect(logger.log).toHaveBeenCalledWith('Local Status Board');
+    expect(logger.log).toHaveBeenCalledWith('Status Board - Beta (Enabled)');
     expect(installDependencie.installDependencie).toHaveBeenCalledWith(expectedOptions, callback);
   });
 });

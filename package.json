@@ -50,7 +50,7 @@
     "@types/express": "4.16.0",
     "@types/method-override": "0.0.31",
     "@types/morgan": "1.7.35",
-    "@types/node": "10.0.7",
+    "@types/node": "10.12.18",
     "@types/pg": "7.4.11",
     "@types/request": "2.48.1",
     "@types/semver": "5.5.0",

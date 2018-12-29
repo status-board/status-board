@@ -97,7 +97,7 @@
     "@types/chance": "1.0.1",
     "@types/faker": "4.1.4",
     "@types/jest": "23.3.10",
-    "all-contributors-cli": "5.4.1",
+    "all-contributors-cli": "5.5.0",
     "babel-core": "6.26.3",
     "chance": "1.0.18",
     "codecov": "3.1.0",

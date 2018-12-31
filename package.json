@@ -96,7 +96,7 @@
     "@semantic-release/release-notes-generator": "7.1.4",
     "@types/chance": "1.0.1",
     "@types/faker": "4.1.4",
-    "@types/jest": "23.3.10",
+    "@types/jest": "23.3.11",
     "all-contributors-cli": "5.4.1",
     "babel-core": "6.26.3",
     "chance": "1.0.18",

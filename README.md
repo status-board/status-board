@@ -6,7 +6,6 @@
 
 # status-board
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
-[![Greenkeeper badge](https://badges.greenkeeper.io/jameswlane/status-board.svg)](https://greenkeeper.io/)
 [![Code Style](https://img.shields.io/badge/code%20style-Airbnb-red.svg)](https://github.com/airbnb/javascript)
 [![Slack Channel](https://slackin-xmjstmxrio.now.sh/badge.svg)](https://slackin-xmjstmxrio.now.sh/)
 [![Module LTS Adopted'](https://img.shields.io/badge/Module%20LTS-Adopted-brightgreen.svg?style=flat)](http://github.com/CloudNativeJS/ModuleLTS)

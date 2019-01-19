@@ -5,7 +5,7 @@
 </div>
 
 # status-board
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 [![Code Style](https://img.shields.io/badge/code%20style-Airbnb-red.svg)](https://github.com/airbnb/javascript)
 [![Slack Channel](https://slackin-xmjstmxrio.now.sh/badge.svg)](https://slackin-xmjstmxrio.now.sh/)
 [![Module LTS Adopted'](https://img.shields.io/badge/Module%20LTS-Adopted-brightgreen.svg?style=flat)](http://github.com/CloudNativeJS/ModuleLTS)
@@ -100,8 +100,8 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars2.githubusercontent.com/u/794161?v=4" width="100px;"/><br /><sub><b>James W. Lane III</b></sub>](http://fueledbydreams.com)<br />[💻](https://github.com/jameswlane/status-board/commits?author=jameswlane "Code") [⚠️](https://github.com/jameswlane/status-board/commits?author=jameswlane "Tests") [🚇](#infra-jameswlane "Infrastructure (Hosting, Build-Tools, etc)") [🔧](#tool-jameswlane "Tools") | [<img src="https://avatars2.githubusercontent.com/u/6710107?v=4" width="100px;"/><br /><sub><b>Swami Kalagiri</b></sub>](https://www.linkedin.com/in/swami-kalagiri)<br />[💻](https://github.com/jameswlane/status-board/commits?author=SwamiKalagiri "Code") [⚠️](https://github.com/jameswlane/status-board/commits?author=SwamiKalagiri "Tests") | [<img src="https://avatars1.githubusercontent.com/u/14790466?v=4" width="100px;"/><br /><sub><b>Greenkeeper</b></sub>](https://greenkeeper.io/)<br />[🔌](#plugin-greenkeeperio-bot "Plugin/utility libraries") | [<img src="https://avatars0.githubusercontent.com/u/29791463?v=4" width="100px;"/><br /><sub><b>fossabot</b></sub>](http://fossa.io)<br />[📖](https://github.com/jameswlane/status-board/commits?author=fossabot "Documentation") |
-| :---: | :---: | :---: | :---: |
+| [<img src="https://avatars2.githubusercontent.com/u/794161?v=4" width="100px;" alt="James W. Lane III"/><br /><sub><b>James W. Lane III</b></sub>](http://fueledbydreams.com)<br />[💻](https://github.com/jameswlane/status-board/commits?author=jameswlane "Code") [⚠️](https://github.com/jameswlane/status-board/commits?author=jameswlane "Tests") [🚇](#infra-jameswlane "Infrastructure (Hosting, Build-Tools, etc)") [🔧](#tool-jameswlane "Tools") | [<img src="https://avatars2.githubusercontent.com/u/6710107?v=4" width="100px;" alt="Swami Kalagiri"/><br /><sub><b>Swami Kalagiri</b></sub>](https://www.linkedin.com/in/swami-kalagiri)<br />[💻](https://github.com/jameswlane/status-board/commits?author=SwamiKalagiri "Code") [⚠️](https://github.com/jameswlane/status-board/commits?author=SwamiKalagiri "Tests") |
+| :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!

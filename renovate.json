@@ -2,6 +2,12 @@
   "extends": [
     "config:base"
   ],
+  "baseBranches": [
+    "master",
+    "beta",
+    "2.x",
+    "1.x"
+  ],
   "dependencies": {
     "automerge": true,
     "major": {

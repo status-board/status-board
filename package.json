@@ -55,7 +55,6 @@
     "@types/request": "2.48.1",
     "@types/semver": "5.5.0",
     "@types/socket.io": "2.1.2",
-    "@types/socket.io-client": "1.4.32",
     "@types/stylus": "0.48.30",
     "@types/traverse": "0.6.32",
     "@types/underscore": "1.8.9",
@@ -94,6 +93,7 @@
     "@semantic-release/github": "5.3.0-beta.7",
     "@semantic-release/npm": "5.2.0-beta.5",
     "@semantic-release/release-notes-generator": "7.1.4",
+    "@types/socket.io-client": "1.4.32",
     "@types/chance": "1.0.1",
     "@types/faker": "4.1.5",
     "@types/jest": "23.3.13",
@@ -137,19 +137,5 @@
     "ignore": [
       "@types/node"
     ]
-  },
-  "greenkeeper": {
-    "ignore": [
-      "@types/node"
-    ],
-    "commitMessages": {
-      "initialBadge": ":memo: Docs: Add Greenkeeper badge",
-      "initialDependencies": ":gem: Upgrade: Update dependencies",
-      "initialBranches": ":tada: Build: Whitelist greenkeeper branches",
-      "dependencyUpdate": ":gem: Upgrade: Update ${dependency} to version ${version}",
-      "devDependencyUpdate": ":gem: Upgrade: Update ${dependency} to version ${version}",
-      "dependencyPin": "fix(package): Updated ${dependency} to version ${version}",
-      "devDependencyPin": "chore(package): Updated ${dependency} to version ${version}"
-    }
   }
 }

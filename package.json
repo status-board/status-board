@@ -70,7 +70,7 @@
     "errorhandler": "1.5.0",
     "express": "4.16.4",
     "method-override": "3.0.0",
-    "moment": "2.23.0",
+    "moment": "2.24.0",
     "morgan": "1.9.1",
     "nib": "1.1.2",
     "pg": "7.8.0",

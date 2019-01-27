@@ -87,7 +87,7 @@
     "xtend": "4.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "7.3.2",
+    "@commitlint/cli": "7.4.0",
     "@commitlint/config-conventional": "7.3.1",
     "@semantic-release/changelog": "3.0.2",
     "@semantic-release/commit-analyzer": "7.0.0-beta-.2",

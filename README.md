@@ -5,6 +5,7 @@
 </div>
 
 # status-board
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/620735a5e1324993932619a6b5507e42)](https://app.codacy.com/app/james.w.lane/status-board?utm_source=github.com&utm_medium=referral&utm_content=jameswlane/status-board&utm_campaign=Badge_Grade_Settings)
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 [![Code Style](https://img.shields.io/badge/code%20style-Airbnb-red.svg)](https://github.com/airbnb/javascript)
 [![Slack Channel](https://slackin-xmjstmxrio.now.sh/badge.svg)](https://slackin-xmjstmxrio.now.sh/)

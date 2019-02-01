@@ -83,7 +83,7 @@
     "tracer": "0.9.8",
     "traverse": "0.6.6",
     "underscore": "1.9.1",
-    "winston": "3.2.0",
+    "winston": "3.2.1",
     "xtend": "4.0.1"
   },
   "devDependencies": {

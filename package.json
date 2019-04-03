@@ -58,7 +58,7 @@
     "@types/socket.io-client": "1.4.32",
     "@types/stylus": "0.48.31",
     "@types/traverse": "0.6.32",
-    "@types/underscore": "1.8.13",
+    "@types/underscore": "1.8.14",
     "@types/winston": "2.4.4",
     "@types/xtend": "4.0.2",
     "async": "2.6.2",

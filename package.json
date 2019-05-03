@@ -101,7 +101,7 @@
     "cz-conventional-changelog": "2.1.0",
     "faker": "4.1.0",
     "jest": "24.7.1",
-    "jest-express": "1.10.0",
+    "jest-express": "1.10.1",
     "jest-junit": "6.4.0",
     "lint-staged": "8.1.5",
     "mock-socket": "8.0.5",

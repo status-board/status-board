@@ -18,9 +18,6 @@
 | beta   | [![CircleCI](https://circleci.com/gh/jameswlane/status-board/tree/beta.svg?style=svg)](https://circleci.com/gh/jameswlane/status-board/tree/beta)     | [![dependencies Status](https://david-dm.org/jameswlane/status-board/beta/status.svg)](https://david-dm.org/jameswlane/status-board)   | [![devDependencies Status](https://david-dm.org/jameswlane/status-board/beta/dev-status.svg)](https://david-dm.org/jameswlane/status-board?type=dev)   |                                                                                                                                                                          | [![codecov](https://codecov.io/gh/jameswlane/status-board/branch/beta/graph/badge.svg)](https://codecov.io/gh/jameswlane/status-board)   |                                                                                                                                                                                                                |
 
 
-
-[![Waffle.io - Columns and their card count](https://badge.waffle.io/jameswlane/status-board.svg?columns=all)](https://waffle.io/jameswlane/status-board)
-
 <a href="https://www.patreon.com/jameswlane">
 	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>

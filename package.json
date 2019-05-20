@@ -61,7 +61,7 @@
     "@types/underscore": "1.8.18",
     "@types/winston": "2.4.4",
     "@types/xtend": "4.0.2",
-    "async": "2.6.2",
+    "async": "3.0.0",
     "body-parser": "1.19.0",
     "chalk": "2.4.2",
     "compression": "1.7.4",

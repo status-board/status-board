@@ -15,7 +15,7 @@ function readFileSync() {
 
 function readFile(path, callback) {
   if (path.includes('valid_path')) {
-    callback(null, '{"name":"dashboard"}');
+    callback(null, Buffer.from('{"name":"dashboard"}'));
   } else if (path.includes('invalid_content')) {
     callback(null, 'invalid content');
   } else if (path.includes('error_path')) {

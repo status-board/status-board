@@ -4,7 +4,7 @@ jest.mock('fs');
 
 describe('Helpers', () => {
   test('Should read file', () => {
-    function callback(error, data) {
+    function callback(error: NodeJS.ErrnoException | null, data: string) {
       expect(error).toBeNull();
       expect(data).toMatchObject({ name: 'dashboard' });
     }
@@ -12,7 +12,7 @@ describe('Helpers', () => {
   });
 
   test('Should return syntax error for invalid content', () => {
-    function callback(error, data) {
+    function callback(error: NodeJS.ErrnoException | null, data: string) {
       expect(error).toEqual(SyntaxError('Unexpected token i in JSON at position 0'));
       expect(data).toBeUndefined();
     }
@@ -20,7 +20,7 @@ describe('Helpers', () => {
   });
 
   test('Should return error', () => {
-    function callback(error, data) {
+    function callback(error: NodeJS.ErrnoException | null, data: string) {
       expect(error).toEqual(Error('ERROR'));
       expect(data).toBeUndefined();
     }

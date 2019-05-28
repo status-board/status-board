@@ -8,7 +8,7 @@ export function readJSONFile(dashboardPath: any, cb: any) {
     }
 
     try {
-      cb(null, JSON.stringify(data));
+      cb(null, JSON.parse(data.toString('utf8')));
     } catch (error) {
       cb(error);
     }

@@ -1,13 +1,14 @@
 import * as fs from 'fs';
+import ErrnoException = NodeJS.ErrnoException;
 
 export function readJSONFile(dashboardPath: any, cb: any) {
-  fs.readFile(dashboardPath, (error: Error, data: any) => {
+  fs.readFile(dashboardPath, (error: ErrnoException | null, data: Buffer) => {
     if (error) {
       return cb(error);
     }
 
     try {
-      cb(null, JSON.parse(data));
+      cb(null, JSON.stringify(data));
     } catch (error) {
       cb(error);
     }
@@ -15,5 +16,5 @@ export function readJSONFile(dashboardPath: any, cb: any) {
 }
 
 export function noop() {
-  // No operation performed.
+    // No operation performed.
 }

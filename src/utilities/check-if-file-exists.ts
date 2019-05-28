@@ -7,7 +7,7 @@ export type Callback = (error: NodeJS.ErrnoException | null, response?: boolean)
  * @param {function} callback
  */
 export function checkIfFileExists(filePath: string, callback: Callback) {
-  fs.stat(filePath, (error: NodeJS.ErrnoException, stats: fs.Stats) => {
+  fs.stat(filePath, (error: NodeJS.ErrnoException | null, stats: fs.Stats) => {
     if (error) {
       if (error.code === 'ENOENT') {
         return callback(null, false);

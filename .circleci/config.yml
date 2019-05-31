@@ -26,24 +26,15 @@ install_steps: &install_steps
     - restore_cache:
         name: Restore node_modules cache
         keys:
-          - node-modules-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          - node-modules-{{ .Branch }}-{{ checksum "package.json" }}
           - node-modules-{{ .Branch }}-
           - node-modules-
     - run:
-        name: Install Greenkeeper Packages
-        command: |
-          sudo npm install -g greenkeeper-lockfile@1
-    - run:
         name: Install Dependencies
         command: npm i
-    - run:
-        name: Updating Lockfiles
-        command: |
-          greenkeeper-shrinkwrap-update
-          greenkeeper-shrinkwrap-upload
     - save_cache:
         name: Save node_modules cache
-        key: node-modules-{{ .Branch }}-{{ checksum "package-lock.json" }}
+        key: node-modules-{{ .Branch }}-{{ checksum "package.json" }}
         paths:
           - node_modules/
     - persist_to_workspace:
@@ -54,7 +45,7 @@ test_steps: &test_steps
   steps:
     - checkout
     - restore_cache:
-        key: node-modules-{{ .Branch }}-{{ checksum "package-lock.json" }}
+        key: node-modules-{{ .Branch }}-{{ checksum "package.json" }}
     - run:
         name: Install Local Packages
         command: npm i
@@ -77,14 +68,6 @@ jobs:
             sudo npm i -g npmvet
             npm run verify:npmvet
 
-  audit:
-    <<: *docker_defaults
-    steps:
-      - *attach_workspace
-      - run:
-          name: NPM Audit Fix
-          command: npm audit fix
-
   tslint:
     <<: *docker_defaults
     steps:
@@ -97,12 +80,6 @@ jobs:
           command: npm run tslint
       - store_artifacts:
           path: reports/tslint
-
-  test-node-6:
-    working_directory: ~/status-board
-    docker:
-      - image: circleci/node:6
-    <<: *test_steps
 
   test-node-8:
     <<: *docker_defaults
@@ -118,6 +95,12 @@ jobs:
     working_directory: ~/status-board
     docker:
       - image: circleci/node:11
+    <<: *test_steps
+
+  test-node-12:
+    working_directory: ~/status-board
+    docker:
+      - image: circleci/node:12
     <<: *test_steps
 
   coverage:
@@ -175,15 +158,9 @@ workflows:
       - npmvet:
           requires:
             - install
-      - audit:
-          requires:
-            - npmvet
       - tslint:
           requires:
-            - audit
-      - test-node-6:
-          requires:
-            - tslint
+            - npmvet
       - test-node-8:
           requires:
             - tslint
@@ -193,12 +170,15 @@ workflows:
       - test-node-11:
           requires:
             - tslint
+      - test-node-12:
+          requires:
+            - tslint
       - coverage:
           requires:
-            - test-node-6
             - test-node-8
             - test-node-10
             - test-node-11
+            - test-node-12
       - build-typescript:
           requires:
             - coverage

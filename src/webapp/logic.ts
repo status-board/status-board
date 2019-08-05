@@ -41,7 +41,7 @@ export function renderJsDashboard(packagesPath: any,
     (err: any, dashboardPath: any) => {
       if (err || !dashboardPath) {
         // tslint:disable-next-line:max-line-length
-        return response.status(err ? 400 : 404).send(err ? err : `Unable to find any dashboard in the packages folder`);
+        return response.status(err ? 400 : 404).send(err ? err : 'Unable to find any dashboard in the packages folder');
       }
       readJSONFile(dashboardPath, (error: any, dashboardJSON: any) => {
         if (error) {

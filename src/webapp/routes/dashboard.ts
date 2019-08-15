@@ -87,8 +87,8 @@ export function renderDashboard(packagesPath: any,
       if (error || !dashboardPath) {
         const statusCode = error ? 400 : 404;
         const errorMessage = `
-          Trying to render the dashboard '${safeDashboardName}', but couldn't find a valid dashboard
-          with that name. If the dashboard exists, is it a valid json file? Please check the console
+          Unable to find requested dashboard.
+          If the dashboard exists, is it a valid json file? Please check the console
           for error messages.
         `;
         return response.status(statusCode).send(error ? error : errorMessage);

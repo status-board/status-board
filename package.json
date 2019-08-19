@@ -76,7 +76,7 @@
     "morgan": "1.9.1",
     "nib": "1.1.2",
     "pg": "7.12.0",
-    "read-package-json": "2.0.13",
+    "read-package-json": "2.1.0",
     "request": "2.88.0",
     "semver": "6.3.0",
     "socket.io": "2.2.0",

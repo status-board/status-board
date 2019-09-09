@@ -68,7 +68,7 @@
     "compression": "1.7.4",
     "css": "2.2.4",
     "debug": "4.1.1",
-    "ejs": "2.6.2",
+    "ejs": "2.7.1",
     "errorhandler": "1.5.1",
     "express": "4.17.1",
     "method-override": "3.0.0",

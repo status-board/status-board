@@ -86,7 +86,7 @@
     "underscore": "1.9.1",
     "winston": "3.2.1",
     "xtend": "4.0.2",
-    "snyk": "1.189.0"
+    "snyk": "1.226.1"
   },
   "devDependencies": {
     "@commitlint/cli": "8.1.0",

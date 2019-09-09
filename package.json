@@ -105,7 +105,7 @@
     "@types/socket.io-client": "1.4.32",
     "all-contributors-cli": "6.8.1",
     "babel-core": "6.26.3",
-    "chance": "1.0.18",
+    "chance": "1.1.0",
     "codecov": "3.5.0",
     "commitizen": "4.0.3",
     "coveralls": "3.0.6",

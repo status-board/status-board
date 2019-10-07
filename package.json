@@ -50,7 +50,7 @@
     "@types/method-override": "0.0.31",
     "@types/morgan": "1.7.37",
     "@types/node": "12.7.5",
-    "@types/pg": "7.11.1",
+    "@types/pg": "7.11.2",
     "@types/request": "2.48.3",
     "@types/semver": "6.0.2",
     "@types/socket.io": "2.1.3",

@@ -39,7 +39,7 @@
   "author": "James W. Lane <james.w.lane@mac.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/async": "3.0.2",
+    "@types/async": "3.0.3",
     "@types/body-parser": "1.17.1",
     "@types/compression": "1.0.1",
     "@types/css": "0.0.31",

@@ -87,7 +87,7 @@
   "devDependencies": {
     "@commitlint/cli": "8.2.0",
     "@commitlint/config-conventional": "8.2.0",
-    "@semantic-release/changelog": "3.0.4",
+    "@semantic-release/changelog": "3.0.5",
     "@semantic-release/commit-analyzer": "7.0.0-beta.3",
     "@semantic-release/github": "5.5.5",
     "@semantic-release/npm": "5.2.0-beta.8",

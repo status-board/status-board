@@ -95,7 +95,7 @@
     "@types/babel-core": "6.25.6",
     "@types/chance": "1.0.7",
     "@types/faker": "4.1.6",
-    "@types/jest": "24.0.18",
+    "@types/jest": "24.0.20",
     "@types/rimraf": "2.0.2",
     "@types/semantic-release": "15.13.0",
     "@types/socket.io-client": "1.4.32",

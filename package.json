@@ -96,7 +96,7 @@
     "@types/chance": "1.0.7",
     "@types/faker": "4.1.7",
     "@types/jest": "24.0.23",
-    "@types/rimraf": "2.0.2",
+    "@types/rimraf": "2.0.3",
     "@types/semantic-release": "15.13.1",
     "@types/socket.io-client": "1.4.32",
     "all-contributors-cli": "6.10.0",

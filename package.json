@@ -31,7 +31,9 @@
     "verify:check": "depcheck",
     "verify:david": "npx david",
     "verify:npmvet": "npx npmvet --renderer ci --strict",
-    "verify:tscheck": "npx typesync"
+    "verify:tscheck": "npx typesync",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "main": "./lib/status-board.js",
   "types": "./lib/status-board.d.ts",
@@ -82,7 +84,8 @@
     "traverse": "0.6.6",
     "underscore": "1.9.1",
     "winston": "3.2.1",
-    "xtend": "4.0.2"
+    "xtend": "4.0.2",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@commitlint/cli": "8.2.0",
@@ -139,5 +142,6 @@
     "ignore": [
       "@types/node"
     ]
-  }
+  },
+  "snyk": true
 }

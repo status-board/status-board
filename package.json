@@ -54,7 +54,7 @@
     "@types/request": "2.48.3",
     "@types/semver": "6.2.0",
     "@types/socket.io": "2.1.4",
-    "@types/stylus": "0.48.31",
+    "@types/stylus": "0.48.36",
     "@types/traverse": "0.6.32",
     "@types/underscore": "1.9.4",
     "@types/winston": "2.4.4",

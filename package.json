@@ -109,7 +109,7 @@
     "faker": "4.1.0",
     "jest": "24.9.0",
     "jest-express": "1.10.1",
-    "jest-junit": "8.0.0",
+    "jest-junit": "12.2.0",
     "lint-staged": "9.5.0",
     "mock-socket": "9.0.2",
     "opt-cli": "1.6.0",
